@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Earful">
         <activity
+            android:name=".TestAudioActivity"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
