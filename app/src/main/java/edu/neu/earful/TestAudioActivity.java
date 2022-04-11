@@ -12,7 +12,6 @@ import java.io.IOException;
 
 public class TestAudioActivity extends AppCompatActivity {
     Button playAudioButton;
-    Button stopAudioButton;
     MediaPlayer player;
 
     @Override
@@ -21,7 +20,6 @@ public class TestAudioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test_audio);
 
         playAudioButton = findViewById(R.id.play_button);
-        stopAudioButton = findViewById(R.id.stop_button);
 
         playAudioButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,26 +30,33 @@ public class TestAudioActivity extends AppCompatActivity {
                     try {
                         afd = getAssets().openFd("Boost_4kHz_+12db.mp3");
                         player.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
+                        //player.setLooping(true); // Loops the audio
                         player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                             @Override
                             public void onPrepared(MediaPlayer mediaPlayer) {
                                 player.start();
+                                playAudioButton.setText("Stop");
                             }
                         });
+
+                        player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mediaPlayer) {
+                                player.release();
+                                player = null;
+                                playAudioButton.setText("Play");
+                            }
+                        });
+
                         player.prepareAsync();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }
-            }
-        });
-
-        stopAudioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (player!= null) {
+                } else {
+                    // player is not null
                     player.release();
                     player = null;
+                    playAudioButton.setText("Play");
                 }
             }
         });
