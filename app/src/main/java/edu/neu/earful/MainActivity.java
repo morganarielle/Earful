@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mai
+        setContentView(R.layout.activity_main);
         signInButton = findViewById(R.id.signin);
         usernameText = findViewById(R.id.username);
         usernameText.addTextChangedListener(editTextWatcher);
