@@ -20,7 +20,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void launchMixingMode(View view){
-        Intent activity2Intent = new Intent(getApplicationContext(), MixingActivity.class);
+        Intent activity2Intent = new Intent(getApplicationContext(), TestAudioActivity.class);
         startActivity(activity2Intent);
     }
 }

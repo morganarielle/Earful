@@ -35,7 +35,7 @@ public class TestAudioActivity extends AppCompatActivity {
                             @Override
                             public void onPrepared(MediaPlayer mediaPlayer) {
                                 player.start();
-                                playAudioButton.setText("Stop");
+                                playAudioButton.setText("||");
                             }
                         });
 
@@ -44,7 +44,7 @@ public class TestAudioActivity extends AppCompatActivity {
                             public void onCompletion(MediaPlayer mediaPlayer) {
                                 player.release();
                                 player = null;
-                                playAudioButton.setText("Play");
+                                playAudioButton.setText("ᐅ");
                             }
                         });
 
@@ -56,7 +56,7 @@ public class TestAudioActivity extends AppCompatActivity {
                     // player is not null
                     player.release();
                     player = null;
-                    playAudioButton.setText("Play");
+                    playAudioButton.setText("ᐅ");
                 }
             }
         });
