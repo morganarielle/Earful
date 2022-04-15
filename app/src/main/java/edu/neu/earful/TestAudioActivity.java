@@ -30,6 +30,11 @@ public class TestAudioActivity extends AppCompatActivity {
         submitButton = findViewById(R.id.submit_button);
         radioGroup = findViewById(R.id.radio_group);
 
+        boolean includeCuts = getIntent().getBooleanExtra("includeCuts", false);
+        boolean includeBoosts = getIntent().getBooleanExtra("includeBoosts", false);
+        System.out.println(includeCuts);
+        System.out.println(includeBoosts);
+
         playAudioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

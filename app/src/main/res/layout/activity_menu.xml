@@ -47,7 +47,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/musicianMode_button"
-        app:layout_constraintBottom_toTopOf="@id/start_exercise_button" />
+        app:layout_constraintBottom_toTopOf="@id/start_mixing_exercise_button" />
 
     <TextView
         android:id="@+id/questions_include_textView"
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:text="Questions include:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/start_exercise_button"
+        app:layout_constraintEnd_toStartOf="@id/start_mixing_exercise_button"
         app:layout_constraintBottom_toTopOf="@id/cuts_checkbox"
         app:layout_constraintTop_toBottomOf="@id/mixingMode_textView"/>
 
@@ -64,6 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cuts"
+        android:checked="false"
         app:layout_constraintTop_toBottomOf="@id/questions_include_textView"
         app:layout_constraintBottom_toTopOf="@id/boosts_checkbox"
         app:layout_constraintStart_toStartOf="@id/questions_include_textView"/>
@@ -73,16 +74,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Boosts"
+        android:checked="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/questions_include_textView"
         app:layout_constraintTop_toBottomOf="@id/cuts_checkbox" />
 
     <Button
-        android:id="@+id/start_exercise_button"
+        android:id="@+id/start_mixing_exercise_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start Exercise!"
-        android:onClick="launchMixingMode"
+        android:onClick="onClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/questions_include_textView"
