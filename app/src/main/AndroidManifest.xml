@@ -16,7 +16,7 @@
             android:name=".MusicianActivity"
             android:exported="false" />
         <activity
-            android:name=".MainMenuActivity"
+            android:name=".MenuActivity"
             android:exported="false" />
         <activity
             android:name=".TestAudioActivity"
