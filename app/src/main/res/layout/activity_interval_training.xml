@@ -4,20 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/intervalTrainingHeader"
-        android:layout_width="0dp"
-        android:layout_height="75dp"
-        android:background="@color/teal_700"
-        android:gravity="center"
-        android:text="Interval Training"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageButton
         android:id="@+id/menuButton"
         android:layout_width="40dp"
@@ -26,10 +12,9 @@
         android:layout_marginTop="16dp"
         android:background="@color/teal_200"
         android:contentDescription="Play"
-        android:cropToPadding="false"
         android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/intervalTrainingHeader"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/menu_bw_lines_foreground" />
 
     <ImageButton
@@ -61,14 +46,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:numColumns="auto_fit"
+        android:gravity="center"
         android:horizontalSpacing="16dp"
-        android:verticalSpacing="16dp"
+        android:numColumns="auto_fit"
         android:padding="16dp"
+        android:verticalSpacing="16dp"
         app:layout_constraintBottom_toTopOf="@+id/submitButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/intervalQuestionTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What interval did you hear?"
+        app:layout_constraintBottom_toTopOf="@+id/intervalOptions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playButton" />
