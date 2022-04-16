@@ -18,6 +18,9 @@ public class IntervalTrainingActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle bundle = getIntent().getExtras();
+        this.difficulty = (DifficultyLevel) bundle.get("difficulty");
+
         setContentView(R.layout.activity_interval_training);
         playButton = findViewById(R.id.playButton);
         menuButton = findViewById(R.id.menuButton);
@@ -29,7 +32,19 @@ public class IntervalTrainingActivity extends AppCompatActivity {
         IntervalGVAdapter adapter = new IntervalGVAdapter(this, intervalCards);
         intervalOptions.setAdapter(adapter);
 
-        intervalOptions.setNumColumns(3);
+        setupIntervalOptions();
     }
 
+    public void setupIntervalOptions() {
+        ArrayList<Interval> intervals =  Interval.getIntervalsForDifficulty(difficulty);
+        if (intervals.size() % 3 == 0) {
+            intervalOptions.setNumColumns(3);
+        }
+        else if (intervals.size() > 9) {
+            intervalOptions.setNumColumns(5);
+        }
+        else {
+            intervalOptions.setNumColumns(4);
+        }
+    }
 }
