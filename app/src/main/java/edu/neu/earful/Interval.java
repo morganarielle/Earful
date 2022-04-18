@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public enum Interval {
     perfect1,
     minor2,
@@ -36,6 +37,47 @@ public enum Interval {
         put(major7, 11);
         put(perfect8, 12);
     }};
+
+    public final static Map<Integer, String> midiToFile = new HashMap<Integer, String>() {{
+        put(48, "c3.mp3");
+        put(49, "c#3.mp3");
+        put(50, "d3.mp3");
+        put(51, "d#3.mp3");
+        put(52, "e3.mp3");
+        put(53, "f3.mp3");
+        put(54, "f#3.mp3");
+        put(55, "g3.mp3");
+        put(56, "g#3.mp3");
+        put(57, "a3.mp3");
+        put(58, "a#3.mp3");
+        put(59, "b3.mp3");
+        put(60, "c4.mp3");
+        put(61, "c#4.mp3");
+        put(62, "d4.mp3");
+        put(63, "d#4.mp3");
+        put(64, "e4.mp3");
+        put(65, "f4.mp3");
+        put(66, "f#4.mp3");
+        put(67, "g4.mp3");
+        put(68, "g#4.mp3");
+        put(69, "a4.mp3");
+        put(70, "a#4.mp3");
+        put(71, "b4.mp3");
+        put(72, "c5.mp3");
+        put(73, "c#5.mp3");
+        put(74, "d5.mp3");
+        put(75, "d#5.mp3");
+        put(76, "e5.mp3");
+        put(77, "f5.mp3");
+        put(78, "f#5.mp3");
+        put(79, "g5.mp3");
+        put(80, "g#5.mp3");
+        put(81, "a5.mp3");
+        put(82, "a#5.mp3");
+        put(83, "b5.mp3");
+        put(84, "c6.mp3");
+    }
+    };
 
     public static ArrayList<Interval> getIntervalsForDifficulty(DifficultyLevel difficulty) {
         ArrayList<Interval> intervals = new ArrayList<>();

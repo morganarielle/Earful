@@ -11,24 +11,25 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:background="@color/teal_200"
-        android:contentDescription="Play"
+        android:contentDescription="Menu"
         android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/menu_bw_lines_foreground" />
 
-    <ImageButton
+    <Button
         android:id="@+id/playButton"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/purple_700"
-        android:scaleType="fitCenter"
+        android:contentDescription="Play"
+        android:text="ᐅ"
+        android:textSize="34sp"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menuButton"
-        app:srcCompat="@android:drawable/ic_media_play"
-        android:contentDescription="Menu" />
+        app:layout_constraintTop_toBottomOf="@+id/menuButton" />
 
     <Button
         android:id="@+id/submitButton"
