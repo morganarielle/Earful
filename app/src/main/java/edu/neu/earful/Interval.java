@@ -22,7 +22,7 @@ public enum Interval {
     major7,
     perfect8;
 
-    private final static Map<Interval, Integer> intervalHalfSteps = new HashMap<Interval, Integer>() {{
+    public final static Map<Interval, Integer> intervalHalfSteps = new HashMap<Interval, Integer>() {{
         put(perfect1, 0);
         put(minor2, 1);
         put(major2, 2);

@@ -11,13 +11,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class IntervalTrainingActivity extends AppCompatActivity {
-    private DifficultyLevel difficulty = DifficultyLevel.LEVEL1;
+    private DifficultyLevel difficulty;
     Button playAudioButton;
     ImageButton menuButton;
-    GridView intervalOptions;
+    GridView intervalOptionsGV;
     MediaPlayer player1, player2;
 
     @Override
@@ -29,30 +31,55 @@ public class IntervalTrainingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_interval_training);
         playAudioButton = findViewById(R.id.playButton);
         menuButton = findViewById(R.id.menuButton);
-        intervalOptions = findViewById(R.id.intervalOptions);
+        intervalOptionsGV = findViewById(R.id.intervalOptions);
 
         ArrayList<Interval> intervals = Interval.getIntervalsForDifficulty(difficulty);
         ArrayList<IntervalCard> intervalCards = intervals.stream().map(IntervalCard::new).collect(Collectors.toCollection(ArrayList::new));
 
         IntervalGVAdapter adapter = new IntervalGVAdapter(this, intervalCards);
-        intervalOptions.setAdapter(adapter);
+        intervalOptionsGV.setAdapter(adapter);
 
         setupIntervalOptions();
-        setupAudioPlayback();
+        String[] intervalFiles = chooseInterval();
+        setupAudioPlayback(intervalFiles[0], intervalFiles[1]);
+    }
+
+    /**
+     * Choose random interval within the intervals available at the given difficulty level.
+     * @return String[] with the file paths to the notes in the interval.
+     */
+    private String[] chooseInterval() {
+        ArrayList<Interval> intervals = Interval.getIntervalsForDifficulty(difficulty);
+
+        // choose random interval
+        Random rand = new Random();
+        Interval interval = intervals.get(rand.nextInt(intervals.size()));
+        String[] files = new String[2];
+        int halfSteps = Interval.intervalHalfSteps.get(interval);
+
+        // choose midi starting note (ending note must be within range of notes available)
+        int minMidi = Collections.min(Interval.midiToFile.keySet());
+        int startMidi = minMidi + rand.nextInt(Interval.midiToFile.size() - halfSteps);
+        int endMidi = startMidi + halfSteps;
+
+        // get files for chosen midi notes
+        files[0] = "Notes/" + Interval.midiToFile.get(startMidi);
+        files[1] = "Notes/" + Interval.midiToFile.get(endMidi);
+        return files;
     }
 
     /**
      * Setup audio playback queued by clicking the play button.
      */
-    private void setupAudioPlayback() {
+    private void setupAudioPlayback(String file1, String file2) {
         playAudioButton.setOnClickListener(view -> {
             if (player1 == null) {
                 player1 = new MediaPlayer();
                 player2 = new MediaPlayer();
                 AssetFileDescriptor afd1, afd2 = null;
                 try {
-                    afd1 = getAssets().openFd("Notes/c3.mp3");
-                    afd2 = getAssets().openFd("Notes/d3.mp3");
+                    afd1 = getAssets().openFd(file1);
+                    afd2 = getAssets().openFd(file2);
                     player1.setDataSource(afd1.getFileDescriptor(),afd1.getStartOffset(),afd1.getLength());
                     player2.setDataSource(afd2.getFileDescriptor(),afd2.getStartOffset(),afd2.getLength());
                     player1.setOnPreparedListener(mediaPlayer -> {
@@ -91,16 +118,16 @@ public class IntervalTrainingActivity extends AppCompatActivity {
     /**
      * Setup the GridView to display interval options.
      */
-    public void setupIntervalOptions() {
+    private void setupIntervalOptions() {
         ArrayList<Interval> intervals =  Interval.getIntervalsForDifficulty(difficulty);
         if (intervals.size() % 3 == 0) {
-            intervalOptions.setNumColumns(3);
+            intervalOptionsGV.setNumColumns(3);
         }
         else if (intervals.size() > 9) {
-            intervalOptions.setNumColumns(5);
+            intervalOptionsGV.setNumColumns(5);
         }
         else {
-            intervalOptions.setNumColumns(4);
+            intervalOptionsGV.setNumColumns(4);
         }
     }
 }
