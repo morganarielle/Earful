@@ -59,7 +59,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void launchMixingMode(View view){
-        Intent mixingModeIntent = new Intent(getApplicationContext(), TestAudioActivity.class);
+        Intent mixingModeIntent = new Intent(getApplicationContext(), MixingExerciseActivity.class);
         mixingModeIntent.putExtra("includeCuts", cutsCheckBox.isChecked());
         mixingModeIntent.putExtra("includeBoosts", boostsCheckBox.isChecked());
         startActivity(mixingModeIntent);
