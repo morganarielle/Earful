@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -21,6 +22,7 @@ public class MixingExerciseActivity extends AppCompatActivity {
     ProgressBar progressBar;
     RadioGroup radioGroup;
     MediaPlayer player;
+    TextView whichFreqText;
     boolean includeCuts;
     boolean includeBoosts;
     Map<Integer, String> assetMap = new HashMap<>();
@@ -35,10 +37,12 @@ public class MixingExerciseActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_bar);
         submitButton = findViewById(R.id.submit_button);
         radioGroup = findViewById(R.id.radio_group);
+        whichFreqText = findViewById(R.id.which_freq_textview);
 
         includeCuts = getIntent().getBooleanExtra("includeCuts", false);
         includeBoosts = getIntent().getBooleanExtra("includeBoosts", false);
 
+        setWhichFreqText();
         generateAssetMap();
         path = getRandomFilePath();
 
@@ -125,6 +129,16 @@ public class MixingExerciseActivity extends AppCompatActivity {
                 path = getRandomFilePath();
             }
         });
+    }
+
+    public void setWhichFreqText() {
+        if (includeBoosts && includeCuts) {
+            whichFreqText.setText("Which frequency was boosted or cut?");
+        } else if (includeBoosts) {
+            whichFreqText.setText("Which frequency was boosted?");
+        } else {
+            whichFreqText.setText("Which frequency was cut?");
+        }
     }
 
     public String getRandomFilePath() {
