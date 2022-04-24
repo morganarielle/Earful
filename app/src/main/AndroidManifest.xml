@@ -10,16 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Earful">
         <activity
-            android:name=".MixingActivity"
-            android:exported="false" />
-        <activity
             android:name=".MusicianActivity"
             android:exported="false" />
         <activity
-            android:name=".MainMenuActivity"
+            android:name=".MenuActivity"
             android:exported="false" />
         <activity
-            android:name=".TestAudioActivity"
+            android:name=".MixingExerciseActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

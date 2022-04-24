@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MenuActivity">
+
+    <TextView
+        android:id="@+id/musicianMode_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Musician Mode:"
+        android:textSize="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/musicianMode_button" />
+
+    <Button
+        android:id="@+id/musicianMode_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="launchMusicianMode"
+        android:text="Musician Mode"
+        app:layout_constraintBottom_toTopOf="@+id/mixingMode_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/musicianMode_textView" />
+
+    <View
+        android:id="@+id/divider_view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/mixingMode_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/musicianMode_button" />
+
+    <TextView
+        android:id="@+id/mixingMode_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mixing Mode:"
+        android:textSize="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/musicianMode_button"
+        app:layout_constraintBottom_toTopOf="@id/start_mixing_exercise_button" />
+
+    <TextView
+        android:id="@+id/questions_include_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Questions include:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/start_mixing_exercise_button"
+        app:layout_constraintBottom_toTopOf="@id/cuts_checkbox"
+        app:layout_constraintTop_toBottomOf="@id/mixingMode_textView"/>
+
+    <CheckBox
+        android:id="@+id/cuts_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cuts"
+        android:checked="false"
+        app:layout_constraintTop_toBottomOf="@id/questions_include_textView"
+        app:layout_constraintBottom_toTopOf="@id/boosts_checkbox"
+        app:layout_constraintStart_toStartOf="@id/questions_include_textView"/>
+
+    <CheckBox
+        android:id="@+id/boosts_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Boosts"
+        android:checked="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/questions_include_textView"
+        app:layout_constraintTop_toBottomOf="@id/cuts_checkbox" />
+
+    <Button
+        android:id="@+id/start_mixing_exercise_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Exercise!"
+        android:onClick="onClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/questions_include_textView"
+        app:layout_constraintTop_toBottomOf="@id/questions_include_textView" />
+</androidx.constraintlayout.widget.ConstraintLayout>
