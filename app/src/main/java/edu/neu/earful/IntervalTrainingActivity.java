@@ -5,9 +5,11 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,7 +20,8 @@ import java.util.stream.Collectors;
 public class IntervalTrainingActivity extends AppCompatActivity {
     private DifficultyLevel difficulty;
     Button playAudioButton;
-    ImageButton menuButton;
+    TextView selectedIntervalTV = null;
+    Button submitButton;
     GridView intervalOptionsGV;
     MediaPlayer player1, player2;
 
@@ -30,8 +33,8 @@ public class IntervalTrainingActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_interval_training);
         playAudioButton = findViewById(R.id.playButton);
-        menuButton = findViewById(R.id.menuButton);
         intervalOptionsGV = findViewById(R.id.intervalOptions);
+        submitButton = findViewById(R.id.submitButton);
 
         ArrayList<Interval> intervals = Interval.getIntervalsForDifficulty(difficulty);
         ArrayList<IntervalCard> intervalCards = intervals.stream().map(IntervalCard::new).collect(Collectors.toCollection(ArrayList::new));
@@ -42,6 +45,33 @@ public class IntervalTrainingActivity extends AppCompatActivity {
         setupIntervalOptions();
         String[] intervalFiles = chooseInterval();
         setupAudioPlayback(intervalFiles[0], intervalFiles[1]);
+
+        intervalOptionsGV.setOnItemClickListener((adapterView, view, position, id) -> {
+            CardView intervalCard = (CardView) intervalOptionsGV.getChildAt(position);
+            TextView intervalTV = intervalCard.getChildAt(0).findViewById(R.id.intervalTV);
+
+            // nothing is currently selected
+            if (selectedIntervalTV == null) {
+                selectedIntervalTV = intervalTV;
+                selectedIntervalTV.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.teal_200));
+            }
+            // this interval is already selected, so deselect it
+            else if (selectedIntervalTV == intervalTV) {
+                selectedIntervalTV = null;
+                selectedIntervalTV.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.purple_500));
+            }
+            // a new interval is selected
+            else {
+                selectedIntervalTV.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.purple_500));
+                selectedIntervalTV = intervalTV;
+                selectedIntervalTV.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.teal_200));
+            }
+
+            submitButton.setEnabled(!(selectedIntervalTV == null));
+        });
+
+        submitButton.setEnabled(!(selectedIntervalTV == null));
+
     }
 
     /**
