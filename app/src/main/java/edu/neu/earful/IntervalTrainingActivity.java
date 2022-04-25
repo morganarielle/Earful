@@ -3,9 +3,13 @@ package edu.neu.earful;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -18,10 +22,13 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class IntervalTrainingActivity extends AppCompatActivity {
+    private final Random rand = new Random();
     private DifficultyLevel difficulty;
+    Interval correctInterval;
     Button playAudioButton;
     TextView selectedIntervalTV = null;
     Button submitButton;
+    ProgressBar progressBar;
     GridView intervalOptionsGV;
     MediaPlayer player1, player2;
 
@@ -35,6 +42,7 @@ public class IntervalTrainingActivity extends AppCompatActivity {
         playAudioButton = findViewById(R.id.playButton);
         intervalOptionsGV = findViewById(R.id.intervalOptions);
         submitButton = findViewById(R.id.submitButton);
+        progressBar = findViewById(R.id.progressBar);
 
         ArrayList<Interval> intervals = Interval.getIntervalsForDifficulty(difficulty);
         ArrayList<IntervalCard> intervalCards = intervals.stream().map(IntervalCard::new).collect(Collectors.toCollection(ArrayList::new));
@@ -72,6 +80,69 @@ public class IntervalTrainingActivity extends AppCompatActivity {
 
         submitButton.setEnabled(!(selectedIntervalTV == null));
 
+        submitButton.setOnClickListener(view -> {
+            // Check if we should stop playing the audio
+            if (player1 != null) {
+                if (player1.isPlaying()) {
+                    player1.stop();
+                }
+                player1.release();
+                player1 = null;
+                playAudioButton.setText("ᐅ");
+            }
+            if (player2 != null) {
+                if (player2.isPlaying()) {
+                    player2.stop();
+                }
+                player2.release();
+                player2 = null;
+                playAudioButton.setText("ᐅ");
+            }
+
+            // Update the progress
+            int currentProgress = progressBar.getProgress();
+            if (currentProgress == 100) {
+                // TODO: we'd want to end the exercise and bring the user to a screen to see how they performed
+                progressBar.setProgress(0);
+            } else {
+                progressBar.setProgress(currentProgress + 10);
+            }
+
+            // Check what interval was clicked
+            if (selectedIntervalTV == null) {
+                // no interval is selected
+                System.out.println("No interval is selected");
+            } else {
+                // one of intervals is selected
+                System.out.println("Interval " + IntervalCard.getIntervalFromDisplayText((String) selectedIntervalTV.getText()) + " clicked.");
+
+                // clear selection
+                resetIntervalCardSelection();
+
+                // Disabled the submit button
+                submitButton.setEnabled(false);
+            }
+
+            // make a toast telling the user if they were correct or not
+            if (correctInterval == IntervalCard.getIntervalFromDisplayText((String) selectedIntervalTV.getText())) {
+                Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT).show();
+            }
+
+            // Get a new random file to play for the user
+            selectedIntervalTV = null;
+            String[] newIntervalFiles = chooseInterval();
+            setupAudioPlayback(newIntervalFiles[0], newIntervalFiles[1]);
+        });
+    }
+
+    private void resetIntervalCardSelection() {
+        for (int i = 0; i < intervalOptionsGV.getChildCount(); i++) {
+            CardView card = (CardView) intervalOptionsGV.getChildAt(i);
+            TextView intervalTV = card.findViewById(R.id.intervalTV);
+            intervalTV.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.purple_500));
+        }
     }
 
     /**
@@ -82,10 +153,10 @@ public class IntervalTrainingActivity extends AppCompatActivity {
         ArrayList<Interval> intervals = Interval.getIntervalsForDifficulty(difficulty);
 
         // choose random interval
-        Random rand = new Random();
-        Interval interval = intervals.get(rand.nextInt(intervals.size()));
+        correctInterval = intervals.get(rand.nextInt(intervals.size()));
+        Log.v("TAG", "Correct interval is " + correctInterval);
         String[] files = new String[2];
-        int halfSteps = Interval.intervalHalfSteps.get(interval);
+        int halfSteps = Interval.intervalHalfSteps.get(correctInterval);
 
         // choose midi starting note (ending note must be within range of notes available)
         int minMidi = Collections.min(Interval.midiToFile.keySet());
