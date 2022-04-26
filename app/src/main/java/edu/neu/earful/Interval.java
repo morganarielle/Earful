@@ -39,6 +39,30 @@ public enum Interval {
     }};
 
     public final static Map<Integer, String> midiToFile = new HashMap<Integer, String>() {{
+        put(24, "c1.mp3");
+        put(25, "c#1.mp3");
+        put(26, "d1.mp3");
+        put(27, "d#1.mp3");
+        put(28, "e1.mp3");
+        put(29, "f1.mp3");
+        put(30, "f#1.mp3");
+        put(31, "g1.mp3");
+        put(32, "g#1.mp3");
+        put(33, "a1.mp3");
+        put(34, "a#1.mp3");
+        put(35, "b1.mp3");
+        put(36, "c2.mp3");
+        put(37, "c#2.mp3");
+        put(38, "d2.mp3");
+        put(39, "d#2.mp3");
+        put(40, "e2.mp3");
+        put(41, "f2.mp3");
+        put(42, "f#2.mp3");
+        put(43, "g2.mp3");
+        put(44, "g#2.mp3");
+        put(45, "a2.mp3");
+        put(46, "a#2.mp3");
+        put(47, "b2.mp3");
         put(48, "c3.mp3");
         put(49, "c#3.mp3");
         put(50, "d3.mp3");

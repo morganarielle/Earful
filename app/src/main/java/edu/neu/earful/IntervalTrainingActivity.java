@@ -65,8 +65,8 @@ public class IntervalTrainingActivity extends AppCompatActivity {
             }
             // this interval is already selected, so deselect it
             else if (selectedIntervalTV == intervalTV) {
-                selectedIntervalTV = null;
                 selectedIntervalTV.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.purple_500));
+                selectedIntervalTV = null;
             }
             // a new interval is selected
             else {
@@ -86,6 +86,7 @@ public class IntervalTrainingActivity extends AppCompatActivity {
                 if (player1.isPlaying()) {
                     player1.stop();
                 }
+                player1.reset();
                 player1.release();
                 player1 = null;
                 playAudioButton.setText("ᐅ");
@@ -94,6 +95,7 @@ public class IntervalTrainingActivity extends AppCompatActivity {
                 if (player2.isPlaying()) {
                     player2.stop();
                 }
+                player2.reset();
                 player2.release();
                 player2 = null;
                 playAudioButton.setText("ᐅ");
@@ -157,15 +159,20 @@ public class IntervalTrainingActivity extends AppCompatActivity {
         Log.v("TAG", "Correct interval is " + correctInterval);
         String[] files = new String[2];
         int halfSteps = Interval.intervalHalfSteps.get(correctInterval);
+        Log.v("TAG", "Number of half steps is " + halfSteps);
 
         // choose midi starting note (ending note must be within range of notes available)
         int minMidi = Collections.min(Interval.midiToFile.keySet());
         int startMidi = minMidi + rand.nextInt(Interval.midiToFile.size() - halfSteps);
+        Log.v("TAG", "First MIDI note is " + startMidi);
         int endMidi = startMidi + halfSteps;
+        Log.v("TAG", "Second MIDI note is " + endMidi);
 
         // get files for chosen midi notes
         files[0] = "Notes/" + Interval.midiToFile.get(startMidi);
+        Log.v("TAG", "First file is " + files[0]);
         files[1] = "Notes/" + Interval.midiToFile.get(endMidi);
+        Log.v("TAG", "Second file is " + files[1]);
         return files;
     }
 
@@ -177,7 +184,7 @@ public class IntervalTrainingActivity extends AppCompatActivity {
             if (player1 == null) {
                 player1 = new MediaPlayer();
                 player2 = new MediaPlayer();
-                AssetFileDescriptor afd1, afd2 = null;
+                AssetFileDescriptor afd1, afd2;
                 try {
                     afd1 = getAssets().openFd(file1);
                     afd2 = getAssets().openFd(file2);
@@ -192,11 +199,17 @@ public class IntervalTrainingActivity extends AppCompatActivity {
 
                     player1.setOnCompletionListener(mediaPlayer -> {
                         // Stop the audio
+                        if(player1.isPlaying())
+                            player1.stop();
+                        player1.reset();
                         player1.release();
                         player1 = null;
                     });
                     player2.setOnCompletionListener(mediaPlayer -> {
                         // Stop the audio
+                        if(player2.isPlaying())
+                            player2.stop();
+                        player2.reset();
                         player2.release();
                         player2 = null;
                         playAudioButton.setText("ᐅ");
@@ -209,6 +222,8 @@ public class IntervalTrainingActivity extends AppCompatActivity {
                 }
             } else {
                 // Stop the audio
+                if(player1.isPlaying())
+                    player1.reset();
                 player1.release();
                 player1 = null;
                 playAudioButton.setText("ᐅ");
