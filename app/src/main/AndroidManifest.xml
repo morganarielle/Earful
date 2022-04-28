@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Earful">
         <activity
+            android:name=".MixingTipsActivity"
+            android:exported="false" />
+        <activity
             android:name=".MusicianActivity"
             android:exported="false" />
         <activity
@@ -30,6 +33,7 @@
         <activity
             android:name=".IntervalTrainingActivity"
             android:label="Interval Training" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

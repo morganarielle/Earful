@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".MixingTipsActivity">
+
+        <TextView
+            android:id="@+id/what_is_pink_noise_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What is Pink Noise?"
+            android:fontFamily="@font/give_you_glory"
+            android:textColor="@color/dark_blue"
+            android:textSize="34sp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/pink_noise_summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is a pink noise summary..."
+            android:layout_marginTop="24dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/what_is_pink_noise_label"/>
+
+        <TextView
+            android:id="@+id/listening_for_boosts_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Listening For Boosts:"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/give_you_glory"
+            android:textColor="@color/dark_blue"
+            android:textSize="34sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pink_noise_summary"/>
+
+        <TextView
+            android:id="@+id/boosts_summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is a boost summary..."
+            android:layout_marginTop="24dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/listening_for_boosts_label"/>
+
+        <TextView
+            android:id="@+id/listening_for_cuts_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Listening For Boosts:"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/give_you_glory"
+            android:textColor="@color/dark_blue"
+            android:textSize="34sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/boosts_summary"/>
+
+        <TextView
+            android:id="@+id/cuts_summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is a cut summary..."
+            android:layout_marginTop="24dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/listening_for_cuts_label"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
