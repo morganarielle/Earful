@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onLogIn(View view) {
-        Intent activity2Intent = new Intent(getApplicationContext(), MenuActivity.class);
+        Intent activity2Intent = new Intent(getApplicationContext(), ModeMenuActivity.class);
         startActivity(activity2Intent);
     }
 

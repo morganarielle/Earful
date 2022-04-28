@@ -29,7 +29,7 @@ public class ResultsActivity extends AppCompatActivity {
         int id = view.getId();
 
         if (id == menuButton.getId()) {
-            Intent menuActivityIntent = new Intent(ResultsActivity.this, MenuActivity.class);
+            Intent menuActivityIntent = new Intent(ResultsActivity.this, ModeMenuActivity.class);
             startActivity(menuActivityIntent);
         } else if (id == retryButton.getId()) {
             finish();
