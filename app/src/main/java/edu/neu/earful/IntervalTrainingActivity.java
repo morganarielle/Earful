@@ -4,7 +4,6 @@ import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ProgressBar;
@@ -61,18 +60,18 @@ public class IntervalTrainingActivity extends AppCompatActivity {
             // nothing is currently selected
             if (selectedIntervalTV == null) {
                 selectedIntervalTV = intervalTV;
-                selectedIntervalTV.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.teal_200));
+                selectedIntervalTV.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.dark_blue));
             }
             // this interval is already selected, so deselect it
             else if (selectedIntervalTV == intervalTV) {
-                selectedIntervalTV.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.purple_500));
+                selectedIntervalTV.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.medium_blue));
                 selectedIntervalTV = null;
             }
             // a new interval is selected
             else {
-                selectedIntervalTV.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.purple_500));
+                selectedIntervalTV.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.medium_blue));
                 selectedIntervalTV = intervalTV;
-                selectedIntervalTV.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.teal_200));
+                selectedIntervalTV.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.dark_blue));
             }
 
             submitButton.setEnabled(!(selectedIntervalTV == null));
@@ -143,7 +142,7 @@ public class IntervalTrainingActivity extends AppCompatActivity {
         for (int i = 0; i < intervalOptionsGV.getChildCount(); i++) {
             CardView card = (CardView) intervalOptionsGV.getChildAt(i);
             TextView intervalTV = card.findViewById(R.id.intervalTV);
-            intervalTV.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.purple_500));
+            intervalTV.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.medium_blue));
         }
     }
 

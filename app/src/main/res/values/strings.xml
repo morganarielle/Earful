@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Earful</string>
+    <string name="earful">Earful!</string>
+    <string name="username">Username</string>
+    <string name="sign_in">Sign In</string>
+    <string name="exercise_progress">Exercise Progress</string>
 </resources>

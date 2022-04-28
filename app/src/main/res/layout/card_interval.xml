@@ -15,7 +15,7 @@
             android:id="@+id/intervalTV"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@color/purple_500"
+            android:background="@color/medium_blue"
             android:gravity="center"
             android:text="\?"
             android:textAlignment="center"
