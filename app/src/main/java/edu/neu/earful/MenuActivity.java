@@ -24,21 +24,15 @@ public class MenuActivity extends AppCompatActivity {
         startMixingExerciseButton = findViewById(R.id.start_mixing_exercise_button);
         startMusicianExerciseButton = findViewById(R.id.musicianMode_button);
 
-        cutsCheckBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!cutsCheckBox.isChecked() && !boostsCheckBox.isChecked()) {
-                    boostsCheckBox.setChecked(true);
-                }
+        cutsCheckBox.setOnClickListener(view -> {
+            if (!cutsCheckBox.isChecked() && !boostsCheckBox.isChecked()) {
+                boostsCheckBox.setChecked(true);
             }
         });
 
-        boostsCheckBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!boostsCheckBox.isChecked() && !cutsCheckBox.isChecked()) {
-                    cutsCheckBox.setChecked(true);
-                }
+        boostsCheckBox.setOnClickListener(view -> {
+            if (!boostsCheckBox.isChecked() && !cutsCheckBox.isChecked()) {
+                cutsCheckBox.setChecked(true);
             }
         });
     }
