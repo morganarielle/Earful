@@ -31,6 +31,7 @@ public class IntervalTrainingActivity extends AppCompatActivity {
     ProgressBar progressBar;
     GridView intervalOptionsGV;
     MediaPlayer player1, player2;
+    boolean resetProgress = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -104,7 +105,7 @@ public class IntervalTrainingActivity extends AppCompatActivity {
             // Update the progress
             int currentProgress = progressBar.getProgress();
             if (currentProgress == 90) {
-                progressBar.setProgress(0);
+                progressBar.setProgress(100);
 
                 // TODO: write the score to the database
 
@@ -112,6 +113,8 @@ public class IntervalTrainingActivity extends AppCompatActivity {
                 // TODO: pass the actual score to the next activity
                 resultsActivityIntent.putExtra("score", 100);
                 startActivity(resultsActivityIntent);
+
+                resetProgress = true;
             } else {
                 progressBar.setProgress(currentProgress + 10);
             }
@@ -250,6 +253,15 @@ public class IntervalTrainingActivity extends AppCompatActivity {
         }
         else {
             intervalOptionsGV.setNumColumns(4);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (resetProgress) {
+            progressBar.setProgress(0);
+            resetProgress = false;
         }
     }
 }

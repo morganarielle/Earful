@@ -22,7 +22,7 @@
             android:name=".ModeMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".MixingExerciseActivity"
+            android:name=".MixingTrainingActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

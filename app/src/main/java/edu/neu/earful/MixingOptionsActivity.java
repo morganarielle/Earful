@@ -39,7 +39,7 @@ public class MixingOptionsActivity extends AppCompatActivity {
         int id = view.getId();
 
         if (id == startMixingExerciseButton.getId()) {
-            Intent mixingModeIntent = new Intent(getApplicationContext(), MixingExerciseActivity.class);
+            Intent mixingModeIntent = new Intent(getApplicationContext(), MixingTrainingActivity.class);
             mixingModeIntent.putExtra("includeCuts", cutsCheckBox.isChecked());
             mixingModeIntent.putExtra("includeBoosts", boostsCheckBox.isChecked());
             startActivity(mixingModeIntent);
