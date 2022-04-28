@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Earful">
         <activity
+            android:name=".ResultsActivity"
+            android:exported="false" />
+        <activity
             android:name=".MusicianActivity"
             android:exported="false" />
         <activity

@@ -2,6 +2,7 @@ package edu.neu.earful;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -85,9 +86,15 @@ public class MixingExerciseActivity extends AppCompatActivity {
 
             // Update the progress
             int currentProgress = progressBar.getProgress();
-            if (currentProgress == 100) {
-                // TODO: we'd want to end the exercise and bring the user to a screen to see how they performed
+            if (currentProgress == 90) {
                 progressBar.setProgress(0);
+
+                // TODO: write the score to the database
+
+                Intent resultsActivityIntent = new Intent(MixingExerciseActivity.this, ResultsActivity.class);
+                // TODO: pass the score to the next activity
+                resultsActivityIntent.putExtra("score", 60);
+                startActivity(resultsActivityIntent);
             } else {
                 progressBar.setProgress(currentProgress + 10);
             }
