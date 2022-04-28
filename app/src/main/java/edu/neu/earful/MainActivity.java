@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
         signInButton = findViewById(R.id.signin);
         usernameText = findViewById(R.id.username);
         usernameText.addTextChangedListener(editTextWatcher);
-
     }
 
     public void onLogIn(View view) {

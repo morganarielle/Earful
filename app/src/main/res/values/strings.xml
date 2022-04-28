@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">Earful</string>
+    <string name="earful">Earful!</string>
+    <string name="username">Username</string>
+    <string name="sign_in">Sign In</string>
+    <string name="exercise_progress">Exercise Progress</string>
+    <string name="play_cd">Play</string>
+    <string name="play_icon">ᐅ</string>
+    <string name="submit">SUBMIT</string>
+    <string name="interval_training_question">What interval did you hear?</string>
+    <string name="musician_mode_header">Musician Mode:</string>
+    <string name="choose_level">Choose Level</string>
+    <string name="mixing_mode_header">Mixing Mode:</string>
+    <string name="questions_include">Questions include:</string>
+    <string name="cuts">Cuts</string>
+    <string name="boosts">Boosts</string>
+    <string name="start_exercise">Start Exercise!</string>
+    <string name="_4khz">4kHz</string>
+    <string name="_2khz">2kHz</string>
+    <string name="_1khz">1kHz</string>
+    <string name="_500hz">500Hz</string>
+    <string name="_250hz">250Hz</string>
+    <string name="level_selection">Level Selection</string>
+    <string name="level_1">Level 1</string>
+    <string name="level_2">Level 2</string>
+    <string name="level_3">Level 3</string>
+    <string name="level_4">Level 4</string>
+    <string name="level_5">Level 5</string>
+    <string name="question_mark">\?</string>
+    <string name="boosted_or_cut_question">Which frequency was boosted or cut?</string>
+    <string name="boosted_question">Which frequency was boosted?</string>
+    <string name="cut_question">Which frequency was cut?</string>
 </resources>

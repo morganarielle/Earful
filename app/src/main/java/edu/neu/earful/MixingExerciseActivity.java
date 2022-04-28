@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
@@ -46,98 +45,81 @@ public class MixingExerciseActivity extends AppCompatActivity {
         generateAssetMap();
         path = getRandomFilePath();
 
-        playAudioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (player == null) {
-                    player = new MediaPlayer();
-                    AssetFileDescriptor afd;
-                    try {
-                        System.out.println(path);
-                        afd = getAssets().openFd(path);
-                        player.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
-                        //player.setLooping(true); // Loops the audio
-                        player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                            @Override
-                            public void onPrepared(MediaPlayer mediaPlayer) {
-                                // Play the audio
-                                playAudio();
-                            }
-                        });
+        playAudioButton.setOnClickListener(view -> {
+            if (player == null) {
+                player = new MediaPlayer();
+                AssetFileDescriptor afd;
+                try {
+                    System.out.println(path);
+                    afd = getAssets().openFd(path);
+                    player.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
+                    //player.setLooping(true); // Loops the audio
+                    player.setOnPreparedListener(mediaPlayer -> {
+                        // Play the audio
+                        playAudio();
+                    });
 
-                        player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                            @Override
-                            public void onCompletion(MediaPlayer mediaPlayer) {
-                                stopAudio();
-                            }
-                        });
+                    player.setOnCompletionListener(mediaPlayer -> stopAudio());
 
-                        player.prepareAsync();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    // Stop the audio
-                    stopAudio();
+                    player.prepareAsync();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
+            } else {
+                // Stop the audio
+                stopAudio();
             }
         });
 
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                // Enabled the submit button
-                submitButton.setEnabled(true);
-            }
+        radioGroup.setOnCheckedChangeListener((radioGroup, i) -> {
+            // Enabled the submit button
+            submitButton.setEnabled(true);
         });
 
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Check if we should stop playing the audio
-                if (player != null) {
-                    // Stop the audio
-                    stopAudio();
-                }
-
-                // Update the progress
-                int currentProgress = progressBar.getProgress();
-                if (currentProgress == 100) {
-                    // TODO: we'd want to end the exercise and bring the user to a screen to see how they performed
-                    progressBar.setProgress(0);
-                } else {
-                    progressBar.setProgress(currentProgress + 10);
-                }
-
-                // Check what radio button was clicked
-                int checkedButtonId = radioGroup.getCheckedRadioButtonId();
-                if (checkedButtonId == -1) {
-                    // no radio buttons are checked
-                    System.out.println("No radio buttons are checked");
-                } else {
-                    // one of the radio buttons is checked
-                    System.out.println("Radio button " + checkedButtonId + " clicked.");
-
-                    // Uncheck all
-                    radioGroup.clearCheck();
-
-                    // Disabled the submit button
-                    submitButton.setEnabled(false);
-                }
-
-                // Get a new random file to play for the user
-                path = getRandomFilePath();
+        submitButton.setOnClickListener(view -> {
+            // Check if we should stop playing the audio
+            if (player != null) {
+                // Stop the audio
+                stopAudio();
             }
+
+            // Update the progress
+            int currentProgress = progressBar.getProgress();
+            if (currentProgress == 100) {
+                // TODO: we'd want to end the exercise and bring the user to a screen to see how they performed
+                progressBar.setProgress(0);
+            } else {
+                progressBar.setProgress(currentProgress + 10);
+            }
+
+            // Check what radio button was clicked
+            int checkedButtonId = radioGroup.getCheckedRadioButtonId();
+            if (checkedButtonId == -1) {
+                // no radio buttons are checked
+                System.out.println("No radio buttons are checked");
+            } else {
+                // one of the radio buttons is checked
+                System.out.println("Radio button " + checkedButtonId + " clicked.");
+
+                // Uncheck all
+                radioGroup.clearCheck();
+
+                // Disabled the submit button
+                submitButton.setEnabled(false);
+            }
+
+            // Get a new random file to play for the user
+            path = getRandomFilePath();
         });
     }
 
     public void setWhichFreqText() {
         if (includeBoosts && includeCuts) {
-            whichFreqText.setText("Which frequency was boosted or cut?");
+            whichFreqText.setText(R.string.boosted_or_cut_question);
         } else if (includeBoosts) {
-            whichFreqText.setText("Which frequency was boosted?");
+            whichFreqText.setText(R.string.boosted_question);
         } else {
-            whichFreqText.setText("Which frequency was cut?");
+            whichFreqText.setText(R.string.cut_question);
         }
     }
 
@@ -163,8 +145,7 @@ public class MixingExerciseActivity extends AppCompatActivity {
             directory = "Cuts";
         }
 
-        String path = directory + "/" + assetMap.get(randomNum);
-        return path;
+        return directory + "/" + assetMap.get(randomNum);
     }
 
     public void generateAssetMap() {
