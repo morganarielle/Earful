@@ -119,13 +119,17 @@ public class MixingTipsActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        stopAudio(Integer.parseInt(currentlyPlayingButtonID)); // Must come before super
+        if (currentlyPlayingButtonID != null) {
+            stopAudio(Integer.parseInt(currentlyPlayingButtonID)); // Must come before super
+        }
         super.onDestroy();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        stopAudio(Integer.parseInt(currentlyPlayingButtonID));
+        if (currentlyPlayingButtonID != null) {
+            stopAudio(Integer.parseInt(currentlyPlayingButtonID));
+        }
     }
 }
