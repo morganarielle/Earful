@@ -6,6 +6,7 @@ import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ public class MixingExerciseActivity extends AppCompatActivity {
     boolean includeBoosts;
     Map<Integer, String> assetMap = new HashMap<>();
     String path;
+    ImageView putImageHereImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +39,12 @@ public class MixingExerciseActivity extends AppCompatActivity {
         submitButton = findViewById(R.id.submit_button);
         radioGroup = findViewById(R.id.radio_group);
         whichFreqText = findViewById(R.id.which_freq_textview);
+        putImageHereImageView = findViewById(R.id.put_image_here_imageview);
 
         includeCuts = getIntent().getBooleanExtra("includeCuts", false);
         includeBoosts = getIntent().getBooleanExtra("includeBoosts", false);
 
-        setWhichFreqText();
+        setWhichFreqTextAndImage();
         generateAssetMap();
         path = getRandomFilePath();
 
@@ -113,13 +116,16 @@ public class MixingExerciseActivity extends AppCompatActivity {
         });
     }
 
-    public void setWhichFreqText() {
+    public void setWhichFreqTextAndImage() {
         if (includeBoosts && includeCuts) {
             whichFreqText.setText(R.string.boosted_or_cut_question);
+            putImageHereImageView.setImageResource(R.drawable.boost_or_cut);
         } else if (includeBoosts) {
             whichFreqText.setText(R.string.boosted_question);
+            putImageHereImageView.setImageResource(R.drawable.boost);
         } else {
             whichFreqText.setText(R.string.cut_question);
+            putImageHereImageView.setImageResource(R.drawable.cut);
         }
     }
 
