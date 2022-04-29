@@ -222,7 +222,8 @@ public class IntervalTrainingActivity extends AppCompatActivity {
             } else {
                 // Stop the audio
                 if(player1.isPlaying())
-                    player1.reset();
+                    player1.stop();
+                player1.reset();
                 player1.release();
                 player1 = null;
                 playAudioButton.setText("ᐅ");
@@ -244,5 +245,40 @@ public class IntervalTrainingActivity extends AppCompatActivity {
         else {
             intervalOptionsGV.setNumColumns(4);
         }
+    }
+
+    public void stopAudio() {
+        // Stop the audio
+        if (player1 != null) {
+            if (player1.isPlaying()) {
+                player1.stop();
+            }
+            player1.reset();
+            player1.release();
+            player1 = null;
+            playAudioButton.setText("ᐅ");
+        }
+
+        if (player2 != null) {
+            if (player2.isPlaying()) {
+                player2.stop();
+            }
+            player2.reset();
+            player2.release();
+            player2 = null;
+            playAudioButton.setText("ᐅ");
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        stopAudio(); // Must come before super
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopAudio();
     }
 }
