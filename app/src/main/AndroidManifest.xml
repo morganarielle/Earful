@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Earful">
         <activity
+            android:name=".MixingTipsActivity"
+            android:exported="false" />
+        <activity
             android:name=".MixingOptionsActivity"
             android:exported="false" />
         <activity

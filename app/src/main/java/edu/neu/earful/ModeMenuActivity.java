@@ -10,6 +10,7 @@ import android.widget.Button;
 public class ModeMenuActivity extends AppCompatActivity {
     Button questionOptionsButton;
     Button chooseLevelButton;
+    Button mixingTipsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +18,8 @@ public class ModeMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mode_menu);
 
         chooseLevelButton = findViewById(R.id.choose_level_button);
-        questionOptionsButton = findViewById(R.id.questions_options_button);
+        questionOptionsButton = findViewById(R.id.mixing_practice_button);
+        mixingTipsButton = findViewById(R.id.mixing_tips_button);
     }
 
     public void onClick(View view) {
@@ -27,6 +29,8 @@ public class ModeMenuActivity extends AppCompatActivity {
             launchViewOptions(view);
         } else if (id == chooseLevelButton.getId()) {
             launchChooseLevel(view);
+        } else if (id == mixingTipsButton.getId()) {
+            launchMixingTips(view);
         }
     }
 
@@ -38,5 +42,10 @@ public class ModeMenuActivity extends AppCompatActivity {
     public void launchViewOptions(View view){
         Intent viewOptionsIntent = new Intent(getApplicationContext(), MixingOptionsActivity.class);
         startActivity(viewOptionsIntent);
+    }
+
+    public void launchMixingTips(View view) {
+        Intent mixingTipsIntent = new Intent(getApplicationContext(), MixingTipsActivity.class);
+        startActivity(mixingTipsIntent);
     }
 }
