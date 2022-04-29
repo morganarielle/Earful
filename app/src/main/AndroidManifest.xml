@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Earful">
         <activity
-            android:name=".MusicianActivity"
+            android:name=".MenuActivity"
             android:exported="false" />
         <activity
-            android:name=".MenuActivity"
+            android:name=".CreateAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MusicianActivity"
             android:exported="false" />
         <activity
             android:name=".MixingExerciseActivity"
@@ -23,7 +26,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

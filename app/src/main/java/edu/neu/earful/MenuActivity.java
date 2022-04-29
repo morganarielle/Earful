@@ -8,16 +8,27 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MenuActivity extends AppCompatActivity {
     CheckBox cutsCheckBox;
     CheckBox boostsCheckBox;
     Button startMixingExerciseButton;
     Button startMusicianExerciseButton;
+    FloatingActionButton backToSignInButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        backToSignInButton = findViewById(R.id.backToSignIn);
+        backToSignInButton.setOnClickListener(view -> {
+            FirebaseAuth.getInstance().signOut();
+            Intent activity2Intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(activity2Intent);
+        });
 
         cutsCheckBox = findViewById(R.id.cuts_checkbox);
         boostsCheckBox = findViewById(R.id.boosts_checkbox);

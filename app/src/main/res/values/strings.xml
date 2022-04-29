@@ -30,4 +30,10 @@
     <string name="boosted_or_cut_question">Which frequency was boosted or cut?</string>
     <string name="boosted_question">Which frequency was boosted?</string>
     <string name="cut_question">Which frequency was cut?</string>
+    <string name="create_new_account"><u>Create new account</u></string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="reenter_password">Re-enter Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="back_to_sign_in">Back to sign-in</string>
 </resources>
