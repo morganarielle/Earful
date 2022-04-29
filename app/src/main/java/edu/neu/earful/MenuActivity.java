@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import android.app.AlarmManager;
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -32,7 +33,6 @@ public class MenuActivity extends AppCompatActivity {
     Button startMusicianExerciseButton;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +54,12 @@ public class MenuActivity extends AppCompatActivity {
                 cutsCheckBox.setChecked(true);
             }
         });
-
+        Intent notifyIntent = new Intent(this,MyReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast
+                (this, NOTIFICATION_REMINDER_NIGHT, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,  System.currentTimeMillis(),
+                1000 * 60 * 60 * 24, pendingIntent);
 
     }
 
@@ -94,18 +99,6 @@ public class MenuActivity extends AppCompatActivity {
 
 }
 
-public class MyReceiver extends BroadcastReceiver {
-    public MyReceiver() {
-    }
-
-    @Override
-    public void onReceive(Context context, Intent intent) {
-
-        Intent intent1 = new Intent(context, MyNewIntentService.class);
-        context.startService(intent1);
-    }
-}
-
 public class MyNewIntentService extends IntentService {
     private static final int NOTIFICATION_ID = 3;
 
@@ -116,6 +109,8 @@ public class MyNewIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        Intent notifyIntent = new Intent(this, MainActivity.class);
+        notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notifyIntent, PendingIntent.FLAG_IMMUTABLE);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "1")
                 .setSmallIcon(R.drawable.notification_icon)
@@ -124,8 +119,7 @@ public class MyNewIntentService extends IntentService {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setLargeIcon()
                 .setAutoCancel(true);
-        Intent notifyIntent = new Intent(this, MainActivity.class);
-        notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
         notificationManager.notify(NOTIFICATION_ID, builder.build());
     }
 }
