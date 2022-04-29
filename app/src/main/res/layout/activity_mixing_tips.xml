@@ -30,7 +30,7 @@
             android:id="@+id/pink_noise_summary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pink noise is a type of noise that has an equal amount of energy per octave. When listening to pink noise, no particular frequency should be more noticeable than another. This is why pink noise is used for ear training. It is an unbiased sound that lets boosts and cuts be easily recognizable."
+            android:text="Pink Noise has an equal amount of energy per octave. When listening to Pink Noise, no particular frequency should be more noticeable than another.\n\nThis is why Pink Noise is used for ear training. It is an unbiased sound that lets Boosts and Cuts be easily recognizable."
             android:layout_marginTop="24dp"
             android:layout_marginHorizontal="24dp"
             android:textAlignment="center"
@@ -43,7 +43,7 @@
             android:id="@+id/pink_noise_listen_to_it_here"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Listen to it here: "
+            android:text="Listen to Pink Noise: "
             android:textSize="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/pink_noise_button"
@@ -63,6 +63,16 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pink_noise_summary"/>
 
+        <View
+            android:id="@+id/divider_view"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/black"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/pink_noise_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <TextView
             android:id="@+id/listening_for_boosts_label"
             android:layout_width="wrap_content"
@@ -74,20 +84,67 @@
             android:textSize="34sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pink_noise_button"/>
+            app:layout_constraintTop_toBottomOf="@id/divider_view"/>
+
+        <ImageView
+            android:id="@+id/boosts_imageView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/boost"
+            app:layout_constraintTop_toBottomOf="@id/listening_for_boosts_label"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
 
         <TextView
             android:id="@+id/boosts_summary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="When listening for boosts, listen for a particular vowel sound that is not evident in pink noise."
+            android:text="In Earful's Mixing Mode, you will be asked to identify Boosts of +12dB for the frequencies: 250Hz, 500Hz, 1kHz, 2kHz, and 4kHz.\n\nWhen listening for Boosts, listen for a particular vowel sound that is not evident in Pink Noise.\n\nWith some practice, you should be able to hear the following vowel sounds:"
             android:layout_marginTop="24dp"
             android:layout_marginHorizontal="24dp"
             android:textAlignment="center"
             android:textSize="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/listening_for_boosts_label"/>
+            app:layout_constraintTop_toBottomOf="@id/boosts_imageView"
+            />
+
+        <TextView
+            android:id="@+id/boosts_vowel_sounds_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="250Hz Boost - &quot;oo&quot; in Boot"
+            android:layout_marginHorizontal="24dp"
+            android:textAlignment="textStart"
+            android:textSize="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/boosts_250Hz_button"
+            app:layout_constraintTop_toTopOf="@id/boosts_250Hz_button"
+            app:layout_constraintBottom_toBottomOf="@id/boosts_250Hz_button"/>
+
+        <Button
+            android:id="@+id/boosts_250Hz_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintLeft_toRightOf="@id/boosts_vowel_sounds_textview"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/boosts_summary"/>
+
+
+        <View
+            android:id="@+id/second_divider_view"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/black"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/boosts_250Hz_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/listening_for_cuts_label"
@@ -100,7 +157,16 @@
             android:textSize="34sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/boosts_summary"/>
+            app:layout_constraintTop_toBottomOf="@id/second_divider_view"/>
+
+        <ImageView
+            android:id="@+id/cuts_imageView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/cut"
+            app:layout_constraintTop_toBottomOf="@id/listening_for_cuts_label"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
 
         <TextView
             android:id="@+id/cuts_summary"
@@ -113,7 +179,7 @@
             android:textSize="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/listening_for_cuts_label"/>
+            app:layout_constraintTop_toBottomOf="@id/cuts_imageView"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
