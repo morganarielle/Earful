@@ -11,10 +11,10 @@
     <string name="musician_mode_header">Musician Mode:</string>
     <string name="choose_level">Choose Level</string>
     <string name="mixing_mode_header">Mixing Mode:</string>
-    <string name="questions_include">Questions include:</string>
+    <string name="include">Include:</string>
     <string name="cuts">Cuts</string>
     <string name="boosts">Boosts</string>
-    <string name="start_exercise">Start Exercise!</string>
+    <string name="start_exercise">Start Exercise</string>
     <string name="_4khz">4kHz</string>
     <string name="_2khz">2kHz</string>
     <string name="_1khz">1kHz</string>

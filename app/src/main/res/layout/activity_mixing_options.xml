@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MixingOptionsActivity">
+
+    <TextView
+        android:id="@+id/question_options_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/give_you_glory"
+        android:text="Question Options"
+        android:textColor="@color/dark_blue"
+        android:textSize="34sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cuts_checkbox"/>
+
+    <TextView
+        android:id="@+id/include_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/include"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/start_mixing_exercise_button"
+        app:layout_constraintStart_toStartOf="@id/question_options_label"
+        app:layout_constraintTop_toBottomOf="@id/question_options_label" />
+
+    <CheckBox
+        android:id="@+id/cuts_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="@string/cuts"
+        app:layout_constraintBottom_toTopOf="@id/boosts_checkbox"
+        app:layout_constraintStart_toStartOf="@id/boosts_checkbox"
+        app:layout_constraintTop_toBottomOf="@id/question_options_label" />
+
+    <CheckBox
+        android:id="@+id/boosts_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:text="@string/boosts"
+        app:layout_constraintBottom_toTopOf="@id/start_mixing_exercise_button"
+        app:layout_constraintEnd_toEndOf="@id/question_options_label"
+        app:layout_constraintTop_toBottomOf="@id/cuts_checkbox" />
+
+    <Button
+        android:id="@+id/start_mixing_exercise_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/bright_coral"
+        android:onClick="launchMixingExerciseActivity"
+        android:text="@string/start_exercise"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/boosts_checkbox" />
+</androidx.constraintlayout.widget.ConstraintLayout>

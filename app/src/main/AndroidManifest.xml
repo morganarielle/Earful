@@ -13,13 +13,19 @@
             android:name=".MixingTipsActivity"
             android:exported="false" />
         <activity
-            android:name=".MusicianActivity"
+            android:name=".MixingOptionsActivity"
             android:exported="false" />
         <activity
-            android:name=".MenuActivity"
+            android:name=".ResultsActivity"
             android:exported="false" />
         <activity
-            android:name=".MixingExerciseActivity"
+            android:name=".LevelSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ModeMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MixingTrainingActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

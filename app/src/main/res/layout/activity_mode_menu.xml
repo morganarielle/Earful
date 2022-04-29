@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuActivity">
+    tools:context=".ModeMenuActivity">
 
     <TextView
         android:id="@+id/musicianMode_textView"
@@ -19,16 +19,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/musician_total_points_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Points:"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/choose_level_button"
+        app:layout_constraintTop_toBottomOf="@id/musicianMode_textView"
+        app:layout_constraintBottom_toTopOf="@id/musician_total_points_value"/>
+
+    <TextView
+        android:id="@+id/musician_total_points_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="25"
+        android:textSize="48sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/choose_level_button"
+        app:layout_constraintTop_toBottomOf="@id/musician_total_points_label"
+        app:layout_constraintBottom_toTopOf="@id/divider_view"/>
+
     <Button
-        android:id="@+id/musicianMode_button"
+        android:id="@+id/choose_level_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/bright_coral"
-        android:onClick="launchMusicianMode"
+        android:onClick="launchChooseLevel"
         android:text="@string/choose_level"
         app:layout_constraintBottom_toTopOf="@+id/divider_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/musician_total_points_label"
         app:layout_constraintTop_toBottomOf="@+id/musicianMode_textView" />
 
     <View
@@ -55,45 +76,37 @@
         app:layout_constraintTop_toBottomOf="@+id/divider_view" />
 
     <TextView
-        android:id="@+id/questions_include_textView"
+        android:id="@+id/mixing_total_points_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/questions_include"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@id/cuts_checkbox"
-        app:layout_constraintEnd_toStartOf="@id/start_mixing_exercise_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mixingMode_textView" />
+        android:text="Total Points:"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/questions_options_button"
+        app:layout_constraintBottom_toTopOf="@id/mixing_total_points_value"
+        app:layout_constraintTop_toBottomOf="@id/mixingMode_textView"/>
 
-    <CheckBox
-        android:id="@+id/cuts_checkbox"
+    <TextView
+        android:id="@+id/mixing_total_points_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checked="false"
-        android:text="@string/cuts"
-        app:layout_constraintBottom_toTopOf="@id/boosts_checkbox"
-        app:layout_constraintStart_toStartOf="@id/questions_include_textView"
-        app:layout_constraintTop_toBottomOf="@id/questions_include_textView" />
-
-    <CheckBox
-        android:id="@+id/boosts_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="true"
-        android:text="@string/boosts"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/questions_include_textView"
-        app:layout_constraintTop_toBottomOf="@id/cuts_checkbox" />
+        android:text="50"
+        android:textSize="48sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/questions_options_button"
+        app:layout_constraintTop_toBottomOf="@id/mixing_total_points_label"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <Button
-        android:id="@+id/start_mixing_exercise_button"
+        android:id="@+id/questions_options_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="View Options"
         android:backgroundTint="@color/bright_coral"
-        android:onClick="onClick"
-        android:text="@string/start_exercise"
+        android:onClick="launchViewOptions"
+        app:layout_constraintLeft_toRightOf="@id/mixing_total_points_label"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/questions_include_textView"
-        app:layout_constraintTop_toBottomOf="@id/questions_include_textView" />
+        app:layout_constraintTop_toBottomOf="@id/mixingMode_textView"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
