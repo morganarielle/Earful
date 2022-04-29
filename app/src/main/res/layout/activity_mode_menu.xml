@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/bright_coral"
-        android:onClick="launchChooseLevel"
+        android:onClick="onClick"
         android:text="@string/choose_level"
         app:layout_constraintBottom_toTopOf="@+id/divider_view"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:text="Total Points:"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/questions_options_button"
+        app:layout_constraintRight_toLeftOf="@id/mixing_practice_button"
         app:layout_constraintBottom_toTopOf="@id/mixing_total_points_value"
         app:layout_constraintTop_toBottomOf="@id/mixingMode_textView"/>
 
@@ -92,21 +92,34 @@
         android:text="50"
         android:textSize="48sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/questions_options_button"
+        app:layout_constraintRight_toLeftOf="@id/mixing_practice_button"
         app:layout_constraintTop_toBottomOf="@id/mixing_total_points_label"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <Button
-        android:id="@+id/questions_options_button"
-        android:layout_width="wrap_content"
+        android:id="@+id/mixing_tips_button"
+        android:layout_width="124dp"
         android:layout_height="wrap_content"
-        android:text="View Options"
+        android:text="Tips"
         android:backgroundTint="@color/bright_coral"
-        android:onClick="launchViewOptions"
+        android:onClick="onClick"
+        app:layout_constraintLeft_toRightOf="@id/mixing_total_points_label"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/mixing_practice_button"
+        app:layout_constraintTop_toBottomOf="@id/mixingMode_textView"/>
+
+
+    <Button
+        android:id="@+id/mixing_practice_button"
+        android:layout_width="124dp"
+        android:layout_height="wrap_content"
+        android:text="Practice"
+        android:backgroundTint="@color/bright_coral"
+        android:onClick="onClick"
         app:layout_constraintLeft_toRightOf="@id/mixing_total_points_label"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mixingMode_textView"/>
+        app:layout_constraintTop_toBottomOf="@id/mixing_tips_button"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
