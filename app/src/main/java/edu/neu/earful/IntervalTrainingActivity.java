@@ -1,5 +1,6 @@
 package edu.neu.earful;
 
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ public class IntervalTrainingActivity extends AppCompatActivity {
     ProgressBar progressBar;
     GridView intervalOptionsGV;
     MediaPlayer player1, player2;
+    boolean resetProgress = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -102,9 +104,17 @@ public class IntervalTrainingActivity extends AppCompatActivity {
 
             // Update the progress
             int currentProgress = progressBar.getProgress();
-            if (currentProgress == 100) {
-                // TODO: we'd want to end the exercise and bring the user to a screen to see how they performed
-                progressBar.setProgress(0);
+            if (currentProgress == 90) {
+                progressBar.setProgress(100);
+
+                // TODO: write the score to the database
+
+                Intent resultsActivityIntent = new Intent(IntervalTrainingActivity.this, ResultsActivity.class);
+                // TODO: pass the actual score to the next activity
+                resultsActivityIntent.putExtra("score", 100);
+                startActivity(resultsActivityIntent);
+
+                resetProgress = true;
             } else {
                 progressBar.setProgress(currentProgress + 10);
             }
@@ -267,6 +277,15 @@ public class IntervalTrainingActivity extends AppCompatActivity {
             player2.release();
             player2 = null;
             playAudioButton.setText("ᐅ");
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (resetProgress) {
+            progressBar.setProgress(0);
+            resetProgress = false;
         }
     }
 

@@ -2,6 +2,7 @@ package edu.neu.earful;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class MixingExerciseActivity extends AppCompatActivity {
+public class MixingTrainingActivity extends AppCompatActivity {
     Button playAudioButton;
     Button submitButton;
     ProgressBar progressBar;
@@ -26,11 +27,12 @@ public class MixingExerciseActivity extends AppCompatActivity {
     boolean includeBoosts;
     Map<Integer, String> assetMap = new HashMap<>();
     String path;
+    boolean resetProgress = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mixing_exercise);
+        setContentView(R.layout.activity_mixing_training);
 
         playAudioButton = findViewById(R.id.play_button);
         progressBar = findViewById(R.id.progress_bar);
@@ -85,9 +87,17 @@ public class MixingExerciseActivity extends AppCompatActivity {
 
             // Update the progress
             int currentProgress = progressBar.getProgress();
-            if (currentProgress == 100) {
-                // TODO: we'd want to end the exercise and bring the user to a screen to see how they performed
-                progressBar.setProgress(0);
+            if (currentProgress == 90) {
+                progressBar.setProgress(100);
+
+                // TODO: write the score to the database
+
+                Intent resultsActivityIntent = new Intent(MixingTrainingActivity.this, ResultsActivity.class);
+                // TODO: pass the score to the next activity
+                resultsActivityIntent.putExtra("score", 60);
+                startActivity(resultsActivityIntent);
+
+                resetProgress = true;
             } else {
                 progressBar.setProgress(currentProgress + 10);
             }
@@ -196,5 +206,14 @@ public class MixingExerciseActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         stopAudio();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (resetProgress) {
+            progressBar.setProgress(0);
+            resetProgress = false;
+        }
     }
 }
