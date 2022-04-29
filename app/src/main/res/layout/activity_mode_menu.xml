@@ -38,7 +38,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/choose_level_button"
         app:layout_constraintTop_toBottomOf="@id/musician_total_points_label"
-        app:layout_constraintBottom_toTopOf="@id/divider_view"/>
+        app:layout_constraintBottom_toTopOf="@id/second_divider_view"/>
 
     <Button
         android:id="@+id/choose_level_button"
@@ -47,13 +47,13 @@
         android:backgroundTint="@color/bright_coral"
         android:onClick="onClick"
         android:text="@string/choose_level"
-        app:layout_constraintBottom_toTopOf="@+id/divider_view"
+        app:layout_constraintBottom_toTopOf="@+id/second_divider_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/musician_total_points_label"
         app:layout_constraintTop_toBottomOf="@+id/musicianMode_textView" />
 
     <View
-        android:id="@+id/divider_view"
+        android:id="@+id/second_divider_view"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/black"
@@ -73,7 +73,7 @@
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider_view" />
+        app:layout_constraintTop_toBottomOf="@+id/second_divider_view" />
 
     <TextView
         android:id="@+id/mixing_total_points_label"

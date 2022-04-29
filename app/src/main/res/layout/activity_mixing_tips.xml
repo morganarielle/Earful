@@ -14,6 +14,50 @@
         tools:context=".MixingTipsActivity">
 
         <TextView
+            android:id="@+id/important_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/give_you_glory"
+            android:textColor="@color/dark_blue"
+            android:textSize="34sp"
+            android:text="Important"
+            android:layout_marginTop="24dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/headphones_imageView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/headphones"
+            app:layout_constraintTop_toBottomOf="@id/important_textview"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <TextView
+            android:id="@+id/important_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Before getting started, it is crucial that you use a pair of studio headphones in Mixing Mode.\n\nWithout a good pair of headphones, it will be difficult to hear the Boosts and Cuts in the audio files as they are meant to be heard."
+            android:layout_marginHorizontal="24dp"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/headphones_imageView"/>
+
+        <View
+            android:id="@+id/first_divider_view"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/black"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/important_summary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
             android:id="@+id/what_is_pink_noise_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,7 +68,7 @@
             android:layout_marginTop="24dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/first_divider_view"/>
 
         <TextView
             android:id="@+id/pink_noise_summary"
@@ -46,12 +90,12 @@
             android:text="Listen to Pink Noise: "
             android:textSize="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/pink_noise_button"
-            app:layout_constraintTop_toTopOf="@id/pink_noise_button"
-            app:layout_constraintBottom_toBottomOf="@id/pink_noise_button"/>
+            app:layout_constraintRight_toLeftOf="@id/listen_to_pink_noise_button"
+            app:layout_constraintTop_toTopOf="@id/listen_to_pink_noise_button"
+            app:layout_constraintBottom_toBottomOf="@id/listen_to_pink_noise_button"/>
 
         <Button
-            android:id="@+id/pink_noise_button"
+            android:id="@+id/listen_to_pink_noise_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -64,12 +108,12 @@
             app:layout_constraintTop_toBottomOf="@id/pink_noise_summary"/>
 
         <View
-            android:id="@+id/divider_view"
+            android:id="@+id/second_divider_view"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="@color/black"
             android:layout_marginTop="24dp"
-            app:layout_constraintTop_toBottomOf="@id/pink_noise_button"
+            app:layout_constraintTop_toBottomOf="@id/listen_to_pink_noise_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -77,14 +121,14 @@
             android:id="@+id/listening_for_boosts_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Listening For Boosts:"
+            android:text="Listening For Boosts"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/give_you_glory"
             android:textColor="@color/dark_blue"
             android:textSize="34sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider_view"/>
+            app:layout_constraintTop_toBottomOf="@id/second_divider_view"/>
 
         <ImageView
             android:id="@+id/boosts_imageView"
@@ -99,7 +143,7 @@
             android:id="@+id/boosts_summary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="In Earful's Mixing Mode, you will be asked to identify Boosts of +12dB for the frequencies: 250Hz, 500Hz, 1kHz, 2kHz, and 4kHz.\n\nWhen listening for Boosts, listen for a particular vowel sound that is not evident in Pink Noise.\n\nWith some practice, you should be able to hear the following vowel sounds:"
+            android:text="In Earful's Mixing Mode, you will be asked to identify Boosts of +12dB for the frequencies: 250Hz, 500Hz, 1kHz, 2kHz, and 4kHz.\n\nWhen listening for Boosts, listen for a particular vowel sound that is not present in Pink Noise.\n\nWith some practice, you should be able to hear the following vowel sounds:"
             android:layout_marginTop="24dp"
             android:layout_marginHorizontal="24dp"
             android:textAlignment="center"
@@ -110,20 +154,19 @@
             />
 
         <TextView
-            android:id="@+id/boosts_vowel_sounds_textview"
+            android:id="@+id/boosts_pink_noise_reference"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="250Hz Boost - &quot;oo&quot; in Boot"
-            android:layout_marginHorizontal="24dp"
+            android:text="Pink Noise Reference"
             android:textAlignment="textStart"
             android:textSize="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/boosts_250Hz_button"
-            app:layout_constraintTop_toTopOf="@id/boosts_250Hz_button"
-            app:layout_constraintBottom_toBottomOf="@id/boosts_250Hz_button"/>
+            app:layout_constraintRight_toLeftOf="@id/boosts_pink_noise_button"
+            app:layout_constraintTop_toTopOf="@id/boosts_pink_noise_button"
+            app:layout_constraintBottom_toBottomOf="@id/boosts_pink_noise_button"/>
 
         <Button
-            android:id="@+id/boosts_250Hz_button"
+            android:id="@+id/boosts_pink_noise_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -131,18 +174,133 @@
             android:textColor="@color/black"
             android:textSize="34sp"
             app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintLeft_toRightOf="@id/boosts_vowel_sounds_textview"
+            app:layout_constraintLeft_toRightOf="@id/boosts_pink_noise_reference"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/boosts_summary"/>
 
+        <TextView
+            android:id="@+id/boosts_250Hz_vowel_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="250Hz Boost - &quot;oo&quot; in Boot"
+            android:textAlignment="textStart"
+            android:textSize="16dp"
+            app:layout_constraintLeft_toLeftOf="@id/boosts_pink_noise_reference"
+            app:layout_constraintTop_toTopOf="@id/boosts_250Hz_button"
+            app:layout_constraintBottom_toBottomOf="@id/boosts_250Hz_button"/>
+
+        <Button
+            android:id="@+id/boosts_250Hz_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintLeft_toLeftOf="@id/boosts_pink_noise_button"
+            app:layout_constraintTop_toBottomOf="@id/boosts_pink_noise_button"/>
+
+        <TextView
+            android:id="@+id/boosts_500Hz_vowel_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="500Hz Boost - &quot;o&quot; in Toe"
+            android:textAlignment="textStart"
+            android:textSize="16dp"
+            app:layout_constraintLeft_toLeftOf="@id/boosts_250Hz_vowel_sound"
+            app:layout_constraintTop_toTopOf="@id/boosts_500Hz_button"
+            app:layout_constraintBottom_toBottomOf="@id/boosts_500Hz_button"/>
+
+        <Button
+            android:id="@+id/boosts_500Hz_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintLeft_toLeftOf="@id/boosts_250Hz_button"
+            app:layout_constraintTop_toBottomOf="@id/boosts_250Hz_button"/>
+
+        <TextView
+            android:id="@+id/boosts_1kHz_vowel_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1kHz Boost - &quot;a&quot; in Father"
+            android:textAlignment="textStart"
+            android:textSize="16dp"
+            app:layout_constraintLeft_toLeftOf="@id/boosts_250Hz_vowel_sound"
+            app:layout_constraintTop_toTopOf="@id/boosts_1kHz_button"
+            app:layout_constraintBottom_toBottomOf="@id/boosts_1kHz_button"/>
+
+        <Button
+            android:id="@+id/boosts_1kHz_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintLeft_toLeftOf="@id/boosts_250Hz_button"
+            app:layout_constraintTop_toBottomOf="@id/boosts_500Hz_button"/>
+
+        <TextView
+            android:id="@+id/boosts_2kHz_vowel_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2kHz Boost - &quot;et&quot; in Bet"
+            android:textAlignment="textStart"
+            android:textSize="16dp"
+            app:layout_constraintLeft_toLeftOf="@id/boosts_250Hz_vowel_sound"
+            app:layout_constraintTop_toTopOf="@id/boosts_2kHz_button"
+            app:layout_constraintBottom_toBottomOf="@id/boosts_2kHz_button"/>
+
+        <Button
+            android:id="@+id/boosts_2kHz_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintLeft_toLeftOf="@id/boosts_250Hz_button"
+            app:layout_constraintTop_toBottomOf="@id/boosts_1kHz_button"/>
+
+        <TextView
+            android:id="@+id/boosts_4kHz_vowel_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4kHz Boost - &quot;ee&quot; in Feet"
+            android:textAlignment="textStart"
+            android:textSize="16dp"
+            app:layout_constraintLeft_toLeftOf="@id/boosts_250Hz_vowel_sound"
+            app:layout_constraintTop_toTopOf="@id/boosts_4kHz_button"
+            app:layout_constraintBottom_toBottomOf="@id/boosts_4kHz_button"/>
+
+        <Button
+            android:id="@+id/boosts_4kHz_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintLeft_toLeftOf="@id/boosts_250Hz_button"
+            app:layout_constraintTop_toBottomOf="@id/boosts_2kHz_button"/>
+
 
         <View
-            android:id="@+id/second_divider_view"
+            android:id="@+id/third_divider_view"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="@color/black"
             android:layout_marginTop="24dp"
-            app:layout_constraintTop_toBottomOf="@id/boosts_250Hz_button"
+            app:layout_constraintTop_toBottomOf="@id/boosts_4kHz_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -150,14 +308,14 @@
             android:id="@+id/listening_for_cuts_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Listening For Cuts:"
+            android:text="Listening For Cuts"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/give_you_glory"
             android:textColor="@color/dark_blue"
             android:textSize="34sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/second_divider_view"/>
+            app:layout_constraintTop_toBottomOf="@id/third_divider_view"/>
 
         <ImageView
             android:id="@+id/cuts_imageView"
@@ -172,7 +330,7 @@
             android:id="@+id/cuts_summary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="When listening for cuts, listen for a particular vowel sound that is missing in the current audio file. This is similar to above, however, instead of hearing the vowel sound, it should be gone."
+            android:text="In Earful's Mixing Mode, you will also be asked to identify Cuts of -12dB for the frequencies: 250Hz, 500Hz, 1kHz, 2kHz, and 4kHz.\n\nWhen listening for Cuts, listen for the vowel sound that is absent in the audio file and present in Pink Noise.\n\nWith some practice, you should be able to identify the following vowel sounds that are missing:"
             android:layout_marginTop="24dp"
             android:layout_marginHorizontal="24dp"
             android:textAlignment="center"
@@ -180,6 +338,156 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cuts_imageView"/>
+
+        <TextView
+            android:id="@+id/cuts_pink_noise_reference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pink Noise Reference"
+            android:textAlignment="textStart"
+            android:textSize="16dp"
+            app:layout_constraintLeft_toLeftOf="@id/cuts_summary"
+            app:layout_constraintRight_toLeftOf="@id/cuts_pink_noise_button"
+            app:layout_constraintTop_toTopOf="@id/cuts_pink_noise_button"
+            app:layout_constraintBottom_toBottomOf="@id/cuts_pink_noise_button"/>
+
+        <Button
+            android:id="@+id/cuts_pink_noise_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintLeft_toRightOf="@id/cuts_pink_noise_reference"
+            app:layout_constraintRight_toRightOf="@id/cuts_summary"
+            app:layout_constraintTop_toBottomOf="@id/cuts_summary"/>
+
+        <TextView
+            android:id="@+id/cuts_250Hz_vowel_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="250Hz Cut - &quot;oo&quot; in Boot"
+            android:textAlignment="textStart"
+            android:textSize="16dp"
+            app:layout_constraintLeft_toLeftOf="@id/cuts_pink_noise_reference"
+            app:layout_constraintTop_toTopOf="@id/cuts_250Hz_button"
+            app:layout_constraintBottom_toBottomOf="@id/cuts_250Hz_button"/>
+
+        <Button
+            android:id="@+id/cuts_250Hz_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintLeft_toLeftOf="@id/cuts_pink_noise_button"
+            app:layout_constraintTop_toBottomOf="@id/cuts_pink_noise_button"/>
+
+        <TextView
+            android:id="@+id/cuts_500Hz_vowel_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="500Hz Cut - &quot;o&quot; in Toe"
+            android:textAlignment="textStart"
+            android:textSize="16dp"
+            app:layout_constraintLeft_toLeftOf="@id/cuts_250Hz_vowel_sound"
+            app:layout_constraintTop_toTopOf="@id/cuts_500Hz_button"
+            app:layout_constraintBottom_toBottomOf="@id/cuts_500Hz_button"/>
+
+        <Button
+            android:id="@+id/cuts_500Hz_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintLeft_toLeftOf="@id/cuts_250Hz_button"
+            app:layout_constraintTop_toBottomOf="@id/cuts_250Hz_button"/>
+
+        <TextView
+            android:id="@+id/cuts_1kHz_vowel_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1kHz Cut - &quot;a&quot; in Father"
+            android:textAlignment="textStart"
+            android:textSize="16dp"
+            app:layout_constraintLeft_toLeftOf="@id/cuts_250Hz_vowel_sound"
+            app:layout_constraintTop_toTopOf="@id/cuts_1kHz_button"
+            app:layout_constraintBottom_toBottomOf="@id/cuts_1kHz_button"/>
+
+        <Button
+            android:id="@+id/cuts_1kHz_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintLeft_toLeftOf="@id/cuts_250Hz_button"
+            app:layout_constraintTop_toBottomOf="@id/cuts_500Hz_button"/>
+
+        <TextView
+            android:id="@+id/cuts_2kHz_vowel_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2kHz Cut - &quot;et&quot; in Bet"
+            android:textAlignment="textStart"
+            android:textSize="16dp"
+            app:layout_constraintLeft_toLeftOf="@id/cuts_250Hz_vowel_sound"
+            app:layout_constraintTop_toTopOf="@id/cuts_2kHz_button"
+            app:layout_constraintBottom_toBottomOf="@id/cuts_2kHz_button"/>
+
+        <Button
+            android:id="@+id/cuts_2kHz_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintLeft_toLeftOf="@id/cuts_250Hz_button"
+            app:layout_constraintTop_toBottomOf="@id/cuts_1kHz_button"/>
+
+        <TextView
+            android:id="@+id/cuts_4kHz_vowel_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4kHz Cut - &quot;ee&quot; in Feet"
+            android:textAlignment="textStart"
+            android:textSize="16dp"
+            app:layout_constraintLeft_toLeftOf="@id/cuts_250Hz_vowel_sound"
+            app:layout_constraintTop_toTopOf="@id/cuts_4kHz_button"
+            app:layout_constraintBottom_toBottomOf="@id/cuts_4kHz_button"/>
+
+        <Button
+            android:id="@+id/cuts_4kHz_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintLeft_toLeftOf="@id/cuts_250Hz_button"
+            app:layout_constraintTop_toBottomOf="@id/cuts_2kHz_button"/>
+
+        <View
+            android:id="@+id/fourth_divider_view"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/black"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/cuts_4kHz_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
