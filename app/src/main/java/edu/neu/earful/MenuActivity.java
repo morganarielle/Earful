@@ -1,6 +1,7 @@
 package edu.neu.earful;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -46,18 +47,15 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
-    public void launchMusicianMode(View view){
+    public void launchMusicianMode(View view) {
         Intent musicianModeIntent = new Intent(getApplicationContext(), MusicianActivity.class);
         startActivity(musicianModeIntent);
     }
 
-    public void launchMixingMode(View view){
+    public void launchMixingMode(View view) {
         Intent mixingModeIntent = new Intent(getApplicationContext(), MixingExerciseActivity.class);
         mixingModeIntent.putExtra("includeCuts", cutsCheckBox.isChecked());
         mixingModeIntent.putExtra("includeBoosts", boostsCheckBox.isChecked());
         startActivity(mixingModeIntent);
     }
-
 }
-
-
