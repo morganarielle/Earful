@@ -22,6 +22,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     private Button createAccount;
+    private Button logIntoAccount;
     private EditText emailET;
     private EditText passwordET;
     private EditText passwordConfirmET;
@@ -33,6 +34,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_account);
         mAuth = FirebaseAuth.getInstance();
         createAccount = (Button) findViewById(R.id.createAccount);
+        logIntoAccount = (Button) findViewById(R.id.logIntoAccount);
         emailET = (EditText) findViewById(R.id.email);
         passwordET = (EditText) findViewById(R.id.password);
         passwordConfirmET = (EditText) findViewById(R.id.reenterPassword);
@@ -117,6 +119,11 @@ public class CreateAccountActivity extends AppCompatActivity {
                         }
                     }
                 }));
+
+        logIntoAccount.setOnClickListener(view -> {
+            Intent activity2Intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(activity2Intent);
+        });
     }
 
     private void updatePasswordMatchTV() {

@@ -92,12 +92,11 @@
         app:layout_constraintTop_toBottomOf="@+id/doPasswordsMatch" />
 
     <Button
-        android:id="@+id/createNewAccount"
+        android:id="@+id/logIntoAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:enabled="true"
-        android:onClick="onLogIn"
         android:text="@string/log_into_existing_account"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="@color/dark_blue"

@@ -16,17 +16,17 @@ public class MenuActivity extends AppCompatActivity {
     CheckBox boostsCheckBox;
     Button startMixingExerciseButton;
     Button startMusicianExerciseButton;
-    FloatingActionButton backToSignInButton;
+    FloatingActionButton settingsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        backToSignInButton = findViewById(R.id.backToSignIn);
-        backToSignInButton.setOnClickListener(view -> {
+        settingsButton = findViewById(R.id.settings);
+        settingsButton.setOnClickListener(view -> {
             FirebaseAuth.getInstance().signOut();
-            Intent activity2Intent = new Intent(getApplicationContext(), MainActivity.class);
+            Intent activity2Intent = new Intent(getApplicationContext(), SettingsActivity.class);
             startActivity(activity2Intent);
         });
 

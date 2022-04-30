@@ -79,7 +79,7 @@
         android:ems="10"
         android:hint="@string/password"
         android:importantForAutofill="no"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:singleLine="true"
         android:textColor="@color/black"
         android:textSize="20sp"
