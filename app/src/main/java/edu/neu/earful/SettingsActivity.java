@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -20,7 +21,6 @@ public class SettingsActivity extends AppCompatActivity {
     private RecyclerView settingsRV;
     private SettingsRVAdapter settingsRVAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    boolean notificationsOn = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,14 +60,18 @@ public class SettingsActivity extends AppCompatActivity {
             PendingIntent pendingIntent = PendingIntent.getBroadcast
                     (this, 3, notifyIntent, PendingIntent.FLAG_IMMUTABLE);
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            SharedPreferences mPrefs = getSharedPreferences("notifications", 0);
+            boolean notificationsOn = mPrefs.getString("notifications", "true").equals("true");
+            SharedPreferences.Editor mEditor = mPrefs.edit();
             if (notificationsOn) {
                 stopService(notifyIntent);
                 alarmManager.cancel(pendingIntent);
+                mEditor.putString("notifications", "false").commit();
             } else {
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
-                        10000, pendingIntent);
+                        1000 * 60 * 60 * 24, pendingIntent);
+                mEditor.putString("notifications", "true").commit();
             }
-            notificationsOn = !notificationsOn;
             System.out.println(notificationsOn);
         };
         SettingCard notificationSetting = new SettingCard("Toggle Notifications", toggleNotificationsAction);
