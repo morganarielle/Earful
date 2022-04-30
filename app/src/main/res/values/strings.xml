@@ -27,7 +27,7 @@
     <string name="level_4">Level 4</string>
     <string name="level_5">Level 5</string>
     <string name="question_mark">\?</string>
-    <string name="boosted_or_cut_question">Which frequency was boosted or cut?</string>
-    <string name="boosted_question">Which frequency was boosted?</string>
-    <string name="cut_question">Which frequency was cut?</string>
+    <string name="boosted_or_cut_question">Which frequency was Boosted or Cut?</string>
+    <string name="boosted_question">Which frequency was Boosted?</string>
+    <string name="cut_question">Which frequency was Cut?</string>
 </resources>

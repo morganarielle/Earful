@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -20,16 +21,26 @@ import java.util.Random;
 public class MixingTrainingActivity extends AppCompatActivity {
     Button playAudioButton;
     Button submitButton;
-    ProgressBar progressBar;
-    RadioGroup radioGroup;
-    MediaPlayer player;
     TextView whichFreqText;
-    boolean includeCuts;
-    boolean includeBoosts;
+    ProgressBar progressBar;
+    ImageView putImageHereImageView;
+
+    RadioGroup radioGroup;
+    RadioButton radioButton_4kHz;
+    RadioButton radioButton_2kHz;
+    RadioButton radioButton_1kHz;
+    RadioButton radioButton_500Hz;
+    RadioButton radioButton_250Hz;
+
+    MediaPlayer player;
     Map<Integer, String> assetMap = new HashMap<>();
     String path;
-    ImageView putImageHereImageView;
+    boolean includeCuts;
+    boolean includeBoosts;
     boolean resetProgress = false;
+
+    int correctIndex = -1; // -1 Pink Noise, 0 1kHz Boost, 1 250Hz Boost, 2 2kHz Boost, 3 4kHz Boost, 4 500Hz Boost, 5 1kHz Cut, 6 250Hz Cut, 7 2kHz Cut, 8 4kHz Cut, 9 500Hz Cut
+    int pointsAwarded = 0; // we can award 1 point for boosts only, 2 points for cuts only, 3 points for both
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +53,12 @@ public class MixingTrainingActivity extends AppCompatActivity {
         radioGroup = findViewById(R.id.radio_group);
         whichFreqText = findViewById(R.id.which_freq_textview);
         putImageHereImageView = findViewById(R.id.put_image_here_imageview);
+
+        radioButton_4kHz = findViewById(R.id.button_4kHz);
+        radioButton_2kHz = findViewById(R.id.button_2kHz);
+        radioButton_1kHz = findViewById(R.id.button_1kHz);
+        radioButton_500Hz = findViewById(R.id.button_500Hz);
+        radioButton_250Hz = findViewById(R.id.button_250Hz);
 
         includeCuts = getIntent().getBooleanExtra("includeCuts", false);
         includeBoosts = getIntent().getBooleanExtra("includeBoosts", false);
@@ -76,9 +93,12 @@ public class MixingTrainingActivity extends AppCompatActivity {
             }
         });
 
-        radioGroup.setOnCheckedChangeListener((radioGroup, i) -> {
-            // Enabled the submit button
-            submitButton.setEnabled(true);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                // Enabled the submit button
+                submitButton.setEnabled(true);
+            }
         });
 
         submitButton.setOnClickListener(view -> {
@@ -88,23 +108,6 @@ public class MixingTrainingActivity extends AppCompatActivity {
                 stopAudio();
             }
 
-            // Update the progress
-            int currentProgress = progressBar.getProgress();
-            if (currentProgress == 90) {
-                progressBar.setProgress(100);
-
-                // TODO: write the score to the database
-
-                Intent resultsActivityIntent = new Intent(MixingTrainingActivity.this, ResultsActivity.class);
-                // TODO: pass the score to the next activity
-                resultsActivityIntent.putExtra("score", 60);
-                startActivity(resultsActivityIntent);
-
-                resetProgress = true;
-            } else {
-                progressBar.setProgress(currentProgress + 10);
-            }
-
             // Check what radio button was clicked
             int checkedButtonId = radioGroup.getCheckedRadioButtonId();
             if (checkedButtonId == -1) {
@@ -112,7 +115,32 @@ public class MixingTrainingActivity extends AppCompatActivity {
                 System.out.println("No radio buttons are checked");
             } else {
                 // one of the radio buttons is checked
-                System.out.println("Radio button " + checkedButtonId + " clicked.");
+                if (checkedButtonId == radioButton_4kHz.getId()) {
+                    if (correctIndex == 3 || correctIndex == 8) {
+                        // 4kHz. Correct!
+                        pointsAwarded += calcPointsToAward();
+                    }
+                } else if (checkedButtonId == radioButton_2kHz.getId()) {
+                    if (correctIndex == 2 || correctIndex == 7) {
+                        // 2kHz. Correct!
+                        pointsAwarded += calcPointsToAward();
+                    }
+                } else if (checkedButtonId == radioButton_1kHz.getId()) {
+                    if (correctIndex == 0 || correctIndex == 5) {
+                        // 1kHz. Correct!
+                        pointsAwarded += calcPointsToAward();
+                    }
+                } else if (checkedButtonId == radioButton_500Hz.getId()) {
+                    if (correctIndex == 4 || correctIndex == 9) {
+                        // 500Hz. Correct!
+                        pointsAwarded += calcPointsToAward();
+                    }
+                } else if (checkedButtonId == radioButton_250Hz.getId()) {
+                    if (correctIndex == 1 || correctIndex == 6) {
+                        // 250Hz. Correct!
+                        pointsAwarded += calcPointsToAward();
+                    }
+                }
 
                 // Uncheck all
                 radioGroup.clearCheck();
@@ -121,9 +149,45 @@ public class MixingTrainingActivity extends AppCompatActivity {
                 submitButton.setEnabled(false);
             }
 
+            // Update the progress
+            int currentProgress = progressBar.getProgress();
+            if (currentProgress == 90) {
+                progressBar.setProgress(100);
+
+                // TODO: write the score to the database
+                System.out.println("Total points awarded: " + pointsAwarded);
+
+                Intent resultsActivityIntent = new Intent(MixingTrainingActivity.this, ResultsActivity.class);
+                int scorePercentage;
+                if (includeBoosts && includeCuts) {
+                    scorePercentage = (pointsAwarded * 10) / 3;
+                } else if (includeCuts) {
+                    scorePercentage = (pointsAwarded * 10) / 2;
+                } else {
+                    scorePercentage = (pointsAwarded * 10);
+                }
+                resultsActivityIntent.putExtra("score", scorePercentage);
+                startActivity(resultsActivityIntent);
+
+                resetProgress = true;
+                pointsAwarded = 0;
+            } else {
+                progressBar.setProgress(currentProgress + 10);
+            }
+
             // Get a new random file to play for the user
             path = getRandomFilePath();
         });
+    }
+
+    public int calcPointsToAward() {
+        if (includeBoosts && includeCuts) {
+            return 3;
+        } else if (includeCuts) {
+            return 2;
+        } else {
+            return 1;
+        }
     }
 
     public void setWhichFreqTextAndImage() {
@@ -161,6 +225,8 @@ public class MixingTrainingActivity extends AppCompatActivity {
             directory = "Cuts";
         }
 
+        correctIndex = randomNum;
+        System.out.println(correctIndex);
         return directory + "/" + assetMap.get(randomNum);
     }
 
