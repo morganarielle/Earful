@@ -46,9 +46,17 @@
         <activity
             android:name=".IntervalTrainingActivity"
             android:label="Interval Training" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <receiver
+            android:name=".MyReceiver"
+            android:enabled="true"
+            android:exported="false"></receiver>
+        <service
+            android:name=".MyNewIntentService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

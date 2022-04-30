@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class MixingOptionsActivity extends AppCompatActivity {
     CheckBox cutsCheckBox;
@@ -49,4 +48,5 @@ public class MixingOptionsActivity extends AppCompatActivity {
             startActivity(mixingModeIntent);
         }
     }
+
 }
