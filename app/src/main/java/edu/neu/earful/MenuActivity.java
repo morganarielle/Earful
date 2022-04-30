@@ -59,8 +59,7 @@ public class MenuActivity extends AppCompatActivity {
                 (this, 3, notifyIntent, PendingIntent.FLAG_IMMUTABLE);
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,  System.currentTimeMillis(),
-                1716 * 60 * 60 * 24, pendingIntent);
-
+                1000 * 60 * 60 * 24, pendingIntent);
     }
 
     public void onClick(View view) {
