@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startMenuActivity() {
-        Intent activity2Intent = new Intent(getApplicationContext(), MenuActivity.class);
+        Intent activity2Intent = new Intent(getApplicationContext(), ModeMenuActivity.class);
         activity2Intent.putExtra("user", currentUser);
         startActivity(activity2Intent);
     }

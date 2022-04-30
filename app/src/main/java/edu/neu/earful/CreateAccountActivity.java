@@ -101,7 +101,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                         // Sign in success, direct to menu screen
                         Log.d("TAG", "createUserWithEmail:success");
                         currentUser = mAuth.getCurrentUser();
-                        Intent activity2Intent = new Intent(getApplicationContext(), MenuActivity.class);
+                        Intent activity2Intent = new Intent(getApplicationContext(), ModeMenuActivity.class);
                         activity2Intent.putExtra("user", currentUser);
                         startActivity(activity2Intent);
                     } else {

@@ -11,10 +11,10 @@
     <string name="musician_mode_header">Musician Mode:</string>
     <string name="choose_level">Choose Level</string>
     <string name="mixing_mode_header">Mixing Mode:</string>
-    <string name="questions_include">Questions include:</string>
+    <string name="include">Include:</string>
     <string name="cuts">Cuts</string>
     <string name="boosts">Boosts</string>
-    <string name="start_exercise">Start Exercise!</string>
+    <string name="start_exercise">Start Exercise</string>
     <string name="_4khz">4kHz</string>
     <string name="_2khz">2kHz</string>
     <string name="_1khz">1kHz</string>
@@ -27,9 +27,6 @@
     <string name="level_4">Level 4</string>
     <string name="level_5">Level 5</string>
     <string name="question_mark">\?</string>
-    <string name="boosted_or_cut_question">Which frequency was boosted or cut?</string>
-    <string name="boosted_question">Which frequency was boosted?</string>
-    <string name="cut_question">Which frequency was cut?</string>
     <string name="create_new_account"><u>Create new account</u></string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -41,4 +38,7 @@
     <string name="log_into_existing_account"><u>Log into existing account</u></string>
     <string name="setting_name">Setting Name</string>
     <string name="settings">Settings</string>
+    <string name="boosted_or_cut_question">Which frequency was Boosted or Cut?</string>
+    <string name="boosted_question">Which frequency was Boosted?</string>
+    <string name="cut_question">Which frequency was Cut?</string>
 </resources>
