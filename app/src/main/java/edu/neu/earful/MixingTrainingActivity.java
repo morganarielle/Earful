@@ -40,8 +40,7 @@ public class MixingTrainingActivity extends AppCompatActivity {
     boolean resetProgress = false;
 
     int correctIndex = -1; // -1 Pink Noise, 0 1kHz Boost, 1 250Hz Boost, 2 2kHz Boost, 3 4kHz Boost, 4 500Hz Boost, 5 1kHz Cut, 6 250Hz Cut, 7 2kHz Cut, 8 4kHz Cut, 9 500Hz Cut
-    int pointsAwarded = 0; // 1 point will be awarded for every correct answer
-    // TODO: we can award 1 point for boosts only, 2 points for cuts only, 3 points for both
+    int pointsAwarded = 0; // we can award 1 point for boosts only, 2 points for cuts only, 3 points for both
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,27 +118,27 @@ public class MixingTrainingActivity extends AppCompatActivity {
                 if (checkedButtonId == radioButton_4kHz.getId()) {
                     if (correctIndex == 3 || correctIndex == 8) {
                         // 4kHz. Correct!
-                        pointsAwarded += 1;
+                        pointsAwarded += calcPointsToAward();
                     }
                 } else if (checkedButtonId == radioButton_2kHz.getId()) {
                     if (correctIndex == 2 || correctIndex == 7) {
                         // 2kHz. Correct!
-                        pointsAwarded += 1;
+                        pointsAwarded += calcPointsToAward();
                     }
                 } else if (checkedButtonId == radioButton_1kHz.getId()) {
                     if (correctIndex == 0 || correctIndex == 5) {
                         // 1kHz. Correct!
-                        pointsAwarded += 1;
+                        pointsAwarded += calcPointsToAward();
                     }
                 } else if (checkedButtonId == radioButton_500Hz.getId()) {
                     if (correctIndex == 4 || correctIndex == 9) {
                         // 500Hz. Correct!
-                        pointsAwarded += 1;
+                        pointsAwarded += calcPointsToAward();
                     }
                 } else if (checkedButtonId == radioButton_250Hz.getId()) {
                     if (correctIndex == 1 || correctIndex == 6) {
                         // 250Hz. Correct!
-                        pointsAwarded += 1;
+                        pointsAwarded += calcPointsToAward();
                     }
                 }
 
@@ -155,12 +154,19 @@ public class MixingTrainingActivity extends AppCompatActivity {
             if (currentProgress == 90) {
                 progressBar.setProgress(100);
 
-                System.out.println("Total points awarded: " + pointsAwarded);
                 // TODO: write the score to the database
+                System.out.println("Total points awarded: " + pointsAwarded);
 
                 Intent resultsActivityIntent = new Intent(MixingTrainingActivity.this, ResultsActivity.class);
-                // TODO: pass the score to the next activity
-                resultsActivityIntent.putExtra("score", (pointsAwarded * 10));
+                int scorePercentage;
+                if (includeBoosts && includeCuts) {
+                    scorePercentage = (pointsAwarded * 10) / 3;
+                } else if (includeCuts) {
+                    scorePercentage = (pointsAwarded * 10) / 2;
+                } else {
+                    scorePercentage = (pointsAwarded * 10);
+                }
+                resultsActivityIntent.putExtra("score", scorePercentage);
                 startActivity(resultsActivityIntent);
 
                 resetProgress = true;
@@ -172,6 +178,16 @@ public class MixingTrainingActivity extends AppCompatActivity {
             // Get a new random file to play for the user
             path = getRandomFilePath();
         });
+    }
+
+    public int calcPointsToAward() {
+        if (includeBoosts && includeCuts) {
+            return 3;
+        } else if (includeCuts) {
+            return 2;
+        } else {
+            return 1;
+        }
     }
 
     public void setWhichFreqTextAndImage() {
