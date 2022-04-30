@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -38,6 +39,9 @@ public class MixingTrainingActivity extends AppCompatActivity {
     boolean includeCuts;
     boolean includeBoosts;
     boolean resetProgress = false;
+    boolean audioPlayed = false;
+
+    Toast toast;
 
     int correctIndex = -1; // -1 Pink Noise, 0 1kHz Boost, 1 250Hz Boost, 2 2kHz Boost, 3 4kHz Boost, 4 500Hz Boost, 5 1kHz Cut, 6 250Hz Cut, 7 2kHz Cut, 8 4kHz Cut, 9 500Hz Cut
     int pointsAwarded = 0; // we can award 1 point for boosts only, 2 points for cuts only, 3 points for both
@@ -72,7 +76,6 @@ public class MixingTrainingActivity extends AppCompatActivity {
                 player = new MediaPlayer();
                 AssetFileDescriptor afd;
                 try {
-                    System.out.println(path);
                     afd = getAssets().openFd(path);
                     player.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
                     //player.setLooping(true); // Loops the audio
@@ -96,8 +99,10 @@ public class MixingTrainingActivity extends AppCompatActivity {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                // Enabled the submit button
-                submitButton.setEnabled(true);
+                if (audioPlayed) {
+                    // Enabled the submit button
+                    submitButton.setEnabled(true);
+                }
             }
         });
 
@@ -108,39 +113,58 @@ public class MixingTrainingActivity extends AppCompatActivity {
                 stopAudio();
             }
 
+            // hide any previous toasts
+            if (toast != null) {
+                toast.cancel();
+            }
+
             // Check what radio button was clicked
             int checkedButtonId = radioGroup.getCheckedRadioButtonId();
-            if (checkedButtonId == -1) {
-                // no radio buttons are checked
-                System.out.println("No radio buttons are checked");
-            } else {
+            if (checkedButtonId != -1) {
                 // one of the radio buttons is checked
                 if (checkedButtonId == radioButton_4kHz.getId()) {
                     if (correctIndex == 3 || correctIndex == 8) {
                         // 4kHz. Correct!
                         pointsAwarded += calcPointsToAward();
+                        toast = Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT);
+                    } else {
+                        toast = Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT);
                     }
                 } else if (checkedButtonId == radioButton_2kHz.getId()) {
                     if (correctIndex == 2 || correctIndex == 7) {
                         // 2kHz. Correct!
                         pointsAwarded += calcPointsToAward();
+                        toast = Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT);
+                    } else {
+                        toast = Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT);
                     }
                 } else if (checkedButtonId == radioButton_1kHz.getId()) {
                     if (correctIndex == 0 || correctIndex == 5) {
                         // 1kHz. Correct!
                         pointsAwarded += calcPointsToAward();
+                        toast = Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT);
+                    } else {
+                        toast = Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT);
                     }
                 } else if (checkedButtonId == radioButton_500Hz.getId()) {
                     if (correctIndex == 4 || correctIndex == 9) {
                         // 500Hz. Correct!
                         pointsAwarded += calcPointsToAward();
+                        toast = Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT);
+                    } else {
+                        toast = Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT);
                     }
                 } else if (checkedButtonId == radioButton_250Hz.getId()) {
                     if (correctIndex == 1 || correctIndex == 6) {
                         // 250Hz. Correct!
                         pointsAwarded += calcPointsToAward();
+                        toast = Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT);
+                    } else {
+                        toast = Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT);
                     }
                 }
+                // Show the toast
+                toast.show();
 
                 // Uncheck all
                 radioGroup.clearCheck();
@@ -174,6 +198,9 @@ public class MixingTrainingActivity extends AppCompatActivity {
             } else {
                 progressBar.setProgress(currentProgress + 10);
             }
+
+            // Reset audioPlayed flag
+            audioPlayed = false;
 
             // Get a new random file to play for the user
             path = getRandomFilePath();
@@ -226,7 +253,6 @@ public class MixingTrainingActivity extends AppCompatActivity {
         }
 
         correctIndex = randomNum;
-        System.out.println(correctIndex);
         return directory + "/" + assetMap.get(randomNum);
     }
 
@@ -266,6 +292,20 @@ public class MixingTrainingActivity extends AppCompatActivity {
     public void playAudio() {
         player.start();
         playAudioButton.setText("||");
+        audioPlayed = true;
+        if (radioGroup.getCheckedRadioButtonId() != -1) {
+            // Enabled the submit button
+            submitButton.setEnabled(true);
+        }
+    }
+
+
+    @Override
+    public void finish() {
+        super.finish();
+        if (toast != null) {
+            toast.cancel();
+        }
     }
 
     @Override
@@ -278,6 +318,9 @@ public class MixingTrainingActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         stopAudio();
+        if (toast != null) {
+            toast.cancel();
+        }
     }
 
     @Override
