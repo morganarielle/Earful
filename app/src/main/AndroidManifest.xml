@@ -19,6 +19,13 @@
             android:name=".ResultsActivity"
             android:exported="false" />
         <activity
+            android:name=".CreateAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="Settings"
+            android:exported="false" />
+        <activity
             android:name=".LevelSelectionActivity"
             android:exported="false" />
         <activity
@@ -39,7 +46,6 @@
         <activity
             android:name=".IntervalTrainingActivity"
             android:label="Interval Training" />
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

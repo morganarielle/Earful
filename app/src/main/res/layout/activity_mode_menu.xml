@@ -108,7 +108,6 @@
         app:layout_constraintBottom_toTopOf="@id/mixing_practice_button"
         app:layout_constraintTop_toBottomOf="@id/mixingMode_textView"/>
 
-
     <Button
         android:id="@+id/mixing_practice_button"
         android:layout_width="124dp"
@@ -120,6 +119,18 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mixing_tips_button"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/settings_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:onClick="onClick"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_manage" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
