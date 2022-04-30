@@ -8,21 +8,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
-public class MenuActivity extends AppCompatActivity {
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+public class MixingOptionsActivity extends AppCompatActivity {
     CheckBox cutsCheckBox;
     CheckBox boostsCheckBox;
     Button startMixingExerciseButton;
-    Button startMusicianExerciseButton;
+    FloatingActionButton settingsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_mixing_options);
 
         cutsCheckBox = findViewById(R.id.cuts_checkbox);
         boostsCheckBox = findViewById(R.id.boosts_checkbox);
         startMixingExerciseButton = findViewById(R.id.start_mixing_exercise_button);
-        startMusicianExerciseButton = findViewById(R.id.musicianMode_button);
 
         cutsCheckBox.setOnClickListener(view -> {
             if (!cutsCheckBox.isChecked() && !boostsCheckBox.isChecked()) {
@@ -37,25 +38,26 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
-    public void onClick(View view) {
+    public void launchMixingExerciseActivity(View view) {
         int id = view.getId();
 
         if (id == startMixingExerciseButton.getId()) {
-            launchMixingMode(view);
-        } else if (id == startMusicianExerciseButton.getId()) {
-            launchMusicianMode(view);
+            Intent mixingModeIntent = new Intent(getApplicationContext(), MixingTrainingActivity.class);
+            mixingModeIntent.putExtra("includeCuts", cutsCheckBox.isChecked());
+            mixingModeIntent.putExtra("includeBoosts", boostsCheckBox.isChecked());
+            startActivity(mixingModeIntent);
         }
     }
-
     public void launchMusicianMode(View view) {
-        Intent musicianModeIntent = new Intent(getApplicationContext(), MusicianActivity.class);
+        Intent musicianModeIntent = new Intent(getApplicationContext(), LevelSelectionActivity.class);
         startActivity(musicianModeIntent);
     }
 
     public void launchMixingMode(View view) {
-        Intent mixingModeIntent = new Intent(getApplicationContext(), MixingExerciseActivity.class);
+        Intent mixingModeIntent = new Intent(getApplicationContext(), MixingTrainingActivity.class);
         mixingModeIntent.putExtra("includeCuts", cutsCheckBox.isChecked());
         mixingModeIntent.putExtra("includeBoosts", boostsCheckBox.isChecked());
         startActivity(mixingModeIntent);
     }
+
 }

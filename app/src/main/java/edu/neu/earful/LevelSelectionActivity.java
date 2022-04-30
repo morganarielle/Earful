@@ -12,14 +12,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-public class MusicianActivity extends AppCompatActivity {
+public class LevelSelectionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_musician);
+        setContentView(R.layout.activity_level_selection);
         String DIFFICULTY = "difficulty";
-        Intent i = new Intent(MusicianActivity.this, IntervalTrainingActivity.class);
+        Intent i = new Intent(LevelSelectionActivity.this, IntervalTrainingActivity.class);
 
         Button level1button = findViewById(R.id.level1Button);
         level1button.setOnClickListener(view -> {
