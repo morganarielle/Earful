@@ -48,16 +48,5 @@ public class MixingOptionsActivity extends AppCompatActivity {
             startActivity(mixingModeIntent);
         }
     }
-    public void launchMusicianMode(View view) {
-        Intent musicianModeIntent = new Intent(getApplicationContext(), LevelSelectionActivity.class);
-        startActivity(musicianModeIntent);
-    }
-
-    public void launchMixingMode(View view) {
-        Intent mixingModeIntent = new Intent(getApplicationContext(), MixingTrainingActivity.class);
-        mixingModeIntent.putExtra("includeCuts", cutsCheckBox.isChecked());
-        mixingModeIntent.putExtra("includeBoosts", boostsCheckBox.isChecked());
-        startActivity(mixingModeIntent);
-    }
 
 }
