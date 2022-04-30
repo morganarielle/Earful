@@ -2,6 +2,9 @@ package edu.neu.earful;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -22,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
         signInButton = findViewById(R.id.signin);
         usernameText = findViewById(R.id.username);
         usernameText.addTextChangedListener(editTextWatcher);
+        Intent notifyIntent = new Intent(this,MyReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast
+                (this, 3, notifyIntent, PendingIntent.FLAG_IMMUTABLE);
+        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,  System.currentTimeMillis(),
+                1000 * 60 * 60 * 24, pendingIntent);
     }
 
     public void onLogIn(View view) {

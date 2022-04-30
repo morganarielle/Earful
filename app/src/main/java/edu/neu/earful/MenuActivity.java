@@ -54,12 +54,6 @@ public class MenuActivity extends AppCompatActivity {
                 cutsCheckBox.setChecked(true);
             }
         });
-        Intent notifyIntent = new Intent(this,MyReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast
-                (this, 3, notifyIntent, PendingIntent.FLAG_IMMUTABLE);
-        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,  System.currentTimeMillis(),
-                1000 * 60 * 60 * 24, pendingIntent);
     }
 
     public void onClick(View view) {
