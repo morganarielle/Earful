@@ -36,4 +36,7 @@
     <string name="reenter_password">Re-enter Password</string>
     <string name="create_account">Create Account</string>
     <string name="back_to_sign_in">Back to sign-in</string>
+    <string name="passwords_match">Passwords match</string>
+    <string name="passwords_do_not_match">Passwords do not match</string>
+    <string name="log_into_existing_account"><u>Log into existing account</u></string>
 </resources>
