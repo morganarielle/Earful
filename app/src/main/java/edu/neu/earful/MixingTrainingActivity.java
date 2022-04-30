@@ -33,7 +33,8 @@ public class MixingTrainingActivity extends AppCompatActivity {
     RadioButton radioButton_500Hz;
     RadioButton radioButton_250Hz;
 
-    MediaPlayer player;
+    MediaPlayer questionPlayer;
+    MediaPlayer fxPlayer;
     Map<Integer, String> assetMap = new HashMap<>();
     String path;
     boolean includeCuts;
@@ -72,21 +73,22 @@ public class MixingTrainingActivity extends AppCompatActivity {
         path = getRandomFilePath();
 
         playAudioButton.setOnClickListener(view -> {
-            if (player == null) {
-                player = new MediaPlayer();
+            if (questionPlayer == null) {
+                questionPlayer = new MediaPlayer();
+                questionPlayer.setVolume((float) 0.5,(float) 0.5);
                 AssetFileDescriptor afd;
                 try {
                     afd = getAssets().openFd(path);
-                    player.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
+                    questionPlayer.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
                     //player.setLooping(true); // Loops the audio
-                    player.setOnPreparedListener(mediaPlayer -> {
+                    questionPlayer.setOnPreparedListener(mediaPlayer -> {
                         // Play the audio
                         playAudio();
                     });
 
-                    player.setOnCompletionListener(mediaPlayer -> stopAudio());
+                    questionPlayer.setOnCompletionListener(mediaPlayer -> stopAudio());
 
-                    player.prepareAsync();
+                    questionPlayer.prepareAsync();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -108,7 +110,7 @@ public class MixingTrainingActivity extends AppCompatActivity {
 
         submitButton.setOnClickListener(view -> {
             // Check if we should stop playing the audio
-            if (player != null) {
+            if (questionPlayer != null) {
                 // Stop the audio
                 stopAudio();
             }
@@ -127,40 +129,50 @@ public class MixingTrainingActivity extends AppCompatActivity {
                         // 4kHz. Correct!
                         pointsAwarded += calcPointsToAward();
                         toast = Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT);
+                        initializeFXPlayer("FX/answer_correct.wav");
                     } else {
                         toast = Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT);
+                        initializeFXPlayer("FX/answer_wrong.wav");
                     }
                 } else if (checkedButtonId == radioButton_2kHz.getId()) {
                     if (correctIndex == 2 || correctIndex == 7) {
                         // 2kHz. Correct!
                         pointsAwarded += calcPointsToAward();
                         toast = Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT);
+                        initializeFXPlayer("FX/answer_correct.wav");
                     } else {
                         toast = Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT);
+                        initializeFXPlayer("FX/answer_wrong.wav");
                     }
                 } else if (checkedButtonId == radioButton_1kHz.getId()) {
                     if (correctIndex == 0 || correctIndex == 5) {
                         // 1kHz. Correct!
                         pointsAwarded += calcPointsToAward();
                         toast = Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT);
+                        initializeFXPlayer("FX/answer_correct.wav");
                     } else {
                         toast = Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT);
+                        initializeFXPlayer("FX/answer_wrong.wav");
                     }
                 } else if (checkedButtonId == radioButton_500Hz.getId()) {
                     if (correctIndex == 4 || correctIndex == 9) {
                         // 500Hz. Correct!
                         pointsAwarded += calcPointsToAward();
                         toast = Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT);
+                        initializeFXPlayer("FX/answer_correct.wav");
                     } else {
                         toast = Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT);
+                        initializeFXPlayer("FX/answer_wrong.wav");
                     }
                 } else if (checkedButtonId == radioButton_250Hz.getId()) {
                     if (correctIndex == 1 || correctIndex == 6) {
                         // 250Hz. Correct!
                         pointsAwarded += calcPointsToAward();
                         toast = Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT);
+                        initializeFXPlayer("FX/answer_correct.wav");
                     } else {
                         toast = Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT);
+                        initializeFXPlayer("FX/answer_wrong.wav");
                     }
                 }
                 // Show the toast
@@ -177,6 +189,7 @@ public class MixingTrainingActivity extends AppCompatActivity {
             int currentProgress = progressBar.getProgress();
             if (currentProgress == 90) {
                 progressBar.setProgress(100);
+                stopFXAudio();
 
                 // TODO: write the score to the database
                 System.out.println("Total points awarded: " + pointsAwarded);
@@ -277,25 +290,65 @@ public class MixingTrainingActivity extends AppCompatActivity {
 
     }
 
+    public void initializeFXPlayer(String path) {
+        stopFXAudio();
+        if (fxPlayer == null) {
+            fxPlayer = new MediaPlayer();
+            AssetFileDescriptor afd;
+            try {
+                afd = getAssets().openFd( path);
+                fxPlayer.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
+                fxPlayer.setOnPreparedListener(mediaPlayer -> {
+                    // Play the audio
+                    playFXAudio();
+                });
+
+                fxPlayer.setOnCompletionListener(mediaPlayer -> stopFXAudio());
+
+                fxPlayer.prepareAsync();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // Stop the audio
+            stopFXAudio();
+        }
+    }
+
     public void stopAudio() {
         // Stop the audio
-        if (player != null) {
-            if (player.isPlaying()) {
-                player.stop();
+        if (questionPlayer != null) {
+            if (questionPlayer.isPlaying()) {
+                questionPlayer.stop();
             }
-            player.release();
-            player = null;
+            questionPlayer.release();
+            questionPlayer = null;
             playAudioButton.setText("ᐅ");
         }
     }
 
     public void playAudio() {
-        player.start();
+        questionPlayer.start();
         playAudioButton.setText("||");
         audioPlayed = true;
         if (radioGroup.getCheckedRadioButtonId() != -1) {
             // Enabled the submit button
             submitButton.setEnabled(true);
+        }
+    }
+
+    public void playFXAudio() {
+        fxPlayer.start();
+    }
+
+    public void stopFXAudio() {
+        // Stop the audio
+        if (fxPlayer != null) {
+            if (fxPlayer.isPlaying()) {
+                fxPlayer.stop();
+            }
+            fxPlayer.release();
+            fxPlayer = null;
         }
     }
 

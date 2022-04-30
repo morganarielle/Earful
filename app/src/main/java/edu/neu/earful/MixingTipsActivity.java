@@ -178,6 +178,7 @@ public class MixingTipsActivity extends AppCompatActivity {
         if (player == null) {
             currentlyPlayingButtonID = Integer.toString(id);
             player = new MediaPlayer();
+            player.setVolume((float) 0.5,(float) 0.5);
             AssetFileDescriptor afd;
             try {
                 afd = getAssets().openFd(path);
