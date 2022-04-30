@@ -1,37 +1,17 @@
 package edu.neu.earful;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-
-import android.app.AlarmManager;
-import android.app.IntentService;
-import android.app.Notification;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 public class MenuActivity extends AppCompatActivity {
     CheckBox cutsCheckBox;
     CheckBox boostsCheckBox;
     Button startMixingExerciseButton;
     Button startMusicianExerciseButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,29 +46,17 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
-    public void launchMusicianMode(View view) {
+    public void launchMusicianMode(View view){
         Intent musicianModeIntent = new Intent(getApplicationContext(), MusicianActivity.class);
         startActivity(musicianModeIntent);
     }
 
-    public void launchMixingMode(View view) {
+    public void launchMixingMode(View view){
         Intent mixingModeIntent = new Intent(getApplicationContext(), MixingExerciseActivity.class);
         mixingModeIntent.putExtra("includeCuts", cutsCheckBox.isChecked());
         mixingModeIntent.putExtra("includeBoosts", boostsCheckBox.isChecked());
         startActivity(mixingModeIntent);
     }
-
-    ValueEventListener postListener = new ValueEventListener() {
-        @Override
-        public void onDataChange(DataSnapshot dataSnapshot) {
-
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-            Log.w("FAIL", "loadPost:onCancelled");
-        }
-    };
 
 }
 
