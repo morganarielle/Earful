@@ -1,5 +1,8 @@
 package edu.neu.earful;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +20,7 @@ public class SettingsActivity extends AppCompatActivity {
     private RecyclerView settingsRV;
     private SettingsRVAdapter settingsRVAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    boolean notificationsOn = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,26 @@ public class SettingsActivity extends AppCompatActivity {
         };
         SettingCard createNewAccountSetting = new SettingCard("Create New Account", createNewAccountAction);
         addSetting(createNewAccountSetting, position);
+        position++;
+
+        Runnable toggleNotificationsAction = () -> {
+            Intent notifyIntent = new Intent(this, MyReceiver.class);
+
+            PendingIntent pendingIntent = PendingIntent.getBroadcast
+                    (this, 3, notifyIntent, PendingIntent.FLAG_IMMUTABLE);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            if (notificationsOn) {
+                stopService(notifyIntent);
+                alarmManager.cancel(pendingIntent);
+            } else {
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
+                        10000, pendingIntent);
+            }
+            notificationsOn = !notificationsOn;
+            System.out.println(notificationsOn);
+        };
+        SettingCard notificationSetting = new SettingCard("Toggle Notifications", toggleNotificationsAction);
+        addSetting(notificationSetting, position);
     }
 
     private void createRecyclerView() {
