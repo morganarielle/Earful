@@ -69,12 +69,12 @@ public class ModeMenuActivity extends AppCompatActivity {
         }
     }
 
-    public void launchChooseLevel(View view){
+    public void launchChooseLevel(View view) {
         Intent chooseLevelsIntent = new Intent(getApplicationContext(), LevelSelectionActivity.class);
         startActivity(chooseLevelsIntent);
     }
 
-    public void launchViewOptions(View view){
+    public void launchViewOptions(View view) {
         Intent viewOptionsIntent = new Intent(getApplicationContext(), MixingOptionsActivity.class);
         startActivity(viewOptionsIntent);
     }
@@ -93,15 +93,17 @@ public class ModeMenuActivity extends AppCompatActivity {
         currentUserReference.get().addOnCompleteListener(task -> {
             if (!task.isSuccessful()) {
                 Log.v("TAG", "Error getting data", task.getException());
-            }
-            else {
+            } else {
                 musicianModePointsTV = findViewById(R.id.musician_total_points_value);
-                final int musicianScore = task.getResult().child(getString(R.string.db_key_musician_score)).getValue(Integer.class);
+                boolean musicianScoreExists = task.getResult().child(getString(R.string.db_key_musician_score)).exists();
+                final int musicianScore = musicianScoreExists ? task.getResult().child(getString(R.string.db_key_musician_score)).getValue(Integer.class) : 0;
                 Log.v("TAG", "Musician score: " + musicianScore);
                 musicianModePointsTV.setText(Integer.toString(musicianScore));
 
                 mixingModePointsTV = findViewById(R.id.mixing_total_points_value);
-                final int mixingScore = task.getResult().child(getString(R.string.db_key_mixing_score)).getValue(Integer.class);
+
+                boolean mixingScoreExists = task.getResult().child(getString(R.string.db_key_mixing_score)).exists();
+                final int mixingScore = mixingScoreExists ? task.getResult().child(getString(R.string.db_key_mixing_score)).getValue(Integer.class) : 0;
                 Log.v("TAG", "Mixing score: " + mixingScore);
                 mixingModePointsTV.setText(Integer.toString(mixingScore));
             }

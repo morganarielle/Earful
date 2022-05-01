@@ -242,6 +242,7 @@ public class MixingTrainingActivity extends AppCompatActivity {
                 }
                 resultsActivityIntent.putExtra("percent", scorePercentage);
                 resultsActivityIntent.putExtra("points", pointsAwarded);
+                resultsActivityIntent.putExtra("mode", getString(R.string.mixing_results_key));
                 startActivity(resultsActivityIntent);
 
                 resetProgress = true;

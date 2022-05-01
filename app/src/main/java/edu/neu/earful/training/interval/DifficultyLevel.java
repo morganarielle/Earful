@@ -17,4 +17,15 @@ public enum DifficultyLevel {
                 return 0;
         }
     }
+
+    public static DifficultyLevel highestLevel(int points) {
+        DifficultyLevel maxLevel = LEVEL1;
+        for (DifficultyLevel level: DifficultyLevel.values()) {
+            int minPoints = pointsNeededToReachLevel(level);
+            if (points >= minPoints) {
+                maxLevel = level;
+            }
+        }
+        return maxLevel;
+    }
 }
