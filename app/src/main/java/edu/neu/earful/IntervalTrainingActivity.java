@@ -130,6 +130,19 @@ public class IntervalTrainingActivity extends AppCompatActivity {
                 toast.cancel();
             }
 
+            // make a toast telling the user if they were correct or not & add to their score if they are
+            if (correctInterval == IntervalCard.getIntervalFromDisplayText((String) selectedIntervalTV.getText())) {
+                toast = Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT);
+                initializeFXPlayer("FX/answer_correct.wav");
+                pointsAwarded += pointsPerQuestion;
+            } else {
+                toast = Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT);
+                initializeFXPlayer("FX/answer_wrong.wav");
+            }
+
+            // Show the toast
+            toast.show();
+
             // Update the progress
             int currentProgress = progressBar.getProgress();
             if (currentProgress == 90) {
@@ -182,19 +195,6 @@ public class IntervalTrainingActivity extends AppCompatActivity {
                 // Disabled the submit button
                 submitButton.setEnabled(false);
             }
-
-            // make a toast telling the user if they were correct or not & add to their score if they are
-            if (correctInterval == IntervalCard.getIntervalFromDisplayText((String) selectedIntervalTV.getText())) {
-                toast = Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT);
-                initializeFXPlayer("FX/answer_correct.wav");
-                pointsAwarded += pointsPerQuestion;
-            } else {
-                toast = Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT);
-                initializeFXPlayer("FX/answer_wrong.wav");
-            }
-
-            // Show the toast
-            toast.show();
 
             // Get a new random file to play for the user
             selectedIntervalTV = null;
@@ -436,19 +436,25 @@ public class IntervalTrainingActivity extends AppCompatActivity {
     }
 
     private int getPointsPerQuestion() {
+        int points = 0;
         switch(difficulty) {
             case LEVEL1:
-                return 1;
+                points = 1;
+                break;
             case LEVEL2:
-                return 2;
+                points = 2;
+                break;
             case LEVEL3:
-                return 3;
+                points = 3;
+                break;
             case LEVEL4:
-                return 4;
+                points = 4;
+                break;
             case LEVEL5:
-                return 5;
-            default:
-                return 0;
+                points = 5;
+                break;
         }
+        Log.v("TAG", "Points per question: " + points);
+        return points;
     }
 }
