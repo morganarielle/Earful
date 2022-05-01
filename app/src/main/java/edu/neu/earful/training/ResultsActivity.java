@@ -11,13 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-
 import java.io.IOException;
 
 import edu.neu.earful.R;
+import edu.neu.earful.training.interval.DifficultyLevel;
+import edu.neu.earful.training.interval.NewLevelFragment;
 
 public class ResultsActivity extends AppCompatActivity {
     Button menuButton;

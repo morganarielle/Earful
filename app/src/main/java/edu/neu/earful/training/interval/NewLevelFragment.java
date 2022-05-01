@@ -1,6 +1,5 @@
-package edu.neu.earful;
+package edu.neu.earful.training.interval;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -14,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import java.util.Objects;
+
+import edu.neu.earful.R;
 
 public class NewLevelFragment extends DialogFragment {
 
