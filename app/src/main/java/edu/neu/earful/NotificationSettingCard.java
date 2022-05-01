@@ -22,7 +22,7 @@ public class NotificationSettingCard extends SettingCard {
     public void onItemClick(int position) {
         settingName = SettingsActivity.mPrefs.getString("notifications", "true").equals("true") ?
                 "Toggle Notifications Off" :
-                "Toggle Notifications On";;
+                "Toggle Notifications On";
         action.run();
     }
 }
