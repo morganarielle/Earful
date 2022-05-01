@@ -1,16 +1,19 @@
-package edu.neu.earful;
+package edu.neu.earful.training;
 
-import static edu.neu.earful.DifficultyLevel.LEVEL1;
-import static edu.neu.earful.DifficultyLevel.LEVEL2;
-import static edu.neu.earful.DifficultyLevel.LEVEL3;
-import static edu.neu.earful.DifficultyLevel.LEVEL4;
-import static edu.neu.earful.DifficultyLevel.LEVEL5;
+import static edu.neu.earful.training.DifficultyLevel.LEVEL1;
+import static edu.neu.earful.training.DifficultyLevel.LEVEL2;
+import static edu.neu.earful.training.DifficultyLevel.LEVEL3;
+import static edu.neu.earful.training.DifficultyLevel.LEVEL4;
+import static edu.neu.earful.training.DifficultyLevel.LEVEL5;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+
+import edu.neu.earful.R;
+import edu.neu.earful.training.interval.IntervalTrainingActivity;
 
 public class LevelSelectionActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package edu.neu.earful;
+package edu.neu.earful.training;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,11 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import edu.neu.earful.R;
+import edu.neu.earful.training.mixing.MixingOptionsActivity;
+import edu.neu.earful.training.mixing.MixingTipsActivity;
+import edu.neu.earful.settings.SettingsActivity;
 
 public class ModeMenuActivity extends AppCompatActivity {
     Button questionOptionsButton;

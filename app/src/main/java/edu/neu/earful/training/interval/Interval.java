@@ -1,10 +1,12 @@
-package edu.neu.earful;
+package edu.neu.earful.training.interval;
 
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import edu.neu.earful.training.DifficultyLevel;
 
 
 public enum Interval {

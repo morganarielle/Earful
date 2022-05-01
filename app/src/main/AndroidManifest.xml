@@ -10,32 +10,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Earful">
         <activity
-            android:name=".MixingTipsActivity"
+            android:name=".training.mixing.MixingTipsActivity"
             android:exported="false" />
         <activity
-            android:name=".MixingOptionsActivity"
+            android:name=".training.mixing.MixingOptionsActivity"
             android:exported="false" />
         <activity
-            android:name=".ResultsActivity"
+            android:name=".training.ResultsActivity"
             android:exported="false" />
         <activity
-            android:name=".CreateAccountActivity"
+            android:name=".menu.CreateAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".settings.SettingsActivity"
             android:label="Settings"
             android:exported="false" />
         <activity
-            android:name=".LevelSelectionActivity"
+            android:name=".training.LevelSelectionActivity"
             android:exported="false" />
         <activity
-            android:name=".ModeMenuActivity"
+            android:name=".training.ModeMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".MixingTrainingActivity"
+            android:name=".training.mixing.MixingTrainingActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".menu.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,18 +44,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".IntervalTrainingActivity"
+            android:name=".training.interval.IntervalTrainingActivity"
             android:label="Interval Training" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
         <receiver
-            android:name=".MyReceiver"
+            android:name=".settings.notifications.NotificationReceiver"
             android:enabled="true"
             android:exported="false"></receiver>
         <service
-            android:name=".MyNewIntentService"
+            android:name=".settings.notifications.NotificationIntentService"
             android:exported="false"></service>
     </application>
 

@@ -1,4 +1,4 @@
-package edu.neu.earful;
+package edu.neu.earful.training.interval;
 
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
@@ -20,6 +20,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import java.util.stream.Collectors;
+
+import edu.neu.earful.training.DifficultyLevel;
+import edu.neu.earful.R;
+import edu.neu.earful.training.ResultsActivity;
 
 public class IntervalTrainingActivity extends AppCompatActivity {
     private final Random rand = new Random();

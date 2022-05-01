@@ -1,4 +1,7 @@
-package edu.neu.earful;
+package edu.neu.earful.settings.notifications;
+
+import edu.neu.earful.settings.SettingCard;
+import edu.neu.earful.settings.SettingsActivity;
 
 public class NotificationSettingCard extends SettingCard {
     private String settingName;

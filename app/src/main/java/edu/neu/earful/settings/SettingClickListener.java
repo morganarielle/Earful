@@ -1,4 +1,4 @@
-package edu.neu.earful;
+package edu.neu.earful.settings;
 
 public interface SettingClickListener {
 

@@ -1,6 +1,5 @@
-package edu.neu.earful;
+package edu.neu.earful.menu;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
@@ -20,6 +19,10 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import edu.neu.earful.R;
+import edu.neu.earful.training.ModeMenuActivity;
+import edu.neu.earful.settings.notifications.NotificationReceiver;
+
 public class MainActivity extends AppCompatActivity {
     private Button signInButton;
     private Button createNewAccountButton;
@@ -36,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         createNewAccountButton = findViewById(R.id.createNewAccount);
         usernameText = findViewById(R.id.username);
         usernameText.addTextChangedListener(editTextWatcher);
-        Intent notifyIntent = new Intent(this, MyReceiver.class);
+        Intent notifyIntent = new Intent(this, NotificationReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast
                 (this, 3, notifyIntent, PendingIntent.FLAG_IMMUTABLE);
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
