@@ -41,4 +41,7 @@
     <string name="boosted_or_cut_question">Which frequency was Boosted or Cut?</string>
     <string name="boosted_question">Which frequency was Boosted?</string>
     <string name="cut_question">Which frequency was Cut?</string>
+    <string name="db_key_musician_score">musician_score</string>
+    <string name="db_key_mixing_score">mixing_score</string>
+    <string name="db_key_users">users</string>
 </resources>
