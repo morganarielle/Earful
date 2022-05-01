@@ -33,6 +33,7 @@ public class IntervalTrainingActivity extends AppCompatActivity {
     MediaPlayer player1, player2;
     boolean resetProgress = false;
     MediaPlayer fxPlayer;
+    Toast toast;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -103,6 +104,11 @@ public class IntervalTrainingActivity extends AppCompatActivity {
                 playAudioButton.setText("ᐅ");
             }
 
+            // hide any previous toasts
+            if (toast != null) {
+                toast.cancel();
+            }
+
             // Update the progress
             int currentProgress = progressBar.getProgress();
             if (currentProgress == 90) {
@@ -138,12 +144,15 @@ public class IntervalTrainingActivity extends AppCompatActivity {
 
             // make a toast telling the user if they were correct or not
             if (correctInterval == IntervalCard.getIntervalFromDisplayText((String) selectedIntervalTV.getText())) {
-                Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT).show();
+                toast = Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT);
                 initializeFXPlayer("FX/answer_correct.wav");
             } else {
-                Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT).show();
+                toast = Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT);
                 initializeFXPlayer("FX/answer_wrong.wav");
             }
+
+            // Show the toast
+            toast.show();
 
             // Get a new random file to play for the user
             selectedIntervalTV = null;
@@ -255,13 +264,14 @@ public class IntervalTrainingActivity extends AppCompatActivity {
                         player1.setOnPreparedListener(mediaPlayer -> {
                             // Play the audio
                             player1.start();
-                            player1.setNextMediaPlayer(player2);
+                            // player1.setNextMediaPlayer(player2);
                             playAudioButton.setText("||");
                         });
 
                         player1.setOnCompletionListener(mediaPlayer -> {
                             // Stop the audio
                             stopPlayer1();
+                            player2.start();
                         });
                         player2.setOnCompletionListener(mediaPlayer -> {
                             // Stop the audio
@@ -370,5 +380,16 @@ public class IntervalTrainingActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         stopAudio();
+        if (toast != null) {
+            toast.cancel();
+        }
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        if (toast != null) {
+            toast.cancel();
+        }
     }
 }
