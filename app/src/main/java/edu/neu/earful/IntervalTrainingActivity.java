@@ -152,6 +152,9 @@ public class IntervalTrainingActivity extends AppCompatActivity {
                 // we need to use this so that pointsAwarded doesn't get overridden before the db call occurs
                 int tempPointsAwarded = pointsAwarded;
 
+                // create intent for results
+                Intent resultsActivityIntent = new Intent(IntervalTrainingActivity.this, ResultsActivity.class);
+
                 // write the score to the database
                 currentUserReference.get().addOnCompleteListener(task -> {
                     if (!task.isSuccessful()) {
@@ -166,18 +169,27 @@ public class IntervalTrainingActivity extends AppCompatActivity {
                         System.out.println(newScore);
                         Log.v("TAG", "Prev score: " + currentScore);
                         Log.v("TAG", "New score: " + (newScore));
+
+                        // if user has enough points to reach a new level, display a popup in next activity
+                        boolean displayNewLevel = DifficultyLevel.highestLevel(currentScore) != DifficultyLevel.highestLevel(newScore);
+                        Log.v("TAG", "IntervalTrainingActivity displayNewLevel: " + displayNewLevel);
+                        resultsActivityIntent.putExtra("display_new_level", displayNewLevel);
+                        if (displayNewLevel) {
+                            Log.v("TAG", "IntervalTrainingActivity highestLevel: " + DifficultyLevel.highestLevel(newScore));
+                            resultsActivityIntent.putExtra("highest_level", DifficultyLevel.highestLevel(newScore));
+                        }
+                        // pass the actual score to the next activity
+                        resultsActivityIntent.putExtra("percent", (pointsAwarded / pointsPerQuestion) * 10);
+                        resultsActivityIntent.putExtra("points", pointsAwarded);
+                        resultsActivityIntent.putExtra("mode", getString(R.string.musician_results_key));
+                        startActivity(resultsActivityIntent);
+
                         currentUserReference.child(getString(R.string.db_key_musician_score)).setValue(newScore);
+
+                        resetProgress = true;
+                        pointsAwarded = 0;
                     }
                 });
-
-                Intent resultsActivityIntent = new Intent(IntervalTrainingActivity.this, ResultsActivity.class);
-                // pass the actual score to the next activity
-                resultsActivityIntent.putExtra("percent", (pointsAwarded / pointsPerQuestion) * 10);
-                resultsActivityIntent.putExtra("points", pointsAwarded);
-                startActivity(resultsActivityIntent);
-
-                resetProgress = true;
-                pointsAwarded = 0;
             } else {
                 progressBar.setProgress(currentProgress + 10);
             }

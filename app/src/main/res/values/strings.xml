@@ -44,4 +44,7 @@
     <string name="db_key_musician_score">musician_score</string>
     <string name="db_key_mixing_score">mixing_score</string>
     <string name="db_key_users">users</string>
+    <string name="new_level_unlocked">New level unlocked!</string>
+    <string name="musician_results_key">musician</string>
+    <string name="mixing_results_key">mixing</string>
 </resources>
