@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MixingOptionsActivity">
+    tools:context=".training.mixing.MixingOptionsActivity">
 
     <TextView
         android:id="@+id/question_options_label"

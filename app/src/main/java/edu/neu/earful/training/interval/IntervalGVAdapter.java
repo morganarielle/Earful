@@ -1,4 +1,4 @@
-package edu.neu.earful;
+package edu.neu.earful.training.interval;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
+
+import edu.neu.earful.R;
 
 public class IntervalGVAdapter extends ArrayAdapter<IntervalCard> {
     public IntervalGVAdapter(@NonNull Context context, ArrayList<IntervalCard> intervalCards) {

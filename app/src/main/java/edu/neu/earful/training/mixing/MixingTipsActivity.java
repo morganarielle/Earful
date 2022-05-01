@@ -1,4 +1,4 @@
-package edu.neu.earful;
+package edu.neu.earful.training.mixing;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,8 @@ import android.widget.Button;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
+
+import edu.neu.earful.R;
 
 public class MixingTipsActivity extends AppCompatActivity {
     Button listenToPinkNoiseButton;

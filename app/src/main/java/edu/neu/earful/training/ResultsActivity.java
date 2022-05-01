@@ -1,4 +1,4 @@
-package edu.neu.earful;
+package edu.neu.earful.training;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +16,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
 import java.io.IOException;
+
+import edu.neu.earful.R;
 
 public class ResultsActivity extends AppCompatActivity {
     Button menuButton;
