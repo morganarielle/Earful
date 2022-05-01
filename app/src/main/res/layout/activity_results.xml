@@ -36,23 +36,51 @@
         android:id="@+id/menu_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Menu"
         android:onClick="onClick"
+        android:text="Menu"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/retry_button"
-        app:layout_constraintTop_toBottomOf="@id/exercise_score_value"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="@+id/retry_button" />
 
     <Button
         android:id="@+id/retry_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Retry"
+        android:layout_marginBottom="48dp"
         android:onClick="onClick"
-        app:layout_constraintRight_toRightOf="parent"
+        android:text="Retry"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/menu_button"
-        app:layout_constraintTop_toBottomOf="@id/exercise_score_value"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/menu_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exercise_score_value">
+
+        <TextView
+            android:id="@+id/pointsAwardedTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Points Awarded:"
+            android:textColor="@color/dark_blue"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteY="557dp" />
+
+        <TextView
+            android:id="@+id/numPointsAwarded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="0"
+            android:textColor="@color/dark_blue"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/pointsAwardedTV"
+            app:layout_constraintTop_toTopOf="@+id/pointsAwardedTV" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

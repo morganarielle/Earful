@@ -172,7 +172,8 @@ public class IntervalTrainingActivity extends AppCompatActivity {
 
                 Intent resultsActivityIntent = new Intent(IntervalTrainingActivity.this, ResultsActivity.class);
                 // pass the actual score to the next activity
-                resultsActivityIntent.putExtra("score", (pointsAwarded / pointsPerQuestion) * 10);
+                resultsActivityIntent.putExtra("percent", (pointsAwarded / pointsPerQuestion) * 10);
+                resultsActivityIntent.putExtra("points", pointsAwarded);
                 startActivity(resultsActivityIntent);
 
                 resetProgress = true;

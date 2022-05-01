@@ -55,9 +55,10 @@ public class ModeMenuActivity extends AppCompatActivity {
                 final int musicianScore = task.getResult().child(getString(R.string.db_key_musician_score)).getValue(Integer.class);
                 Log.v("TAG", "Musician score: " + musicianScore);
                 musicianModePointsTV.setText(Integer.toString(musicianScore));
+
                 mixingModePointsTV = findViewById(R.id.mixing_total_points_value);
                 final int mixingScore = task.getResult().child(getString(R.string.db_key_mixing_score)).getValue(Integer.class);
-                Log.v("TAG", "Musician score: " + mixingScore);
+                Log.v("TAG", "Mixing score: " + mixingScore);
                 mixingModePointsTV.setText(Integer.toString(mixingScore));
             }
         });

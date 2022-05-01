@@ -237,7 +237,8 @@ public class MixingTrainingActivity extends AppCompatActivity {
                 } else {
                     scorePercentage = (pointsAwarded * 10);
                 }
-                resultsActivityIntent.putExtra("score", scorePercentage);
+                resultsActivityIntent.putExtra("percent", scorePercentage);
+                resultsActivityIntent.putExtra("points", pointsAwarded);
                 startActivity(resultsActivityIntent);
 
                 resetProgress = true;
