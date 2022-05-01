@@ -46,22 +46,7 @@ public class ModeMenuActivity extends AppCompatActivity {
 
 
         // set total points TVs
-        currentUserReference.get().addOnCompleteListener(task -> {
-            if (!task.isSuccessful()) {
-                Log.v("TAG", "Error getting data", task.getException());
-            }
-            else {
-                musicianModePointsTV = findViewById(R.id.musician_total_points_value);
-                final int musicianScore = task.getResult().child(getString(R.string.db_key_musician_score)).getValue(Integer.class);
-                Log.v("TAG", "Musician score: " + musicianScore);
-                musicianModePointsTV.setText(Integer.toString(musicianScore));
-
-                mixingModePointsTV = findViewById(R.id.mixing_total_points_value);
-                final int mixingScore = task.getResult().child(getString(R.string.db_key_mixing_score)).getValue(Integer.class);
-                Log.v("TAG", "Mixing score: " + mixingScore);
-                mixingModePointsTV.setText(Integer.toString(mixingScore));
-            }
-        });
+        setTotalPoints();
     }
 
     public void onClick(View view) {
@@ -96,5 +81,30 @@ public class ModeMenuActivity extends AppCompatActivity {
     public void launchSettings(View view) {
         Intent settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
         startActivity(settingsIntent);
+    }
+
+    public void setTotalPoints() {
+        currentUserReference.get().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.v("TAG", "Error getting data", task.getException());
+            }
+            else {
+                musicianModePointsTV = findViewById(R.id.musician_total_points_value);
+                final int musicianScore = task.getResult().child(getString(R.string.db_key_musician_score)).getValue(Integer.class);
+                Log.v("TAG", "Musician score: " + musicianScore);
+                musicianModePointsTV.setText(Integer.toString(musicianScore));
+
+                mixingModePointsTV = findViewById(R.id.mixing_total_points_value);
+                final int mixingScore = task.getResult().child(getString(R.string.db_key_mixing_score)).getValue(Integer.class);
+                Log.v("TAG", "Mixing score: " + mixingScore);
+                mixingModePointsTV.setText(Integer.toString(mixingScore));
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setTotalPoints();
     }
 }
