@@ -18,6 +18,7 @@ public class ResultsActivity extends AppCompatActivity {
     Button menuButton;
     Button retryButton;
     TextView scoreValueTextView;
+    TextView numPointsAwardedTextView;
     MediaPlayer resultsPlayer;
 
     @Override
@@ -28,9 +29,12 @@ public class ResultsActivity extends AppCompatActivity {
         menuButton = findViewById(R.id.menu_button);
         retryButton = findViewById(R.id.retry_button);
         scoreValueTextView = findViewById(R.id.exercise_score_value);
+        numPointsAwardedTextView = findViewById(R.id.numPointsAwarded);
 
-        int score = getIntent().getIntExtra("score", -1);
+        int score = getIntent().getIntExtra("percent", -1);
+        int points = getIntent().getIntExtra("points", 0);
         scoreValueTextView.setText(score + "%");
+        numPointsAwardedTextView.setText(Integer.toString(points));
 
         resultsPlayer = new MediaPlayer();
 

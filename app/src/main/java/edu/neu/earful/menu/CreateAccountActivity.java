@@ -10,19 +10,27 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
-
 import edu.neu.earful.R;
 import edu.neu.earful.training.ModeMenuActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class CreateAccountActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
+    private DatabaseReference database;
+    private DatabaseReference usersReference;
     private Button createAccount;
     private Button logIntoAccount;
     private EditText emailET;
@@ -41,6 +49,8 @@ public class CreateAccountActivity extends AppCompatActivity {
         passwordET = (EditText) findViewById(R.id.password);
         passwordConfirmET = (EditText) findViewById(R.id.reenterPassword);
         doPasswordsMatchTV = (TextView) findViewById(R.id.doPasswordsMatch);
+        database = FirebaseDatabase.getInstance().getReference();
+        usersReference = database.child(getString(R.string.db_key_users));
 
         emailET.addTextChangedListener(new TextWatcher() {
             @Override
@@ -103,6 +113,10 @@ public class CreateAccountActivity extends AppCompatActivity {
                         // Sign in success, direct to menu screen
                         Log.d("TAG", "createUserWithEmail:success");
                         currentUser = mAuth.getCurrentUser();
+                        if (currentUser != null) {
+                            String uid = currentUser.getUid();
+                            checkIfUserExists(uid);
+                        }
                         Intent activity2Intent = new Intent(getApplicationContext(), ModeMenuActivity.class);
                         activity2Intent.putExtra("user", currentUser);
                         startActivity(activity2Intent);
@@ -150,5 +164,27 @@ public class CreateAccountActivity extends AppCompatActivity {
     private void updateCreateAccountButton() {
         createAccount.setEnabled(passwordET.getText().toString().equals(passwordConfirmET.getText().toString()) &&
                 !emailET.getText().toString().equals(""));
+    }
+
+    public void checkIfUserExists(String uid) {
+        Log.v("TAG", uid);
+        database.child("users").child(uid).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                DataSnapshot ds = task.getResult();
+                Log.v("TAG", String.valueOf(ds));
+
+                if (ds.exists()) {
+                    Log.v("TAG", "User exists");
+                } else {
+                    Log.v("TAG", "Add user to database and set initial score values for modes");
+                    usersReference.child(uid).setValue(getString(R.string.db_key_musician_score));
+                    usersReference.child(uid).setValue(getString(R.string.db_key_mixing_score));
+                    usersReference.child(uid).child(getString(R.string.db_key_musician_score)).setValue(0);
+                    usersReference.child(uid).child(getString(R.string.db_key_mixing_score)).setValue(0);
+                }
+            }
+        });
     }
 }

@@ -11,9 +11,18 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,12 +47,24 @@ public class IntervalTrainingActivity extends AppCompatActivity {
     boolean resetProgress = false;
     MediaPlayer fxPlayer;
     Toast toast;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+    private DatabaseReference database;
+    private DatabaseReference currentUserReference;
+    int pointsAwarded = 0;
+    int pointsPerQuestion;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getIntent().getExtras();
         this.difficulty = (DifficultyLevel) bundle.get("difficulty");
+        pointsPerQuestion = getPointsPerQuestion();
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        database = FirebaseDatabase.getInstance().getReference();
+        currentUserReference = database.child(getString(R.string.db_key_users)).child(currentUser.getUid());
 
         setContentView(R.layout.activity_interval_training);
         playAudioButton = findViewById(R.id.playButton);
@@ -113,20 +134,54 @@ public class IntervalTrainingActivity extends AppCompatActivity {
                 toast.cancel();
             }
 
+            // make a toast telling the user if they were correct or not & add to their score if they are
+            if (correctInterval == IntervalCard.getIntervalFromDisplayText((String) selectedIntervalTV.getText())) {
+                toast = Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT);
+                initializeFXPlayer("FX/answer_correct.wav");
+                pointsAwarded += pointsPerQuestion;
+            } else {
+                toast = Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT);
+                initializeFXPlayer("FX/answer_wrong.wav");
+            }
+
+            // Show the toast
+            toast.show();
+
             // Update the progress
             int currentProgress = progressBar.getProgress();
             if (currentProgress == 90) {
                 progressBar.setProgress(100);
                 stopFXAudio();
 
-                // TODO: write the score to the database
+                // we need to use this so that pointsAwarded doesn't get overridden before the db call occurs
+                int tempPointsAwarded = pointsAwarded;
+
+                // write the score to the database
+                currentUserReference.get().addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        Log.v("TAG", "Error getting data", task.getException());
+                    }
+                    else {
+                        Integer currentScore = task.getResult().child(getString(R.string.db_key_musician_score)).getValue(Integer.class);
+                        if (currentScore == null) {
+                            currentScore = 0;
+                        }
+                        int newScore = currentScore + tempPointsAwarded;
+                        System.out.println(newScore);
+                        Log.v("TAG", "Prev score: " + currentScore);
+                        Log.v("TAG", "New score: " + (newScore));
+                        currentUserReference.child(getString(R.string.db_key_musician_score)).setValue(newScore);
+                    }
+                });
 
                 Intent resultsActivityIntent = new Intent(IntervalTrainingActivity.this, ResultsActivity.class);
-                // TODO: pass the actual score to the next activity
-                resultsActivityIntent.putExtra("score", 100);
+                // pass the actual score to the next activity
+                resultsActivityIntent.putExtra("percent", (pointsAwarded / pointsPerQuestion) * 10);
+                resultsActivityIntent.putExtra("points", pointsAwarded);
                 startActivity(resultsActivityIntent);
 
                 resetProgress = true;
+                pointsAwarded = 0;
             } else {
                 progressBar.setProgress(currentProgress + 10);
             }
@@ -145,18 +200,6 @@ public class IntervalTrainingActivity extends AppCompatActivity {
                 // Disabled the submit button
                 submitButton.setEnabled(false);
             }
-
-            // make a toast telling the user if they were correct or not
-            if (correctInterval == IntervalCard.getIntervalFromDisplayText((String) selectedIntervalTV.getText())) {
-                toast = Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT);
-                initializeFXPlayer("FX/answer_correct.wav");
-            } else {
-                toast = Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT);
-                initializeFXPlayer("FX/answer_wrong.wav");
-            }
-
-            // Show the toast
-            toast.show();
 
             // Get a new random file to play for the user
             selectedIntervalTV = null;
@@ -395,5 +438,28 @@ public class IntervalTrainingActivity extends AppCompatActivity {
         if (toast != null) {
             toast.cancel();
         }
+    }
+
+    private int getPointsPerQuestion() {
+        int points = 0;
+        switch(difficulty) {
+            case LEVEL1:
+                points = 1;
+                break;
+            case LEVEL2:
+                points = 2;
+                break;
+            case LEVEL3:
+                points = 3;
+                break;
+            case LEVEL4:
+                points = 4;
+                break;
+            case LEVEL5:
+                points = 5;
+                break;
+        }
+        Log.v("TAG", "Points per question: " + points);
+        return points;
     }
 }
