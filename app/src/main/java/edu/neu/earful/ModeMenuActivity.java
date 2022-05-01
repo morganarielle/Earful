@@ -4,16 +4,29 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class ModeMenuActivity extends AppCompatActivity {
     Button questionOptionsButton;
     Button chooseLevelButton;
     Button mixingTipsButton;
     FloatingActionButton settingsButton;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+    private DatabaseReference database;
+    private DatabaseReference currentUserReference;
+    TextView musicianModePointsTV;
+    TextView mixingModePointsTV;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +37,30 @@ public class ModeMenuActivity extends AppCompatActivity {
         questionOptionsButton = findViewById(R.id.mixing_practice_button);
         mixingTipsButton = findViewById(R.id.mixing_tips_button);
         settingsButton = findViewById(R.id.settings_button);
+
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        database = FirebaseDatabase.getInstance().getReference();
+        currentUserReference = database.child(getString(R.string.db_key_users)).child(currentUser.getUid());
+
+
+        // set total points TVs
+        currentUserReference.get().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.v("TAG", "Error getting data", task.getException());
+            }
+            else {
+                musicianModePointsTV = findViewById(R.id.musician_total_points_value);
+                final int musicianScore = task.getResult().child(getString(R.string.db_key_musician_score)).getValue(Integer.class);
+                Log.v("TAG", "Musician score: " + musicianScore);
+                musicianModePointsTV.setText(Integer.toString(musicianScore));
+                mixingModePointsTV = findViewById(R.id.mixing_total_points_value);
+                final int mixingScore = task.getResult().child(getString(R.string.db_key_mixing_score)).getValue(Integer.class);
+                Log.v("TAG", "Musician score: " + mixingScore);
+                mixingModePointsTV.setText(Integer.toString(mixingScore));
+            }
+        });
     }
 
     public void onClick(View view) {
