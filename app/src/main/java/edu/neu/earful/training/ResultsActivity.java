@@ -1,4 +1,4 @@
-package edu.neu.earful;
+package edu.neu.earful.training;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.IOException;
+
+import edu.neu.earful.R;
 
 public class ResultsActivity extends AppCompatActivity {
     Button menuButton;

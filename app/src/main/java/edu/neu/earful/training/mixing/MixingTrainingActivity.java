@@ -1,4 +1,4 @@
-package edu.neu.earful;
+package edu.neu.earful.training.mixing;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,6 +24,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+
+import edu.neu.earful.R;
+import edu.neu.earful.training.ResultsActivity;
 
 public class MixingTrainingActivity extends AppCompatActivity {
     Button playAudioButton;

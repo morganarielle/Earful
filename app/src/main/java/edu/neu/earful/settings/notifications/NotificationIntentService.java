@@ -1,19 +1,20 @@
-package edu.neu.earful;
+package edu.neu.earful.settings.notifications;
 
 import android.app.IntentService;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
-public class MyNewIntentService extends IntentService {
+import edu.neu.earful.menu.MainActivity;
+import edu.neu.earful.R;
+
+public class NotificationIntentService extends IntentService {
     private static final int NOTIFICATION_ID = 3;
 
-    public MyNewIntentService() {
+    public NotificationIntentService() {
         super("MyNewIntentService");
     }
 

@@ -1,4 +1,4 @@
-package edu.neu.earful;
+package edu.neu.earful.training.interval;
 
 import android.util.Log;
 

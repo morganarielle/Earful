@@ -1,4 +1,4 @@
-package edu.neu.earful;
+package edu.neu.earful.training;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +14,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import edu.neu.earful.R;
+import edu.neu.earful.training.interval.LevelSelectionActivity;
+import edu.neu.earful.training.mixing.MixingOptionsActivity;
+import edu.neu.earful.training.mixing.MixingTipsActivity;
+import edu.neu.earful.settings.SettingsActivity;
 
 public class ModeMenuActivity extends AppCompatActivity {
     Button questionOptionsButton;
