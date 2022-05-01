@@ -32,6 +32,7 @@ public class IntervalTrainingActivity extends AppCompatActivity {
     GridView intervalOptionsGV;
     MediaPlayer player1, player2;
     boolean resetProgress = false;
+    MediaPlayer fxPlayer;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -106,6 +107,7 @@ public class IntervalTrainingActivity extends AppCompatActivity {
             int currentProgress = progressBar.getProgress();
             if (currentProgress == 90) {
                 progressBar.setProgress(100);
+                stopFXAudio();
 
                 // TODO: write the score to the database
 
@@ -137,8 +139,10 @@ public class IntervalTrainingActivity extends AppCompatActivity {
             // make a toast telling the user if they were correct or not
             if (correctInterval == IntervalCard.getIntervalFromDisplayText((String) selectedIntervalTV.getText())) {
                 Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT).show();
+                initializeFXPlayer("FX/answer_correct.wav");
             } else {
                 Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT).show();
+                initializeFXPlayer("FX/answer_wrong.wav");
             }
 
             // Get a new random file to play for the user
@@ -146,6 +150,46 @@ public class IntervalTrainingActivity extends AppCompatActivity {
             String[] newIntervalFiles = chooseInterval();
             setupAudioPlayback(newIntervalFiles[0], newIntervalFiles[1]);
         });
+    }
+
+    public void playFXAudio() {
+        fxPlayer.start();
+    }
+
+    public void stopFXAudio() {
+        // Stop the audio
+        if (fxPlayer != null) {
+            if (fxPlayer.isPlaying()) {
+                fxPlayer.stop();
+            }
+            fxPlayer.release();
+            fxPlayer = null;
+        }
+    }
+
+    public void initializeFXPlayer(String path) {
+        stopFXAudio();
+        if (fxPlayer == null) {
+            fxPlayer = new MediaPlayer();
+            AssetFileDescriptor afd;
+            try {
+                afd = getAssets().openFd( path);
+                fxPlayer.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
+                fxPlayer.setOnPreparedListener(mediaPlayer -> {
+                    // Play the audio
+                    playFXAudio();
+                });
+
+                fxPlayer.setOnCompletionListener(mediaPlayer -> stopFXAudio());
+
+                fxPlayer.prepareAsync();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // Stop the audio
+            stopFXAudio();
+        }
     }
 
     private void resetIntervalCardSelection() {
@@ -200,6 +244,13 @@ public class IntervalTrainingActivity extends AppCompatActivity {
                         afd2 = getAssets().openFd(file2);
                         player1.setDataSource(afd1.getFileDescriptor(),afd1.getStartOffset(),afd1.getLength());
                         player2.setDataSource(afd2.getFileDescriptor(),afd2.getStartOffset(),afd2.getLength());
+
+                        player2.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                            @Override
+                            public void onPrepared(MediaPlayer mediaPlayer) {
+
+                            }
+                        });
 
                         player1.setOnPreparedListener(mediaPlayer -> {
                             // Play the audio
