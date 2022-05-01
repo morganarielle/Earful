@@ -51,7 +51,7 @@ public class MixingTrainingActivity extends AppCompatActivity {
     Toast toast;
 
     int correctIndex = -1; // -1 Pink Noise, 0 1kHz Boost, 1 250Hz Boost, 2 2kHz Boost, 3 4kHz Boost, 4 500Hz Boost, 5 1kHz Cut, 6 250Hz Cut, 7 2kHz Cut, 8 4kHz Cut, 9 500Hz Cut
-    int pointsAwarded = 0; // we can award 1 point for boosts only, 2 points for cuts only, 3 points for both
+    int pointsAwarded = 0; // we can award 1 point for boosts only, 3 points for cuts only, 5 points for both
 
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
@@ -207,25 +207,33 @@ public class MixingTrainingActivity extends AppCompatActivity {
                 progressBar.setProgress(100);
                 stopFXAudio();
 
+                // we need to use this so that pointsAwarded doesn't get overridden before the db call occurs
+                int tempPointsAwarded = pointsAwarded;
+
                 // write the score to the database
                 currentUserReference.get().addOnCompleteListener(task -> {
                     if (!task.isSuccessful()) {
                         Log.v("TAG", "Error getting data", task.getException());
                     }
                     else {
-                        int currentScore = task.getResult().child(getString(R.string.db_key_mixing_score)).getValue(Integer.class);
+                        Integer currentScore = task.getResult().child(getString(R.string.db_key_mixing_score)).getValue(Integer.class);
+                        if (currentScore == null) {
+                            currentScore = 0;
+                        }
+                        int newScore = currentScore + tempPointsAwarded;
+                        System.out.println(newScore);
                         Log.v("TAG", "Prev score: " + currentScore);
-                        Log.v("TAG", "New score: " + (currentScore + pointsAwarded));
-                        currentUserReference.child(getString(R.string.db_key_mixing_score)).setValue(currentScore + pointsAwarded);
+                        Log.v("TAG", "New score: " + (newScore));
+                        currentUserReference.child(getString(R.string.db_key_mixing_score)).setValue(newScore);
                     }
                 });
 
                 Intent resultsActivityIntent = new Intent(MixingTrainingActivity.this, ResultsActivity.class);
                 int scorePercentage;
                 if (includeBoosts && includeCuts) {
-                    scorePercentage = (pointsAwarded * 10) / 3;
+                    scorePercentage = (pointsAwarded * 10) / 5;
                 } else if (includeCuts) {
-                    scorePercentage = (pointsAwarded * 10) / 2;
+                    scorePercentage = (pointsAwarded * 10) / 3;
                 } else {
                     scorePercentage = (pointsAwarded * 10);
                 }
@@ -248,9 +256,9 @@ public class MixingTrainingActivity extends AppCompatActivity {
 
     public int calcPointsToAward() {
         if (includeBoosts && includeCuts) {
-            return 3;
+            return 5;
         } else if (includeCuts) {
-            return 2;
+            return 3;
         } else {
             return 1;
         }

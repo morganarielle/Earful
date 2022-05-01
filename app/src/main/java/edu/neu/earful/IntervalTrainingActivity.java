@@ -136,21 +136,30 @@ public class IntervalTrainingActivity extends AppCompatActivity {
                 progressBar.setProgress(100);
                 stopFXAudio();
 
+                // we need to use this so that pointsAwarded doesn't get overridden before the db call occurs
+                int tempPointsAwarded = pointsAwarded;
+
                 // write the score to the database
                 currentUserReference.get().addOnCompleteListener(task -> {
                     if (!task.isSuccessful()) {
                         Log.v("TAG", "Error getting data", task.getException());
                     }
                     else {
-                        int currentScore = task.getResult().child(getString(R.string.db_key_musician_score)).getValue(Integer.class);
+                        Integer currentScore = task.getResult().child(getString(R.string.db_key_mixing_score)).getValue(Integer.class);
+                        if (currentScore == null) {
+                            currentScore = 0;
+                        }
+                        int newScore = currentScore + tempPointsAwarded;
+                        System.out.println(newScore);
                         Log.v("TAG", "Prev score: " + currentScore);
-                        currentUserReference.child(getString(R.string.db_key_musician_score)).setValue(currentScore + pointsAwarded);
+                        Log.v("TAG", "New score: " + (newScore));
+                        currentUserReference.child(getString(R.string.db_key_musician_score)).setValue(newScore);
                     }
                 });
 
                 Intent resultsActivityIntent = new Intent(IntervalTrainingActivity.this, ResultsActivity.class);
                 // pass the actual score to the next activity
-                resultsActivityIntent.putExtra("score", (pointsAwarded / pointsPerQuestion) * 100);
+                resultsActivityIntent.putExtra("score", (pointsAwarded / pointsPerQuestion) * 10);
                 startActivity(resultsActivityIntent);
 
                 resetProgress = true;
