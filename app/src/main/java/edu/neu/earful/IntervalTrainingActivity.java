@@ -158,7 +158,7 @@ public class IntervalTrainingActivity extends AppCompatActivity {
                         Log.v("TAG", "Error getting data", task.getException());
                     }
                     else {
-                        Integer currentScore = task.getResult().child(getString(R.string.db_key_mixing_score)).getValue(Integer.class);
+                        Integer currentScore = task.getResult().child(getString(R.string.db_key_musician_score)).getValue(Integer.class);
                         if (currentScore == null) {
                             currentScore = 0;
                         }
