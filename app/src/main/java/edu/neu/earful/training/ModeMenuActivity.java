@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import edu.neu.earful.R;
+import edu.neu.earful.training.interval.LevelSelectionActivity;
 import edu.neu.earful.training.mixing.MixingOptionsActivity;
 import edu.neu.earful.training.mixing.MixingTipsActivity;
 import edu.neu.earful.settings.SettingsActivity;

@@ -26,7 +26,7 @@
             android:label="Settings"
             android:exported="false" />
         <activity
-            android:name=".training.LevelSelectionActivity"
+            android:name=".training.interval.LevelSelectionActivity"
             android:exported="false" />
         <activity
             android:name=".training.ModeMenuActivity"

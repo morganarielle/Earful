@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import edu.neu.earful.training.DifficultyLevel;
-
 
 public enum Interval {
     perfect1,

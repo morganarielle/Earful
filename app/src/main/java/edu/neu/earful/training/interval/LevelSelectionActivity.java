@@ -1,10 +1,4 @@
-package edu.neu.earful.training;
-
-import static edu.neu.earful.training.DifficultyLevel.LEVEL1;
-import static edu.neu.earful.training.DifficultyLevel.LEVEL2;
-import static edu.neu.earful.training.DifficultyLevel.LEVEL3;
-import static edu.neu.earful.training.DifficultyLevel.LEVEL4;
-import static edu.neu.earful.training.DifficultyLevel.LEVEL5;
+package edu.neu.earful.training.interval;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import edu.neu.earful.R;
-import edu.neu.earful.training.interval.IntervalTrainingActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
