@@ -32,6 +32,8 @@ public class IntervalTrainingActivity extends AppCompatActivity {
     GridView intervalOptionsGV;
     MediaPlayer player1, player2;
     boolean resetProgress = false;
+    MediaPlayer fxPlayer;
+    Toast toast;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -102,10 +104,16 @@ public class IntervalTrainingActivity extends AppCompatActivity {
                 playAudioButton.setText("ᐅ");
             }
 
+            // hide any previous toasts
+            if (toast != null) {
+                toast.cancel();
+            }
+
             // Update the progress
             int currentProgress = progressBar.getProgress();
             if (currentProgress == 90) {
                 progressBar.setProgress(100);
+                stopFXAudio();
 
                 // TODO: write the score to the database
 
@@ -136,16 +144,61 @@ public class IntervalTrainingActivity extends AppCompatActivity {
 
             // make a toast telling the user if they were correct or not
             if (correctInterval == IntervalCard.getIntervalFromDisplayText((String) selectedIntervalTV.getText())) {
-                Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT).show();
+                toast = Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT);
+                initializeFXPlayer("FX/answer_correct.wav");
             } else {
-                Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT).show();
+                toast = Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT);
+                initializeFXPlayer("FX/answer_wrong.wav");
             }
+
+            // Show the toast
+            toast.show();
 
             // Get a new random file to play for the user
             selectedIntervalTV = null;
             String[] newIntervalFiles = chooseInterval();
             setupAudioPlayback(newIntervalFiles[0], newIntervalFiles[1]);
         });
+    }
+
+    public void playFXAudio() {
+        fxPlayer.start();
+    }
+
+    public void stopFXAudio() {
+        // Stop the audio
+        if (fxPlayer != null) {
+            if (fxPlayer.isPlaying()) {
+                fxPlayer.stop();
+            }
+            fxPlayer.release();
+            fxPlayer = null;
+        }
+    }
+
+    public void initializeFXPlayer(String path) {
+        stopFXAudio();
+        if (fxPlayer == null) {
+            fxPlayer = new MediaPlayer();
+            AssetFileDescriptor afd;
+            try {
+                afd = getAssets().openFd( path);
+                fxPlayer.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
+                fxPlayer.setOnPreparedListener(mediaPlayer -> {
+                    // Play the audio
+                    playFXAudio();
+                });
+
+                fxPlayer.setOnCompletionListener(mediaPlayer -> stopFXAudio());
+
+                fxPlayer.prepareAsync();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // Stop the audio
+            stopFXAudio();
+        }
     }
 
     private void resetIntervalCardSelection() {
@@ -191,54 +244,82 @@ public class IntervalTrainingActivity extends AppCompatActivity {
     private void setupAudioPlayback(String file1, String file2) {
         playAudioButton.setOnClickListener(view -> {
             if (player1 == null) {
-                player1 = new MediaPlayer();
-                player2 = new MediaPlayer();
-                AssetFileDescriptor afd1, afd2;
-                try {
-                    afd1 = getAssets().openFd(file1);
-                    afd2 = getAssets().openFd(file2);
-                    player1.setDataSource(afd1.getFileDescriptor(),afd1.getStartOffset(),afd1.getLength());
-                    player2.setDataSource(afd2.getFileDescriptor(),afd2.getStartOffset(),afd2.getLength());
-                    player1.setOnPreparedListener(mediaPlayer -> {
-                        // Play the audio
-                        player1.start();
-                        player1.setNextMediaPlayer(player2);
-                        playAudioButton.setText("||");
-                    });
+                if (player2 == null) {
+                    player1 = new MediaPlayer();
+                    player2 = new MediaPlayer();
+                    AssetFileDescriptor afd1, afd2;
+                    try {
+                        afd1 = getAssets().openFd(file1);
+                        afd2 = getAssets().openFd(file2);
+                        player1.setDataSource(afd1.getFileDescriptor(),afd1.getStartOffset(),afd1.getLength());
+                        player2.setDataSource(afd2.getFileDescriptor(),afd2.getStartOffset(),afd2.getLength());
 
-                    player1.setOnCompletionListener(mediaPlayer -> {
-                        // Stop the audio
-                        if(player1.isPlaying())
-                            player1.stop();
-                        player1.reset();
-                        player1.release();
-                        player1 = null;
-                    });
-                    player2.setOnCompletionListener(mediaPlayer -> {
-                        // Stop the audio
-                        if(player2.isPlaying())
-                            player2.stop();
-                        player2.reset();
-                        player2.release();
-                        player2 = null;
+                        player2.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                            @Override
+                            public void onPrepared(MediaPlayer mediaPlayer) {
+
+                            }
+                        });
+
+                        player1.setOnPreparedListener(mediaPlayer -> {
+                            // Play the audio
+                            player1.start();
+                            // player1.setNextMediaPlayer(player2);
+                            playAudioButton.setText("||");
+                        });
+
+                        player1.setOnCompletionListener(mediaPlayer -> {
+                            // Stop the audio
+                            stopPlayer1();
+                            player2.start();
+                        });
+                        player2.setOnCompletionListener(mediaPlayer -> {
+                            // Stop the audio
+                            stopPlayer2();
+                            playAudioButton.setText("ᐅ");
+                        });
+
+                        player1.prepareAsync();
+                        player2.prepareAsync();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    if (player2.isPlaying()) {
+                        stopPlayer2();
                         playAudioButton.setText("ᐅ");
-                    });
-
-                    player1.prepareAsync();
-                    player2.prepareAsync();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    }
                 }
             } else {
-                // Stop the audio
-                if(player1.isPlaying())
-                    player1.stop();
-                player1.reset();
-                player1.release();
-                player1 = null;
+                if (player2 != null) {
+                    if (player2.isPlaying()) {
+                        // Stop player 2
+                        stopPlayer2();
+                        playAudioButton.setText("ᐅ");
+                    }
+                    player2 = null;
+                }
+                // Stop player 1
+                stopPlayer1();
                 playAudioButton.setText("ᐅ");
             }
         });
+    }
+
+    public void stopPlayer2() {
+        if(player2.isPlaying())
+            player2.stop();
+        player2.reset();
+        player2.release();
+        player2 = null;
+    }
+
+    public void stopPlayer1() {
+        if(player1.isPlaying())
+            player1.stop();
+        player1.reset();
+        player1.release();
+        player1 = null;
     }
 
     /**
@@ -299,5 +380,16 @@ public class IntervalTrainingActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         stopAudio();
+        if (toast != null) {
+            toast.cancel();
+        }
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        if (toast != null) {
+            toast.cancel();
+        }
     }
 }
