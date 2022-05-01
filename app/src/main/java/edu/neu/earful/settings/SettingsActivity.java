@@ -1,4 +1,4 @@
-package edu.neu.earful;
+package edu.neu.earful.settings;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -15,6 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
+
+import edu.neu.earful.menu.CreateAccountActivity;
+import edu.neu.earful.menu.MainActivity;
+import edu.neu.earful.settings.notifications.NotificationSettingCard;
+import edu.neu.earful.settings.notifications.NotificationReceiver;
+import edu.neu.earful.R;
 
 public class SettingsActivity extends AppCompatActivity {
     private final ArrayList<SettingCard> settings = new ArrayList<>();
@@ -57,7 +63,7 @@ public class SettingsActivity extends AppCompatActivity {
         position++;
 
         Runnable toggleNotificationsAction = () -> {
-            Intent notifyIntent = new Intent(this, MyReceiver.class);
+            Intent notifyIntent = new Intent(this, NotificationReceiver.class);
 
             PendingIntent pendingIntent = PendingIntent.getBroadcast
                     (this, 3, notifyIntent, PendingIntent.FLAG_IMMUTABLE);

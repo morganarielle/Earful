@@ -1,4 +1,4 @@
-package edu.neu.earful;
+package edu.neu.earful.training.interval;
 
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
@@ -11,16 +11,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -29,6 +25,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import java.util.stream.Collectors;
+
+import edu.neu.earful.R;
+import edu.neu.earful.training.ResultsActivity;
 
 public class IntervalTrainingActivity extends AppCompatActivity {
     private final Random rand = new Random();

@@ -1,4 +1,4 @@
-package edu.neu.earful;
+package edu.neu.earful.training.mixing;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,13 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import edu.neu.earful.R;
 
 public class MixingOptionsActivity extends AppCompatActivity {
     CheckBox cutsCheckBox;
     CheckBox boostsCheckBox;
     Button startMixingExerciseButton;
-    FloatingActionButton settingsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

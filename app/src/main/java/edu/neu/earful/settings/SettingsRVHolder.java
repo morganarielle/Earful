@@ -1,9 +1,11 @@
-package edu.neu.earful;
+package edu.neu.earful.settings;
 
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import edu.neu.earful.R;
 
 public class SettingsRVHolder extends RecyclerView.ViewHolder {
     public TextView settingName;
