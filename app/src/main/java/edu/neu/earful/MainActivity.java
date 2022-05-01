@@ -7,6 +7,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -41,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
                 1000 * 60 * 60 * 24, pendingIntent);
+        SharedPreferences mPrefs = getSharedPreferences("notifications", 0);
+        SharedPreferences.Editor mEditor = mPrefs.edit();
+        mEditor.putString("notifications", "true").commit();
         passwordText = findViewById(R.id.password);
         mAuth = FirebaseAuth.getInstance();
 
