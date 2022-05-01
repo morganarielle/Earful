@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -13,6 +14,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -47,6 +53,11 @@ public class MixingTrainingActivity extends AppCompatActivity {
     int correctIndex = -1; // -1 Pink Noise, 0 1kHz Boost, 1 250Hz Boost, 2 2kHz Boost, 3 4kHz Boost, 4 500Hz Boost, 5 1kHz Cut, 6 250Hz Cut, 7 2kHz Cut, 8 4kHz Cut, 9 500Hz Cut
     int pointsAwarded = 0; // we can award 1 point for boosts only, 2 points for cuts only, 3 points for both
 
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+    private DatabaseReference database;
+    private DatabaseReference currentUserReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +78,11 @@ public class MixingTrainingActivity extends AppCompatActivity {
 
         includeCuts = getIntent().getBooleanExtra("includeCuts", false);
         includeBoosts = getIntent().getBooleanExtra("includeBoosts", false);
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        database = FirebaseDatabase.getInstance().getReference();
+        currentUserReference = database.child(getString(R.string.db_key_users)).child(currentUser.getUid());
 
         setWhichFreqTextAndImage();
         generateAssetMap();
@@ -191,8 +207,18 @@ public class MixingTrainingActivity extends AppCompatActivity {
                 progressBar.setProgress(100);
                 stopFXAudio();
 
-                // TODO: write the score to the database
-                System.out.println("Total points awarded: " + pointsAwarded);
+                // write the score to the database
+                currentUserReference.get().addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        Log.v("TAG", "Error getting data", task.getException());
+                    }
+                    else {
+                        int currentScore = task.getResult().child(getString(R.string.db_key_mixing_score)).getValue(Integer.class);
+                        Log.v("TAG", "Prev score: " + currentScore);
+                        Log.v("TAG", "New score: " + (currentScore + pointsAwarded));
+                        currentUserReference.child(getString(R.string.db_key_mixing_score)).setValue(currentScore + pointsAwarded);
+                    }
+                });
 
                 Intent resultsActivityIntent = new Intent(MixingTrainingActivity.this, ResultsActivity.class);
                 int scorePercentage;
@@ -383,5 +409,19 @@ public class MixingTrainingActivity extends AppCompatActivity {
             progressBar.setProgress(0);
             resetProgress = false;
         }
+    }
+
+    private void addPoints() {
+        // write the score to the database
+        currentUserReference.get().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.v("TAG", "Error getting data", task.getException());
+            }
+            else {
+                int currentScore = task.getResult().child(getString(R.string.db_key_musician_score)).getValue(Integer.class);
+                Log.v("TAG", "Prev score: " + currentScore);
+                currentUserReference.child(getString(R.string.db_key_musician_score)).setValue(currentScore + pointsAwarded);
+            }
+        });
     }
 }
