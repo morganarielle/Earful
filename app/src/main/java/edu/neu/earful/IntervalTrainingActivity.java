@@ -191,54 +191,74 @@ public class IntervalTrainingActivity extends AppCompatActivity {
     private void setupAudioPlayback(String file1, String file2) {
         playAudioButton.setOnClickListener(view -> {
             if (player1 == null) {
-                player1 = new MediaPlayer();
-                player2 = new MediaPlayer();
-                AssetFileDescriptor afd1, afd2;
-                try {
-                    afd1 = getAssets().openFd(file1);
-                    afd2 = getAssets().openFd(file2);
-                    player1.setDataSource(afd1.getFileDescriptor(),afd1.getStartOffset(),afd1.getLength());
-                    player2.setDataSource(afd2.getFileDescriptor(),afd2.getStartOffset(),afd2.getLength());
-                    player1.setOnPreparedListener(mediaPlayer -> {
-                        // Play the audio
-                        player1.start();
-                        player1.setNextMediaPlayer(player2);
-                        playAudioButton.setText("||");
-                    });
+                if (player2 == null) {
+                    player1 = new MediaPlayer();
+                    player2 = new MediaPlayer();
+                    AssetFileDescriptor afd1, afd2;
+                    try {
+                        afd1 = getAssets().openFd(file1);
+                        afd2 = getAssets().openFd(file2);
+                        player1.setDataSource(afd1.getFileDescriptor(),afd1.getStartOffset(),afd1.getLength());
+                        player2.setDataSource(afd2.getFileDescriptor(),afd2.getStartOffset(),afd2.getLength());
 
-                    player1.setOnCompletionListener(mediaPlayer -> {
-                        // Stop the audio
-                        if(player1.isPlaying())
-                            player1.stop();
-                        player1.reset();
-                        player1.release();
-                        player1 = null;
-                    });
-                    player2.setOnCompletionListener(mediaPlayer -> {
-                        // Stop the audio
-                        if(player2.isPlaying())
-                            player2.stop();
-                        player2.reset();
-                        player2.release();
-                        player2 = null;
+                        player1.setOnPreparedListener(mediaPlayer -> {
+                            // Play the audio
+                            player1.start();
+                            player1.setNextMediaPlayer(player2);
+                            playAudioButton.setText("||");
+                        });
+
+                        player1.setOnCompletionListener(mediaPlayer -> {
+                            // Stop the audio
+                            stopPlayer1();
+                        });
+                        player2.setOnCompletionListener(mediaPlayer -> {
+                            // Stop the audio
+                            stopPlayer2();
+                            playAudioButton.setText("ᐅ");
+                        });
+
+                        player1.prepareAsync();
+                        player2.prepareAsync();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    if (player2.isPlaying()) {
+                        stopPlayer2();
                         playAudioButton.setText("ᐅ");
-                    });
-
-                    player1.prepareAsync();
-                    player2.prepareAsync();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    }
                 }
             } else {
-                // Stop the audio
-                if(player1.isPlaying())
-                    player1.stop();
-                player1.reset();
-                player1.release();
-                player1 = null;
+                if (player2 != null) {
+                    if (player2.isPlaying()) {
+                        // Stop player 2
+                        stopPlayer2();
+                        playAudioButton.setText("ᐅ");
+                    }
+                    player2 = null;
+                }
+                // Stop player 1
+                stopPlayer1();
                 playAudioButton.setText("ᐅ");
             }
         });
+    }
+
+    public void stopPlayer2() {
+        if(player2.isPlaying())
+            player2.stop();
+        player2.reset();
+        player2.release();
+        player2 = null;
+    }
+
+    public void stopPlayer1() {
+        if(player1.isPlaying())
+            player1.stop();
+        player1.reset();
+        player1.release();
+        player1 = null;
     }
 
     /**
