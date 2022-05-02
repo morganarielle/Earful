@@ -73,16 +73,16 @@ public class SettingsActivity extends AppCompatActivity {
             if (notificationsOn) {
                 stopService(notifyIntent);
                 alarmManager.cancel(pendingIntent);
-                mEditor.putString("notifications", "false").commit();
+                mEditor.putString("notifications", "false").apply();
             } else {
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
                         1000 * 60 * 60 * 24, pendingIntent);
-                mEditor.putString("notifications", "true").commit();
+                mEditor.putString("notifications", "true").apply();
             }
         };
         String notificationSettingTitle = mPrefs.getString("notifications", "true").equals("true") ?
-                "Toggle Notifications On" :
-                "Toggle Notifications Off";
+                "Toggle Notifications Off" :
+                "Toggle Notifications On";
         SettingCard notificationSetting = new NotificationSettingCard(notificationSettingTitle, toggleNotificationsAction);
         addSetting(notificationSetting, position);
     }

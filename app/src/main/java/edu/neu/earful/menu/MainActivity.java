@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 1000 * 60 * 60 * 24, pendingIntent);
         SharedPreferences mPrefs = getSharedPreferences("notifications", 0);
         SharedPreferences.Editor mEditor = mPrefs.edit();
-        mEditor.putString("notifications", "true").commit();
+        mEditor.putString("notifications", "true").apply();
         passwordText = findViewById(R.id.password);
         mAuth = FirebaseAuth.getInstance();
 

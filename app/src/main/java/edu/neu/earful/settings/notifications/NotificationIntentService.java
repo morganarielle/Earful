@@ -23,8 +23,7 @@ public class NotificationIntentService extends IntentService {
         int importance = NotificationManager.IMPORTANCE_DEFAULT;
         NotificationChannel channel = new NotificationChannel("1", "channel",
                 importance);
-        // Register the channel with the system; you can't change the importance
-        // or other notification behaviours after this
+
         NotificationManager notificationManager =
                 getSystemService(NotificationManager.class);
         notificationManager.createNotificationChannel(channel);
