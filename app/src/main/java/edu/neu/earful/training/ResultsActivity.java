@@ -127,4 +127,10 @@ public class ResultsActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        // Bring the user back to the Mode Menu Screen
+        Intent modeMenuIntent = new Intent(ResultsActivity.this, ModeMenuActivity.class);
+        startActivity(modeMenuIntent);
+    }
 }
