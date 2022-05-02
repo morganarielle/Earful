@@ -1,0 +1,1793 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:layout_editor_absoluteX="1sp"
+    tools:layout_editor_absoluteY="1sp"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".training.interval.IntervalTipsActivity">
+
+        <TextView
+            android:id="@+id/what_is_an_interval_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What is an interval?"
+            android:fontFamily="@font/give_you_glory"
+            android:textColor="@color/dark_blue"
+            android:textSize="34sp"
+            android:layout_marginTop="24sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/interval_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="An interval is a relationship between two musical notes. Two notes can be identical, close together, or far apart. Some intervals are consonant (generally perceived as more pleasing to the ear) and some are dissonant (less pleasing to the ear).\n\nIt's important to remember that an interval is the relationship between two notes and not dependent on the notes themselves. You will find below examples of intervals being played at low, medium, and high pitches."
+            android:layout_marginTop="24sp"
+            android:layout_marginHorizontal="24sp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/what_is_an_interval_label"/>
+
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:background="@color/black"
+            android:layout_marginTop="24sp"
+            app:layout_constraintTop_toBottomOf="@id/interval_summary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/listening_for_intervals_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Listening for Intervals"
+            android:layout_marginTop="24sp"
+            android:fontFamily="@font/give_you_glory"
+            android:textColor="@color/dark_blue"
+            android:textSize="34sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider1"/>
+
+        <TextView
+            android:id="@+id/listening_for_intervals_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="In Earful's Musician Mode, you will listen to two notes played one after the other and then be asked to identify the relationship between them. Higher levels will unlock more intervals to practice, and the intervals at higher levels become increasingly difficult."
+            android:layout_marginTop="24sp"
+            android:layout_marginHorizontal="24sp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/listening_for_intervals_label"/>
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:background="@color/black"
+            android:layout_marginTop="24sp"
+            app:layout_constraintTop_toBottomOf="@id/listening_for_intervals_summary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        
+        
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/perfect1_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider2">
+
+            <TextView
+                android:id="@+id/perfect1_label"
+                android:layout_width="wrap_content"
+                android:layout_height="60sp"
+                android:text="Perfect 1"
+                android:layout_marginTop="24sp"
+                android:fontFamily="@font/give_you_glory"
+                android:textColor="@color/dark_blue"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/perfect1_card"
+                android:layout_width="60sp"
+                android:layout_height="60sp"
+                android:layout_marginLeft="24sp"
+                android:layout_marginTop="24sp"
+                android:background="@color/medium_blue"
+                android:padding="5sp"
+                android:text="P1"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintDimensionRatio="1:1" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        
+        <TextView
+            android:id="@+id/perfect1_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A perfect 1 (commonly known as unison) is the simplest interval. Both notes played in a perfect 1 are identical."
+            android:layout_marginTop="24sp"
+            android:layout_marginHorizontal="24sp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/perfect1_header"/>
+
+        <Button
+            android:id="@+id/perfect1_low_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_brown"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/perfect1_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/perfect1_summary" />
+        
+        <TextView
+            android:id="@+id/perfect1_low_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/low"
+            app:layout_constraintTop_toBottomOf="@id/perfect1_low_button"
+            app:layout_constraintStart_toStartOf="@id/perfect1_low_button"
+            app:layout_constraintEnd_toEndOf="@id/perfect1_low_button" />
+        
+        <Button
+            android:id="@+id/perfect1_mid_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/bright_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/perfect1_summary" />
+
+        <TextView
+            android:id="@+id/perfect1_mid_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mid"
+            app:layout_constraintTop_toBottomOf="@id/perfect1_mid_button"
+            app:layout_constraintStart_toStartOf="@id/perfect1_mid_button"
+            app:layout_constraintEnd_toEndOf="@id/perfect1_mid_button" />
+
+        <Button
+            android:id="@+id/perfect1_high_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/perfect1_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/perfect1_summary" />
+
+        <TextView
+            android:id="@+id/perfect1_high_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/high"
+            app:layout_constraintTop_toBottomOf="@id/perfect1_high_button"
+            app:layout_constraintStart_toStartOf="@id/perfect1_high_button"
+            app:layout_constraintEnd_toEndOf="@id/perfect1_high_button" />
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:background="@color/black"
+            android:layout_marginTop="24sp"
+            app:layout_constraintTop_toBottomOf="@id/perfect1_mid_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/minor2_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider3">
+
+            <TextView
+                android:id="@+id/minor2_label"
+                android:layout_width="wrap_content"
+                android:layout_height="60sp"
+                android:text="Minor 2"
+                android:layout_marginTop="24sp"
+                android:fontFamily="@font/give_you_glory"
+                android:textColor="@color/dark_blue"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/minor2_card"
+                android:layout_width="60sp"
+                android:layout_height="60sp"
+                android:layout_marginLeft="24sp"
+                android:layout_marginTop="24sp"
+                android:background="@color/medium_blue"
+                android:padding="5sp"
+                android:text="m2"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintDimensionRatio="1:1" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/minor2_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A minor 2 consists of two notes that are one half-step apart. On a piano, this would be represented as two notes that are right next to each other. This interval is commonly recognized as interval in the Jaws theme."
+            android:layout_marginTop="24sp"
+            android:layout_marginHorizontal="24sp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/minor2_header"/>
+
+        <Button
+            android:id="@+id/minor2_low_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_brown"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/minor2_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/minor2_summary" />
+
+        <TextView
+            android:id="@+id/minor2_low_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/low"
+            app:layout_constraintTop_toBottomOf="@id/minor2_low_button"
+            app:layout_constraintStart_toStartOf="@id/minor2_low_button"
+            app:layout_constraintEnd_toEndOf="@id/minor2_low_button" />
+
+        <Button
+            android:id="@+id/minor2_mid_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/bright_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/minor2_summary" />
+
+        <TextView
+            android:id="@+id/minor2_mid_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mid"
+            app:layout_constraintTop_toBottomOf="@id/minor2_mid_button"
+            app:layout_constraintStart_toStartOf="@id/minor2_mid_button"
+            app:layout_constraintEnd_toEndOf="@id/minor2_mid_button" />
+
+        <Button
+            android:id="@+id/minor2_high_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/minor2_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/minor2_summary" />
+
+        <TextView
+            android:id="@+id/minor2_high_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/high"
+            app:layout_constraintTop_toBottomOf="@id/minor2_high_button"
+            app:layout_constraintStart_toStartOf="@id/minor2_high_button"
+            app:layout_constraintEnd_toEndOf="@id/minor2_high_button" />
+
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:background="@color/black"
+            android:layout_marginTop="24sp"
+            app:layout_constraintTop_toBottomOf="@id/minor2_mid_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        
+        
+        
+        
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/major2_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider4">
+
+            <TextView
+                android:id="@+id/major2_label"
+                android:layout_width="wrap_content"
+                android:layout_height="60sp"
+                android:text="Major 2"
+                android:layout_marginTop="24sp"
+                android:fontFamily="@font/give_you_glory"
+                android:textColor="@color/dark_blue"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/major2_card"
+                android:layout_width="60sp"
+                android:layout_height="60sp"
+                android:layout_marginLeft="24sp"
+                android:layout_marginTop="24sp"
+                android:background="@color/medium_blue"
+                android:padding="5sp"
+                android:text="M2"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintDimensionRatio="1:1" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/major2_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A major 2 is one half-step up from a minor 2. On a piano, this would be represented as two white keys with a black key in between. This interval is commonly recognized as the notes Do and Re in Do-Re-Mi from the Sound of Music, or the first two different notes in Happy Birthday (&quot;Happy&quot; and &quot;birth&quot;)."
+            android:layout_marginTop="24sp"
+            android:layout_marginHorizontal="24sp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/major2_header"/>
+
+        <Button
+            android:id="@+id/major2_low_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_brown"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/major2_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/major2_summary" />
+
+        <TextView
+            android:id="@+id/major2_low_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/low"
+            app:layout_constraintTop_toBottomOf="@id/major2_low_button"
+            app:layout_constraintStart_toStartOf="@id/major2_low_button"
+            app:layout_constraintEnd_toEndOf="@id/major2_low_button" />
+
+        <Button
+            android:id="@+id/major2_mid_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/bright_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/major2_summary" />
+
+        <TextView
+            android:id="@+id/major2_mid_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mid"
+            app:layout_constraintTop_toBottomOf="@id/major2_mid_button"
+            app:layout_constraintStart_toStartOf="@id/major2_mid_button"
+            app:layout_constraintEnd_toEndOf="@id/major2_mid_button" />
+
+        <Button
+            android:id="@+id/major2_high_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/major2_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/major2_summary" />
+
+        <TextView
+            android:id="@+id/major2_high_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/high"
+            app:layout_constraintTop_toBottomOf="@id/major2_high_button"
+            app:layout_constraintStart_toStartOf="@id/major2_high_button"
+            app:layout_constraintEnd_toEndOf="@id/major2_high_button" />
+
+        <View
+            android:id="@+id/divider5"
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:background="@color/black"
+            android:layout_marginTop="24sp"
+            app:layout_constraintTop_toBottomOf="@id/major2_mid_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/minor3_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider5">
+
+            <TextView
+                android:id="@+id/minor3_label"
+                android:layout_width="wrap_content"
+                android:layout_height="60sp"
+                android:text="Minor 3"
+                android:layout_marginTop="24sp"
+                android:fontFamily="@font/give_you_glory"
+                android:textColor="@color/dark_blue"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/minor3_card"
+                android:layout_width="60sp"
+                android:layout_height="60sp"
+                android:layout_marginLeft="24sp"
+                android:layout_marginTop="24sp"
+                android:background="@color/medium_blue"
+                android:padding="5sp"
+                android:text="m3"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintDimensionRatio="1:1" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/minor3_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A minor 3 is one half-step above a major 2 and is also known as an augmented 2. This interval is commonly recognized in Michael Jackson's &quot;Bad&quot; (&quot;I'm&quot; and &quot;bad&quot;) or the first two notes of Brahms's &quot;Lullaby&quot;."
+            android:layout_marginTop="24sp"
+            android:layout_marginHorizontal="24sp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/minor3_header"/>
+
+        <Button
+            android:id="@+id/minor3_low_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_brown"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/minor3_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/minor3_summary" />
+
+        <TextView
+            android:id="@+id/minor3_low_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/low"
+            app:layout_constraintTop_toBottomOf="@id/minor3_low_button"
+            app:layout_constraintStart_toStartOf="@id/minor3_low_button"
+            app:layout_constraintEnd_toEndOf="@id/minor3_low_button" />
+
+        <Button
+            android:id="@+id/minor3_mid_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/bright_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/minor3_summary" />
+
+        <TextView
+            android:id="@+id/minor3_mid_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mid"
+            app:layout_constraintTop_toBottomOf="@id/minor3_mid_button"
+            app:layout_constraintStart_toStartOf="@id/minor3_mid_button"
+            app:layout_constraintEnd_toEndOf="@id/minor3_mid_button" />
+
+        <Button
+            android:id="@+id/minor3_high_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/minor3_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/minor3_summary" />
+
+        <TextView
+            android:id="@+id/minor3_high_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/high"
+            app:layout_constraintTop_toBottomOf="@id/minor3_high_button"
+            app:layout_constraintStart_toStartOf="@id/minor3_high_button"
+            app:layout_constraintEnd_toEndOf="@id/minor3_high_button" />
+
+        <View
+            android:id="@+id/divider6"
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:background="@color/black"
+            android:layout_marginTop="24sp"
+            app:layout_constraintTop_toBottomOf="@id/minor3_mid_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/major3_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider6">
+
+            <TextView
+                android:id="@+id/major3_label"
+                android:layout_width="wrap_content"
+                android:layout_height="60sp"
+                android:text="Major 3"
+                android:layout_marginTop="24sp"
+                android:fontFamily="@font/give_you_glory"
+                android:textColor="@color/dark_blue"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/major3_card"
+                android:layout_width="60sp"
+                android:layout_height="60sp"
+                android:layout_marginLeft="24sp"
+                android:layout_marginTop="24sp"
+                android:background="@color/medium_blue"
+                android:padding="5sp"
+                android:text="M3"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintDimensionRatio="1:1" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/major3_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A major 3 is a half-step above a minor 3. This interval is commonly recognized as the first two notes of &quot;Oh When the Saints&quot; or The Beatles's &quot;Can't Buy Me Love&quot; (&quot;can't&quot; and &quot;buy&quot;)."
+            android:layout_marginTop="24sp"
+            android:layout_marginHorizontal="24sp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/major3_header"/>
+
+        <Button
+            android:id="@+id/major3_low_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_brown"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/major3_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/major3_summary" />
+
+        <TextView
+            android:id="@+id/major3_low_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/low"
+            app:layout_constraintTop_toBottomOf="@id/major3_low_button"
+            app:layout_constraintStart_toStartOf="@id/major3_low_button"
+            app:layout_constraintEnd_toEndOf="@id/major3_low_button" />
+
+        <Button
+            android:id="@+id/major3_mid_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/bright_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/major3_summary" />
+
+        <TextView
+            android:id="@+id/major3_mid_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mid"
+            app:layout_constraintTop_toBottomOf="@id/major3_mid_button"
+            app:layout_constraintStart_toStartOf="@id/major3_mid_button"
+            app:layout_constraintEnd_toEndOf="@id/major3_mid_button" />
+
+        <Button
+            android:id="@+id/major3_high_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/major3_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/major3_summary" />
+
+        <TextView
+            android:id="@+id/major3_high_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/high"
+            app:layout_constraintTop_toBottomOf="@id/major3_high_button"
+            app:layout_constraintStart_toStartOf="@id/major3_high_button"
+            app:layout_constraintEnd_toEndOf="@id/major3_high_button" />
+
+        <View
+            android:id="@+id/divider7"
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:background="@color/black"
+            android:layout_marginTop="24sp"
+            app:layout_constraintTop_toBottomOf="@id/major3_mid_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/perfect4_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider7">
+
+            <TextView
+                android:id="@+id/perfect4_label"
+                android:layout_width="wrap_content"
+                android:layout_height="60sp"
+                android:text="Perfect 4"
+                android:layout_marginTop="24sp"
+                android:fontFamily="@font/give_you_glory"
+                android:textColor="@color/dark_blue"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/perfect4_card"
+                android:layout_width="60sp"
+                android:layout_height="60sp"
+                android:layout_marginLeft="24sp"
+                android:layout_marginTop="24sp"
+                android:background="@color/medium_blue"
+                android:padding="5sp"
+                android:text="P4"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintDimensionRatio="1:1" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/perfect4_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A perfect 4 is a half-step above a major 3. It is commonly recognized as the first two notes of &quot;Here Comes the Bride,&quot; the first two notes of &quot;Amazing Grace,&quot; or the first two notes of the Harry Potter theme."
+            android:layout_marginTop="24sp"
+            android:layout_marginHorizontal="24sp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/perfect4_header"/>
+
+        <Button
+            android:id="@+id/perfect4_low_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_brown"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/perfect4_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/perfect4_summary" />
+
+        <TextView
+            android:id="@+id/perfect4_low_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/low"
+            app:layout_constraintTop_toBottomOf="@id/perfect4_low_button"
+            app:layout_constraintStart_toStartOf="@id/perfect4_low_button"
+            app:layout_constraintEnd_toEndOf="@id/perfect4_low_button" />
+
+        <Button
+            android:id="@+id/perfect4_mid_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/bright_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/perfect4_summary" />
+
+        <TextView
+            android:id="@+id/perfect4_mid_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mid"
+            app:layout_constraintTop_toBottomOf="@id/perfect4_mid_button"
+            app:layout_constraintStart_toStartOf="@id/perfect4_mid_button"
+            app:layout_constraintEnd_toEndOf="@id/perfect4_mid_button" />
+
+        <Button
+            android:id="@+id/perfect4_high_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/perfect4_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/perfect4_summary" />
+
+        <TextView
+            android:id="@+id/perfect4_high_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/high"
+            app:layout_constraintTop_toBottomOf="@id/perfect4_high_button"
+            app:layout_constraintStart_toStartOf="@id/perfect4_high_button"
+            app:layout_constraintEnd_toEndOf="@id/perfect4_high_button" />
+
+        <View
+            android:id="@+id/divider8"
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:background="@color/black"
+            android:layout_marginTop="24sp"
+            app:layout_constraintTop_toBottomOf="@id/perfect4_mid_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/minor5_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider8">
+
+            <TextView
+                android:id="@+id/minor5_label"
+                android:layout_width="wrap_content"
+                android:layout_height="60sp"
+                android:text="Minor 5"
+                android:layout_marginTop="24sp"
+                android:fontFamily="@font/give_you_glory"
+                android:textColor="@color/dark_blue"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/minor5_card"
+                android:layout_width="60sp"
+                android:layout_height="60sp"
+                android:layout_marginLeft="24sp"
+                android:layout_marginTop="24sp"
+                android:background="@color/medium_blue"
+                android:padding="5sp"
+                android:text="m5"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintDimensionRatio="1:1" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/minor5_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A minor 5 is a half-step above a perfect 4 and is also known as an augmented 4 or, more commonly, a tritone. This interval is commonly recognized as the first two notes in The Simpson's theme or &quot;Maria&quot; from West Side Story (&quot;Ma&quot; and &quot;ri&quot; of &quot;Ma-ri-a&quot;)."
+            android:layout_marginTop="24sp"
+            android:layout_marginHorizontal="24sp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/minor5_header"/>
+
+        <Button
+            android:id="@+id/minor5_low_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_brown"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/minor5_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/minor5_summary" />
+
+        <TextView
+            android:id="@+id/minor5_low_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/low"
+            app:layout_constraintTop_toBottomOf="@id/minor5_low_button"
+            app:layout_constraintStart_toStartOf="@id/minor5_low_button"
+            app:layout_constraintEnd_toEndOf="@id/minor5_low_button" />
+
+        <Button
+            android:id="@+id/minor5_mid_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/bright_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/minor5_summary" />
+
+        <TextView
+            android:id="@+id/minor5_mid_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mid"
+            app:layout_constraintTop_toBottomOf="@id/minor5_mid_button"
+            app:layout_constraintStart_toStartOf="@id/minor5_mid_button"
+            app:layout_constraintEnd_toEndOf="@id/minor5_mid_button" />
+
+        <Button
+            android:id="@+id/minor5_high_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/minor5_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/minor5_summary" />
+
+        <TextView
+            android:id="@+id/minor5_high_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/high"
+            app:layout_constraintTop_toBottomOf="@id/minor5_high_button"
+            app:layout_constraintStart_toStartOf="@id/minor5_high_button"
+            app:layout_constraintEnd_toEndOf="@id/minor5_high_button" />
+
+        <View
+            android:id="@+id/divider9"
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:background="@color/black"
+            android:layout_marginTop="24sp"
+            app:layout_constraintTop_toBottomOf="@id/minor5_mid_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/perfect5_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider9">
+
+            <TextView
+                android:id="@+id/perfect5_label"
+                android:layout_width="wrap_content"
+                android:layout_height="60sp"
+                android:text="Perfect 5"
+                android:layout_marginTop="24sp"
+                android:fontFamily="@font/give_you_glory"
+                android:textColor="@color/dark_blue"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/perfect5_card"
+                android:layout_width="60sp"
+                android:layout_height="60sp"
+                android:layout_marginLeft="24sp"
+                android:layout_marginTop="24sp"
+                android:background="@color/medium_blue"
+                android:padding="5sp"
+                android:text="P5"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintDimensionRatio="1:1" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/perfect5_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A perfect 5 is a half-step above a tritone. This interval is commonly recognized as the first two notes of the Star Wars theme or &quot;Twinkle Twinkle Little Star.&quot;"
+            android:layout_marginTop="24sp"
+            android:layout_marginHorizontal="24sp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/perfect5_header"/>
+
+        <Button
+            android:id="@+id/perfect5_low_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_brown"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/perfect5_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/perfect5_summary" />
+
+        <TextView
+            android:id="@+id/perfect5_low_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/low"
+            app:layout_constraintTop_toBottomOf="@id/perfect5_low_button"
+            app:layout_constraintStart_toStartOf="@id/perfect5_low_button"
+            app:layout_constraintEnd_toEndOf="@id/perfect5_low_button" />
+
+        <Button
+            android:id="@+id/perfect5_mid_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/bright_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/perfect5_summary" />
+
+        <TextView
+            android:id="@+id/perfect5_mid_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mid"
+            app:layout_constraintTop_toBottomOf="@id/perfect5_mid_button"
+            app:layout_constraintStart_toStartOf="@id/perfect5_mid_button"
+            app:layout_constraintEnd_toEndOf="@id/perfect5_mid_button" />
+
+        <Button
+            android:id="@+id/perfect5_high_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/perfect5_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/perfect5_summary" />
+
+        <TextView
+            android:id="@+id/perfect5_high_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/high"
+            app:layout_constraintTop_toBottomOf="@id/perfect5_high_button"
+            app:layout_constraintStart_toStartOf="@id/perfect5_high_button"
+            app:layout_constraintEnd_toEndOf="@id/perfect5_high_button" />
+
+        <View
+            android:id="@+id/divider10"
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:background="@color/black"
+            android:layout_marginTop="24sp"
+            app:layout_constraintTop_toBottomOf="@id/perfect5_mid_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/minor6_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider10">
+
+            <TextView
+                android:id="@+id/minor6_label"
+                android:layout_width="wrap_content"
+                android:layout_height="60sp"
+                android:text="Minor 6"
+                android:layout_marginTop="24sp"
+                android:fontFamily="@font/give_you_glory"
+                android:textColor="@color/dark_blue"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/minor6_card"
+                android:layout_width="60sp"
+                android:layout_height="60sp"
+                android:layout_marginLeft="24sp"
+                android:layout_marginTop="24sp"
+                android:background="@color/medium_blue"
+                android:padding="5sp"
+                android:text="m6"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintDimensionRatio="1:1" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/minor6_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A minor 6 is a half-step above a perfect 5. This interval is commonly recognized as the first two notes of Scott Joplin's &quot;The Entertainer.&quot;"
+            android:layout_marginTop="24sp"
+            android:layout_marginHorizontal="24sp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/minor6_header"/>
+
+        <Button
+            android:id="@+id/minor6_low_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_brown"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/minor6_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/minor6_summary" />
+
+        <TextView
+            android:id="@+id/minor6_low_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/low"
+            app:layout_constraintTop_toBottomOf="@id/minor6_low_button"
+            app:layout_constraintStart_toStartOf="@id/minor6_low_button"
+            app:layout_constraintEnd_toEndOf="@id/minor6_low_button" />
+
+        <Button
+            android:id="@+id/minor6_mid_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/bright_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/minor6_summary" />
+
+        <TextView
+            android:id="@+id/minor6_mid_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mid"
+            app:layout_constraintTop_toBottomOf="@id/minor6_mid_button"
+            app:layout_constraintStart_toStartOf="@id/minor6_mid_button"
+            app:layout_constraintEnd_toEndOf="@id/minor6_mid_button" />
+
+        <Button
+            android:id="@+id/minor6_high_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/minor6_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/minor6_summary" />
+
+        <TextView
+            android:id="@+id/minor6_high_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/high"
+            app:layout_constraintTop_toBottomOf="@id/minor6_high_button"
+            app:layout_constraintStart_toStartOf="@id/minor6_high_button"
+            app:layout_constraintEnd_toEndOf="@id/minor6_high_button" />
+
+        <View
+            android:id="@+id/divider11"
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:background="@color/black"
+            android:layout_marginTop="24sp"
+            app:layout_constraintTop_toBottomOf="@id/minor6_mid_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/major6_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider11">
+
+            <TextView
+                android:id="@+id/major6_label"
+                android:layout_width="wrap_content"
+                android:layout_height="60sp"
+                android:text="Major 6"
+                android:layout_marginTop="24sp"
+                android:fontFamily="@font/give_you_glory"
+                android:textColor="@color/dark_blue"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/major6_card"
+                android:layout_width="60sp"
+                android:layout_height="60sp"
+                android:layout_marginLeft="24sp"
+                android:layout_marginTop="24sp"
+                android:background="@color/medium_blue"
+                android:padding="5sp"
+                android:text="M6"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintDimensionRatio="1:1" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/major6_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A major 6 is a half-step above a minor 6. It is commonly recognized as the first two notes of the NBC chime or the first two notes of &quot;Jingle Bells&quot; (&quot;Dash-ing&quot;)."
+            android:layout_marginTop="24sp"
+            android:layout_marginHorizontal="24sp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/major6_header"/>
+
+        <Button
+            android:id="@+id/major6_low_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_brown"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/major6_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/major6_summary" />
+
+        <TextView
+            android:id="@+id/major6_low_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/low"
+            app:layout_constraintTop_toBottomOf="@id/major6_low_button"
+            app:layout_constraintStart_toStartOf="@id/major6_low_button"
+            app:layout_constraintEnd_toEndOf="@id/major6_low_button" />
+
+        <Button
+            android:id="@+id/major6_mid_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/bright_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/major6_summary" />
+
+        <TextView
+            android:id="@+id/major6_mid_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mid"
+            app:layout_constraintTop_toBottomOf="@id/major6_mid_button"
+            app:layout_constraintStart_toStartOf="@id/major6_mid_button"
+            app:layout_constraintEnd_toEndOf="@id/major6_mid_button" />
+
+        <Button
+            android:id="@+id/major6_high_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/major6_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/major6_summary" />
+
+        <TextView
+            android:id="@+id/major6_high_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/high"
+            app:layout_constraintTop_toBottomOf="@id/major6_high_button"
+            app:layout_constraintStart_toStartOf="@id/major6_high_button"
+            app:layout_constraintEnd_toEndOf="@id/major6_high_button" />
+
+        <View
+            android:id="@+id/divider12"
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:background="@color/black"
+            android:layout_marginTop="24sp"
+            app:layout_constraintTop_toBottomOf="@id/major6_mid_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/minor7_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider12">
+
+            <TextView
+                android:id="@+id/minor7_label"
+                android:layout_width="wrap_content"
+                android:layout_height="60sp"
+                android:text="Minor 7"
+                android:layout_marginTop="24sp"
+                android:fontFamily="@font/give_you_glory"
+                android:textColor="@color/dark_blue"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/minor7_card"
+                android:layout_width="60sp"
+                android:layout_height="60sp"
+                android:layout_marginLeft="24sp"
+                android:layout_marginTop="24sp"
+                android:background="@color/medium_blue"
+                android:padding="5sp"
+                android:text="m7"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintDimensionRatio="1:1" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/minor7_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A minor 7 is a half-step above a major 6 and is also known as an augmented 6. This interval is commonly recognized as the first two notes of the chorus of &quot;The Winner Takes It All&quot; by ABBA (&quot;The win-&quot; and &quot;-ner&quot;)."
+            android:layout_marginTop="24sp"
+            android:layout_marginHorizontal="24sp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/minor7_header"/>
+
+        <Button
+            android:id="@+id/minor7_low_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_brown"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/minor7_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/minor7_summary" />
+
+        <TextView
+            android:id="@+id/minor7_low_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/low"
+            app:layout_constraintTop_toBottomOf="@id/minor7_low_button"
+            app:layout_constraintStart_toStartOf="@id/minor7_low_button"
+            app:layout_constraintEnd_toEndOf="@id/minor7_low_button" />
+
+        <Button
+            android:id="@+id/minor7_mid_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/bright_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/minor7_summary" />
+
+        <TextView
+            android:id="@+id/minor7_mid_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mid"
+            app:layout_constraintTop_toBottomOf="@id/minor7_mid_button"
+            app:layout_constraintStart_toStartOf="@id/minor7_mid_button"
+            app:layout_constraintEnd_toEndOf="@id/minor7_mid_button" />
+
+        <Button
+            android:id="@+id/minor7_high_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/minor7_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/minor7_summary" />
+
+        <TextView
+            android:id="@+id/minor7_high_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/high"
+            app:layout_constraintTop_toBottomOf="@id/minor7_high_button"
+            app:layout_constraintStart_toStartOf="@id/minor7_high_button"
+            app:layout_constraintEnd_toEndOf="@id/minor7_high_button" />
+
+        <View
+            android:id="@+id/divider13"
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:background="@color/black"
+            android:layout_marginTop="24sp"
+            app:layout_constraintTop_toBottomOf="@id/minor7_mid_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/major7_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider13">
+
+            <TextView
+                android:id="@+id/major7_label"
+                android:layout_width="wrap_content"
+                android:layout_height="60sp"
+                android:text="Major 7"
+                android:layout_marginTop="24sp"
+                android:fontFamily="@font/give_you_glory"
+                android:textColor="@color/dark_blue"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/major7_card"
+                android:layout_width="60sp"
+                android:layout_height="60sp"
+                android:layout_marginLeft="24sp"
+                android:layout_marginTop="24sp"
+                android:background="@color/medium_blue"
+                android:padding="5sp"
+                android:text="M7"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintDimensionRatio="1:1" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/major7_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A major 7 is a half-step above a minor 7. It is commonly recognized as the first two notes of the Superman theme or the first two notes of the chorus of &quot;Take On Me&quot; by A-Ha (&quot;Take&quot; and &quot;on&quot;)."
+            android:layout_marginTop="24sp"
+            android:layout_marginHorizontal="24sp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/major7_header"/>
+
+        <Button
+            android:id="@+id/major7_low_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_brown"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/major7_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/major7_summary" />
+
+        <TextView
+            android:id="@+id/major7_low_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/low"
+            app:layout_constraintTop_toBottomOf="@id/major7_low_button"
+            app:layout_constraintStart_toStartOf="@id/major7_low_button"
+            app:layout_constraintEnd_toEndOf="@id/major7_low_button" />
+
+        <Button
+            android:id="@+id/major7_mid_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/bright_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/major7_summary" />
+
+        <TextView
+            android:id="@+id/major7_mid_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mid"
+            app:layout_constraintTop_toBottomOf="@id/major7_mid_button"
+            app:layout_constraintStart_toStartOf="@id/major7_mid_button"
+            app:layout_constraintEnd_toEndOf="@id/major7_mid_button" />
+
+        <Button
+            android:id="@+id/major7_high_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/major7_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/major7_summary" />
+
+        <TextView
+            android:id="@+id/major7_high_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/high"
+            app:layout_constraintTop_toBottomOf="@id/major7_high_button"
+            app:layout_constraintStart_toStartOf="@id/major7_high_button"
+            app:layout_constraintEnd_toEndOf="@id/major7_high_button" />
+
+        <View
+            android:id="@+id/divider14"
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:background="@color/black"
+            android:layout_marginTop="24sp"
+            app:layout_constraintTop_toBottomOf="@id/major7_mid_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/perfect8_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider14">
+
+            <TextView
+                android:id="@+id/perfect8_label"
+                android:layout_width="wrap_content"
+                android:layout_height="60sp"
+                android:text="Perfect 8"
+                android:layout_marginTop="24sp"
+                android:fontFamily="@font/give_you_glory"
+                android:textColor="@color/dark_blue"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/perfect8_card"
+                android:layout_width="60sp"
+                android:layout_height="60sp"
+                android:layout_marginLeft="24sp"
+                android:layout_marginTop="24sp"
+                android:background="@color/medium_blue"
+                android:padding="5sp"
+                android:text="P8"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintDimensionRatio="1:1" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/perfect8_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A perfect 8, more commonly known as an octave, is a half-step higher than a major 7. Two notes that are an octave apart have the same name. For example, in the sample sound, both notes played are a C, but in different octaves. An octave is commonly recognized as the first two notes of &quot;Somewhere Over the Rainbow.&quot;"
+            android:layout_marginTop="24sp"
+            android:layout_marginHorizontal="24sp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/perfect8_header"/>
+
+        <Button
+            android:id="@+id/perfect8_low_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_brown"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/perfect8_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/perfect8_summary" />
+
+        <TextView
+            android:id="@+id/perfect8_low_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/low"
+            app:layout_constraintTop_toBottomOf="@id/perfect8_low_button"
+            app:layout_constraintStart_toStartOf="@id/perfect8_low_button"
+            app:layout_constraintEnd_toEndOf="@id/perfect8_low_button" />
+
+        <Button
+            android:id="@+id/perfect8_mid_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/bright_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/perfect8_summary" />
+
+        <TextView
+            android:id="@+id/perfect8_mid_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mid"
+            app:layout_constraintTop_toBottomOf="@id/perfect8_mid_button"
+            app:layout_constraintStart_toStartOf="@id/perfect8_mid_button"
+            app:layout_constraintEnd_toEndOf="@id/perfect8_mid_button" />
+
+        <Button
+            android:id="@+id/perfect8_high_button"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:backgroundTint="@color/light_coral"
+            android:text="@string/play_icon"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/perfect8_mid_button"
+            app:layout_constraintTop_toBottomOf="@id/perfect8_summary" />
+
+        <TextView
+            android:id="@+id/perfect8_high_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/high"
+            app:layout_constraintTop_toBottomOf="@id/perfect8_high_button"
+            app:layout_constraintStart_toStartOf="@id/perfect8_high_button"
+            app:layout_constraintEnd_toEndOf="@id/perfect8_high_button" />
+
+        <View
+            android:id="@+id/divider15"
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:background="@color/black"
+            android:layout_marginTop="24sp"
+            app:layout_constraintTop_toBottomOf="@id/perfect8_mid_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        
+        
+        
+        <TextView
+            android:id="@+id/receiving_points_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Receiving Points"
+            android:layout_marginTop="24sp"
+            android:fontFamily="@font/give_you_glory"
+            android:textColor="@color/dark_blue"
+            android:textSize="34sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider15"/>
+
+        <TextView
+            android:id="@+id/receiving_points_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="When practicing in Musician Mode, you may choose a level to practice on. The level determines which intervals will be included in the exercise. Practicing earns you points, which unlock higher levels. Points will be awarded once an exercise (10 questions) is complete.\n\nThe level number will determine how many points you earn per question. For example, Level 1 awards one point per correct answer, Level 2 awards two points per correct answer, and so on.\n\nTo reach each level, you must accumulate the following number of points:\n\nLevel 2: 100 points\n\nLevel 3: 300 points\n\nLevel 4: 600 points\n\nLevel 5: 1000 points"
+            android:layout_marginTop="24sp"
+            android:layout_marginHorizontal="24sp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/receiving_points_label"/>
+
+        <View
+            android:id="@+id/fifth_divider_view"
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:background="@color/black"
+            android:layout_marginTop="24sp"
+            app:layout_constraintTop_toBottomOf="@id/receiving_points_summary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

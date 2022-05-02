@@ -44,6 +44,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".training.interval.IntervalTipsActivity"
+            android:label="Interval Tips" />
+        <activity
             android:name=".training.interval.IntervalTrainingActivity"
             android:label="Interval Training" />
 

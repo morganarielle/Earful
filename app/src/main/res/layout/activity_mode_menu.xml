@@ -39,6 +39,20 @@
         app:layout_constraintTop_toBottomOf="@id/musician_total_points_label"
         app:layout_constraintBottom_toTopOf="@id/second_divider_view"/>
 
+
+    <Button
+        android:id="@+id/musician_tips_button"
+        android:layout_width="124dp"
+        android:layout_height="wrap_content"
+        android:text="Tips"
+        android:backgroundTint="@color/bright_coral"
+        android:onClick="onClick"
+        app:layout_constraintLeft_toRightOf="@id/musician_total_points_label"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/choose_level_button"
+        app:layout_constraintTop_toBottomOf="@id/musicianMode_textView"/>
+
+
     <Button
         android:id="@+id/choose_level_button"
         android:layout_width="wrap_content"

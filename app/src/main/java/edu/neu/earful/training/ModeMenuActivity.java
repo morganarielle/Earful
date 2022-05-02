@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import edu.neu.earful.R;
+import edu.neu.earful.training.interval.IntervalTipsActivity;
 import edu.neu.earful.training.interval.LevelSelectionActivity;
 import edu.neu.earful.training.mixing.MixingOptionsActivity;
 import edu.neu.earful.training.mixing.MixingTipsActivity;
@@ -25,6 +26,7 @@ public class ModeMenuActivity extends AppCompatActivity {
     Button questionOptionsButton;
     Button chooseLevelButton;
     Button mixingTipsButton;
+    Button musicianTipsButton;
     FloatingActionButton settingsButton;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
@@ -42,6 +44,7 @@ public class ModeMenuActivity extends AppCompatActivity {
         chooseLevelButton = findViewById(R.id.choose_level_button);
         questionOptionsButton = findViewById(R.id.mixing_practice_button);
         mixingTipsButton = findViewById(R.id.mixing_tips_button);
+        musicianTipsButton = findViewById(R.id.musician_tips_button);
         settingsButton = findViewById(R.id.settings_button);
 
 
@@ -66,6 +69,8 @@ public class ModeMenuActivity extends AppCompatActivity {
             launchMixingTips(view);
         } else if (id == settingsButton.getId()) {
             launchSettings(view);
+        } else if (id == musicianTipsButton.getId()) {
+            launchMusicianTips(view);
         }
     }
 
@@ -82,6 +87,11 @@ public class ModeMenuActivity extends AppCompatActivity {
     public void launchMixingTips(View view) {
         Intent mixingTipsIntent = new Intent(getApplicationContext(), MixingTipsActivity.class);
         startActivity(mixingTipsIntent);
+    }
+
+    public void launchMusicianTips(View view) {
+        Intent musicianTipsIntent = new Intent(getApplicationContext(), IntervalTipsActivity.class);
+        startActivity(musicianTipsIntent);
     }
 
     public void launchSettings(View view) {
