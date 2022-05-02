@@ -47,4 +47,7 @@
     <string name="new_level_unlocked">New level unlocked!</string>
     <string name="musician_results_key">musician</string>
     <string name="mixing_results_key">mixing</string>
+    <string name="low">Low</string>
+    <string name="mid">Mid</string>
+    <string name="high">High</string>
 </resources>
