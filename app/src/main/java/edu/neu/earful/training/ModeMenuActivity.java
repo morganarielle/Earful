@@ -125,4 +125,9 @@ public class ModeMenuActivity extends AppCompatActivity {
         super.onResume();
         setTotalPoints();
     }
+
+    @Override
+    public void onBackPressed() {
+        // Disable the back button
+    }
 }
