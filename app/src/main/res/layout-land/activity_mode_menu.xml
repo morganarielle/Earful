@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".training.ModeMenuActivity">
+
+    <TextView
+        android:id="@+id/musicianMode_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/give_you_glory"
+        android:text="@string/musician_mode_header"
+        android:textColor="@color/dark_blue"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toStartOf="@id/divider_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/musician_total_points_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Points:"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/choose_level_button"
+        app:layout_constraintTop_toBottomOf="@id/musicianMode_textView"
+        app:layout_constraintBottom_toTopOf="@id/musician_total_points_value"/>
+
+    <TextView
+        android:id="@+id/musician_total_points_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/choose_level_button"
+        app:layout_constraintTop_toBottomOf="@id/musician_total_points_label"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    <Button
+        android:id="@+id/musician_tips_button"
+        android:layout_width="124dp"
+        android:layout_height="wrap_content"
+        android:text="Tips"
+        android:backgroundTint="@color/bright_coral"
+        android:onClick="onClick"
+        app:layout_constraintLeft_toRightOf="@id/musician_total_points_label"
+        app:layout_constraintRight_toLeftOf="@id/divider_view"
+        app:layout_constraintBottom_toTopOf="@id/choose_level_button"
+        app:layout_constraintTop_toBottomOf="@id/musicianMode_textView"/>
+
+
+    <Button
+        android:id="@+id/choose_level_button"
+        android:layout_width="124dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/bright_coral"
+        android:onClick="onClick"
+        android:text="@string/levels"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/divider_view"
+        app:layout_constraintStart_toEndOf="@id/musician_total_points_label"
+        app:layout_constraintTop_toBottomOf="@+id/musician_tips_button" />
+
+    <View
+        android:id="@+id/divider_view"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/mixingMode_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/give_you_glory"
+        android:text="@string/mixing_mode_header"
+        android:textColor="@color/dark_blue"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/divider_view"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/mixing_total_points_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Points:"
+        app:layout_constraintLeft_toRightOf="@id/divider_view"
+        app:layout_constraintRight_toLeftOf="@id/mixing_practice_button"
+        app:layout_constraintBottom_toTopOf="@id/mixing_total_points_value"
+        app:layout_constraintTop_toBottomOf="@id/mixingMode_textView"/>
+
+    <TextView
+        android:id="@+id/mixing_total_points_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        app:layout_constraintLeft_toRightOf="@id/divider_view"
+        app:layout_constraintRight_toLeftOf="@id/mixing_practice_button"
+        app:layout_constraintTop_toBottomOf="@id/mixing_total_points_label"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <Button
+        android:id="@+id/mixing_tips_button"
+        android:layout_width="124dp"
+        android:layout_height="wrap_content"
+        android:text="Tips"
+        android:backgroundTint="@color/bright_coral"
+        android:onClick="onClick"
+        app:layout_constraintLeft_toRightOf="@id/mixing_total_points_label"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/mixing_practice_button"
+        app:layout_constraintTop_toBottomOf="@id/mixingMode_textView"/>
+
+    <Button
+        android:id="@+id/mixing_practice_button"
+        android:layout_width="124dp"
+        android:layout_height="wrap_content"
+        android:text="Practice"
+        android:backgroundTint="@color/bright_coral"
+        android:onClick="onClick"
+        app:layout_constraintLeft_toRightOf="@id/mixing_total_points_label"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mixing_tips_button"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/settings_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:onClick="onClick"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_manage" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
