@@ -1,5 +1,6 @@
 package edu.neu.earful.training.mixing;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -89,7 +90,18 @@ public class MixingTrainingActivity extends AppCompatActivity {
 
         setWhichFreqTextAndImage();
         generateAssetMap();
-        path = getRandomFilePath();
+        // check if the app is being reloaded (orientation change) or started for the first time
+        if (savedInstanceState != null) {
+            // The app is being reloaded
+
+            // We want to retrieve which random audio file was selected and the correct index
+            path = savedInstanceState.getString("audio_file");
+            correctIndex = savedInstanceState.getInt("correct_index");
+            System.out.println(path);
+
+        } else {
+            path = getRandomFilePath();
+        }
 
         playAudioButton.setOnClickListener(view -> {
             if (questionPlayer == null) {
@@ -424,17 +436,16 @@ public class MixingTrainingActivity extends AppCompatActivity {
         }
     }
 
-    private void addPoints() {
-        // write the score to the database
-        currentUserReference.get().addOnCompleteListener(task -> {
-            if (!task.isSuccessful()) {
-                Log.v("TAG", "Error getting data", task.getException());
-            }
-            else {
-                int currentScore = task.getResult().child(getString(R.string.db_key_musician_score)).getValue(Integer.class);
-                Log.v("TAG", "Prev score: " + currentScore);
-                currentUserReference.child(getString(R.string.db_key_musician_score)).setValue(currentScore + pointsAwarded);
-            }
-        });
+    // Use this method to store only primitive types and simple, small objects such as a String.
+    // Store a minimal amount of data necessary, such as an ID, to re-create the data necessary to restore the UI back to its previous state.
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        // A Bundle is a container for all the information you want to save.
+        // To insert data into it we use put functions, to retrieve data we use get functions.
+        // In onCreate, this Bundle is handed back to the program.
+        System.out.println(path);
+        outState.putString("audio_file", path);
+        outState.putInt("correct_index", correctIndex);
+        super.onSaveInstanceState(outState);
     }
 }
