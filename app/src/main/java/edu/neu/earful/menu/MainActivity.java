@@ -112,4 +112,9 @@ public class MainActivity extends AppCompatActivity {
         public void afterTextChanged(Editable editable) {
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        // Do nothing
+    }
 }

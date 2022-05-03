@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Earful">
         <activity
+            android:name=".LaunchScreenActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".training.mixing.MixingTipsActivity"
             android:exported="false" />
         <activity
@@ -23,8 +32,8 @@
             android:exported="false" />
         <activity
             android:name=".settings.SettingsActivity"
-            android:label="Settings"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Settings" />
         <activity
             android:name=".training.interval.LevelSelectionActivity"
             android:exported="false" />
@@ -36,12 +45,7 @@
             android:exported="false" />
         <activity
             android:name=".menu.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
         </activity>
         <activity
             android:name=".training.interval.IntervalTipsActivity"
@@ -53,13 +57,15 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
         <receiver
             android:name=".settings.notifications.NotificationReceiver"
             android:enabled="true"
-            android:exported="false"></receiver>
+            android:exported="false" />
+
         <service
             android:name=".settings.notifications.NotificationIntentService"
-            android:exported="false"></service>
+            android:exported="false" />
     </application>
 
 </manifest>

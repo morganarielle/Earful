@@ -13,5 +13,8 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/medium_blue</item>
+
+        <!-- This image (not color) should be identical to the launch screen image. -->
+        <!-- <item name="android:windowBackground">@color/light_coral</item> -->
     </style>
 </resources>
